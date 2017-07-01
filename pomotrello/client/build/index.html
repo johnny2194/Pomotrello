@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Pomotrello</title>
   <link rel="stylesheet" href="public/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400" rel="stylesheet">
   <script src="bundle.js"></script>
 </head>
 <body>
@@ -18,18 +19,95 @@
     <div id="lists-header-wrapper">
       <p id="lists-header">All Tasks</p>
     </div>
-    <div id="all-list-wrapper">
-      <div class="overflow-list-cointainer">
-        <div class="default-list-wrapper"></div>
-        <!-- <div class="default-list-wrapper"></div> -->
+    <div id="all-list-container">
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>Todo</p>
+        </div>
       </div>
-      <div class="default-list-wrapper"></div>
-      <div class="default-list-wrapper"></div>
-      <div class="default-list-wrapper"></div>
-      <div class="overflow-list-cointainer">
-        <div class="default-list-wrapper"></div>
-        <div class="default-list-wrapper"></div>
-        <!-- <div class="default-list-wrapper"></div> -->
+      <div class="default-list-wrapper" id="today-list-wrapper">
+        <div class ="default-list-title">
+          <p>Today</p>
+        </div>
+        <div class="tasks-container">
+          <div class="task-wrapper">
+            <p class="task">Plan awesome project with Lewis and Matt</p>
+            <div class="checkbox">
+              <input type="checkbox" value="None" id="checkbox" name="check" checked />
+              <label for="checkbox"></label>
+            </div>
+          </div>
+
+          <div class="task-wrapper">
+            <p class="task">Look to make task lists wider to account for checkbox divs</p>
+            <div class="checkbox">
+              <input type="checkbox" value="None" id="checkbox" name="check" checked />
+              <label for="checkbox"></label>
+            </div>
+          </div>
+
+          <div class="task-wrapper">
+            <p class="task">Find a way to show visable scroll bar if necessary. Here's what mutlitple lines looks like!</p>
+            <div class="checkbox">
+              <input type="checkbox" value="None" id="checkbox" name="check" checked />
+              <label for="checkbox"></label>
+            </div>
+          </div>
+
+          <div class="task-wrapper">
+            <p class="task">Play lots of table tennis</p>
+            <div class="checkbox">
+              <input type="checkbox" value="None" id="checkbox" name="check" checked />
+              <label for="checkbox"></label>
+            </div>
+          </div>
+
+          <div class="task-wrapper">
+            <p class="task">Find a way to make moudlar pop ups to create a badass dashboard for our API hook ins</p>
+            <div class="checkbox">
+              <input type="checkbox" value="None" id="checkbox" name="check" checked />
+              <label for="checkbox"></label>
+            </div>
+          </div>
+
+          <div class="task-wrapper">
+            <p class="task">Find a way to make moudlar pop ups to create a badass dashboard for our API hook ins</p>
+            <div class="checkbox">
+              <input type="checkbox" value="None" id="checkbox" name="check" checked />
+              <label for="checkbox"></label>
+            </div>
+          </div>
+
+          <div class="task-wrapper">
+            <p class="task">Find a way to make moudlar pop ups to create a badass dashboard for our API hook ins</p>
+            <div class="checkbox">
+              <input type="checkbox" value="None" id="checkbox" name="check" checked />
+              <label for="checkbox"></label>
+            </div>
+          </div>
+        </div>  
+      </div>
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>Tomorrow</p>
+        </div>
+      </div>
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>This Week</p>
+        </div>
+      </div>
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>Upcoming</p>
+        </div>
+      </div>
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>Upcoming</p>
+        </div>
       </div>
     </div>
-  </div>
+  </div>  
+</body>
+</html>
