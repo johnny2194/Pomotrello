@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffffff;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  position: relative;
+  margin: 0;
+  background-image: url('images/nature2.jpg');
+  background-size: cover;
+}
+
+.navbar-default {
+  /*background: #FFF;*/
+  border: none;
+  height: 40px;
+  box-shadow: 4px 4px 4px 4px rgba(50, 50, 50, 0.08);
+  /*padding:  22px 18px 22px 155px;*/
+  margin: 0;
+  /*border-bottom: 0.5px solid grey;*/
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  /*rgba(102, 102, 102, 0.3);*/
+  color: #d3d3d3;
+}
+
+.bar {
+  border: none;
+  height: 35px;
+  width: 35px;
+  box-shadow: 4px 4px 4px 4px rgba(50, 50, 50, 0.08);
+  /*padding:  22px 18px 22px 155px;*/
+  margin: 0;
+  /*border-bottom: 0.5px solid grey;*/
+  display: flex;
+  /*justify-content: space-around;*/
+  align-items: center;
+  background-color: rgba(50, 50, 50, 1);
+  /*rgba(102, 102, 102, 0.3);*/
+  color: #d3d3d3;
+}
+
+#logo {
+  font-size: 20px;
+  font-weight: 500;
+  display: inline-block;
+  /*padding: 7.5px 12px 7.5px; */
+}
+
+#main-wrapper {
+  /*padding: 45px 130px;*/
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  /*background-color: grey;*/
+}
+
+#lists-header {
+  color: #d3d3d3;
+  padding-left: 30px;
+  padding-top: 5px;
+}
+
+#all-list-wrapper{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+  /*margin-right: 45px;*/
+  margin: 0;
+  border: 1px solid blue;
+  height: 370px;
+}
+
+.default-list-wrapper{ 
+  /*margin-bottom: px;*/
+  width: 270px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /*background-color: #fff;*/
+  background-color: #cdd2d4;
+  /*border: 1px solid #f2f2f2;*/
+  border-radius: 2px;
+  /*opacity: 0.9;*/
+  height: 360px;
+}
+
+.overflow-list-cointainer{
+  /*display: flex;*/
+/*  flex-flow: row;
+  justify-content: space-around;*/
+  /*align-items: center;*/
+  /*margin-right: 45px;*/
+  /*margin: 0;*/
+
+  display: flex;
+  height: 370px;
+  width: 285px;
+  /*padding-left: 10px;*/
+  overflow-x: scroll;
+  overflow-y: scroll;
+
+  border: 1px solid pink;
+}
