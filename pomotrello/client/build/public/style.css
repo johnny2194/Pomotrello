@@ -82,7 +82,7 @@ body {
   left: 0;
 }
 
-.default-list-wrapper{ 
+.default-list-wrapper{
   /*margin-bottom: px;*/
   margin-left: 10px;
   min-width: 275px;
@@ -101,13 +101,13 @@ body {
 
 }
 
-.tasks-container{ 
+.tasks-container{
   /*margin-bottom: px;*/
   min-width: 275px;
   min-height: 100px;
   max-height: 360px;
   box-sizing: border-box;
-  display: flex;
+  /*display: flex;*/
   /*-webkit-flex-direction: column;*/
   /*-ms-flex-direction: column;*/
   flex-direction: column;
@@ -117,7 +117,7 @@ body {
   align-items: center;
   overflow: auto;
   /*flex: 0 0 350px;*/
-  overflow-y: auto;
+  /*overflow-y: auto;*/
   /*height: 400px;*/
 }
 
@@ -149,7 +149,7 @@ body {
   flex-direction: row;
 }
 
-.task{
+.task-description{
   clear: both;
   font-weight: 300;
   /*margin: 0 0 4px;*/
