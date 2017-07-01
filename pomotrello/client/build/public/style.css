@@ -162,6 +162,26 @@ body {
   font-size: 13px;
 }
 
+.analytics-and-pomo-countdown-wrapper{
+  display: flex;
+  flex-flow: row;
+  /*height: 370px;*/
+  white-space: nowrap;
+  padding-bottom: 10px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 1px solid blue;
+}
+
+#pie-chart-wrapper {
+  display: flex;
+  justify-content: space-around;
+  height: 300px;
+  width: 300px;
+  border: 1px solid pink;
+}
 
 /*CHECKBOX STYlING*/
 
