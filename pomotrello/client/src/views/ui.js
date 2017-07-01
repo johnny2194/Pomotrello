@@ -17,7 +17,7 @@ UI.prototype = {
 
     for (var task of tasks) {
 
-      //RENDER TO SCREEN 
+      //RENDER TO SCREEN
 
       var taskWrapper = document.createElement('div');
       taskWrapper.classList.add('task-wrapper');
@@ -44,20 +44,22 @@ UI.prototype = {
       //PIE CHART INFO
 
       var category = task.category;
-      taskCategoryCount[category] = taskCategoryCount[category] ? taskCategoryCount[category]+task.pomCount : task.pomCount;
+      var pomCountInt = parseInt(task.pomCount);
+      taskCategoryCount[category] = taskCategoryCount[category] ? taskCategoryCount[category]+pomCountInt : pomCountInt;
     }
 
     var formattedCategoryData = [];
 
     for(category in taskCategoryCount) {
-      var datObject = {}
-      datObject.name = category;
+      var dataObject = {}
+      dataObject.name = category;
       dataObject.y = taskCategoryCount[category];
 
       formattedCategoryData.push(dataObject);
     }
 
     //CREATE PIECHART
+  new PieChart(formattedCategoryData);
 
   }
 

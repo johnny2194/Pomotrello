@@ -1,19 +1,19 @@
 var Highcharts = require('highcharts');
 require('highcharts/modules/exporting')(Highcharts);
 
-var PieChart = function(title, dataLabel, data) {
+var PieChart = function(data) {
 
- var container = document.querySelector("#pie-chart");
+ var container = document.getElementById("pie-chart-wrapper");
 
  var chart = new Highcharts.Chart({
    chart: {
      type: "pie",
      renderTo: container
    },
-   title: {text: title},
+   title: {text: "Your Pomotrello Balance"},
    series: [
      {
-       name: dataLabel,
+       name: "Pomotrellos",
        data: data
      }
    ]
