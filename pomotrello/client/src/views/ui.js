@@ -7,8 +7,10 @@ var UI = function() {
   taskList.all(function (allTasks) {
     this.renderTask(allTasks);
   }.bind(this));
-  this.taskModalPopUp();
+  this.newTaskModalPopUp();
   this.dashboardModalPopUp();
+  this.taskModalPopUp();
+  this.editTaskModalPopUp();
 }
 
 UI.prototype = {
@@ -62,6 +64,51 @@ UI.prototype = {
     }
   },
 
+  newTaskModalPopUp: function() {
+    var newTaskModal = document.getElementById('add-task-modal-popup');
+    var newTaskButton = document.getElementById("add-task-button");
+    var newTaskSpan = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    newTaskButton.onclick = function() {
+        newTaskModal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    newTaskSpan.onclick = function() {
+        newTaskModal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == newTaskModal) {
+            newTaskModal.style.display = "none";
+        }
+    }
+  },
+
+  editTaskModalPopUp: function() {
+    var editTaskModal = document.getElementById('edit-task-modal-popup');
+    var editTaskButton = document.getElementById("edit-task-button");
+    var editTaskSpan = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    editTaskButton.onclick = function() {
+        editTaskModal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    editTaskSpan.onclick = function() {
+        editTaskModal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == editTaskModal) {
+            editTaskModal.style.display = "none";
+        }
+    }
+  },
 
   renderTask: function(tasks) {
     var container = document.getElementById('todo-tasks-container');
