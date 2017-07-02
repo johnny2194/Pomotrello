@@ -202,10 +202,11 @@ body {
 }
 
 #countdown-wrapper {
+  font-size: 50px;
   position: absolute;
   bottom: 0;
   margin-bottom: 12px;
-  margin-left: 600px;
+  margin-left: 800px;
   display: flex;
   justify-content: space-around;
   height: 240px;

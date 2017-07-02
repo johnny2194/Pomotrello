@@ -91,7 +91,8 @@ UI.prototype = {
 
 }
 
-function MyTimer(newNumber, number) {
+// Create Timer
+function Countdown(newNumber, number) {
      number = number || 60; 
      var timer=setInterval(function() { 
          newNumber(number);
@@ -100,7 +101,7 @@ function MyTimer(newNumber, number) {
          } 
      }, 1000);
  }
- new MyTimer(function(number) {
+ new Countdown(function(number) {
      var display_timer = "00:" + (number >= 10 ? number : "0" + number);
      document.getElementById("countdown-wrapper").textContent = display_timer; 
  });
