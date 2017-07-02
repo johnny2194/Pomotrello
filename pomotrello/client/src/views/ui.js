@@ -1,12 +1,13 @@
 var TaskList = require('../models/task_list.js');
-var PieChart = require("./pie_chart.js")
+var PieChart = require("./pie_chart.js");
+var getTechCalendar = require("../models/get_tech_calendar.js");
 
 var UI = function() {
   var taskList = new TaskList();
   taskList.all(function (allTasks) {
     this.renderTask(allTasks);
   }.bind(this));
-  this.taskModalPopUp();  
+  this.taskModalPopUp();
   this.dashboardModalPopUp();
 }
 
@@ -17,9 +18,10 @@ UI.prototype = {
     var eventButton = document.getElementById("event-dashboard-button");
     var eventSpan = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on the button, open the modal 
+    // When the user clicks on the button, open the modal
     eventButton.onclick = function() {
         eventModal.style.display = "block";
+        getTechCalendar();
     }
 
     // When the user clicks on <span> (x), close the modal
@@ -33,14 +35,15 @@ UI.prototype = {
             eventModal.style.display = "none";
         }
     }
-  }, 
+  },
 
   taskModalPopUp: function() {
     var taskModal = document.getElementById('task-modal-popup');
     var taskButton = document.getElementsByClassName("default-list-title");
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on the button, open the modal 
+
+    // When the user clicks on the button, open the modal
     taskButton.onclick = function() {
         taskModal.style.display = "block";
         console.log("test", "this is default-list-title")
@@ -57,7 +60,7 @@ UI.prototype = {
             taskModal.style.display = "none";
         }
     }
-  }, 
+  },
 
 
   renderTask: function(tasks) {
