@@ -8,14 +8,14 @@ var UI = function() {
     this.renderTask(allTasks);
   }.bind(this));
   this.addTaskModalPopUp();
-  this.dashboardModalPopUp();
   this.editTaskModalPopUp();
+  this.dashboardModalPopUp();
 }
 
 UI.prototype = {
 
   addTaskModalPopUp: function() {
-    var addTaskModal = document.getElementById('add-task-modal-popup');
+    var addTaskModal = document.getElementById("add-task-modal-popup");
     var addTaskButton = document.getElementById("add-task-button");
     var addTaskSpan = document.getElementById("close-add-task-modal-popup");
 
@@ -30,7 +30,7 @@ UI.prototype = {
     }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+    addTaskModal.onclick = function(event) {
         if (event.target == addTaskModal) {
             addTaskModal.style.display = "none";
         }
@@ -53,7 +53,7 @@ UI.prototype = {
     }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+    editTaskModal.onclick = function(event) {
         if (event.target == editTaskModal) {
             editTaskModal.style.display = "none";
         }
@@ -77,7 +77,7 @@ UI.prototype = {
     }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+    eventModal.onclick = function(event) {
         if (event.target == eventModal) {
             eventModal.style.display = "none";
         }
