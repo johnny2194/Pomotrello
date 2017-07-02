@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "highcharts": "^5.0.12"
   },
   "devDependencies": {
     "mocha": "^3.4.2",

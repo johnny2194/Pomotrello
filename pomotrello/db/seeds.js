@@ -17,8 +17,9 @@ db.tasks.insert([
     pomCount: "1",
     date: "",
     startTime: "",
-    endTime: "",
-    completed: false
+    endTime: "",            
+    completed: false  
+
   },
 
   {

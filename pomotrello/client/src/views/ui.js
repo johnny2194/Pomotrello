@@ -1,4 +1,5 @@
 var TaskList = require('../models/task_list.js');
+var PieChart = require("./pie_chart.js")
 
 var UI = function() {
   var taskList = new TaskList();
@@ -12,7 +13,12 @@ UI.prototype = {
     var container = document.getElementById('todo-tasks-container');
     container.innerHTML = '';
 
+    var taskCategoryCount = {};
+
     for (var task of tasks) {
+
+      //RENDER TO SCREEN
+
       var taskWrapper = document.createElement('div');
       taskWrapper.classList.add('task-wrapper');
       var taskDescription = document.createElement('p');
@@ -34,9 +40,31 @@ UI.prototype = {
       checkboxWrapper.appendChild(checkboxInput);
       taskWrapper.appendChild(checkboxWrapper);
       container.appendChild(taskWrapper);
+
+      //PIE CHART INFO
+
+      var category = task.category;
+      var pomCountInt = parseInt(task.pomCount);
+      taskCategoryCount[category] = taskCategoryCount[category] ? taskCategoryCount[category]+pomCountInt : pomCountInt;
     }
+
+    var formattedCategoryData = [];
+
+    for(category in taskCategoryCount) {
+      var dataObject = {}
+      dataObject.name = category;
+      dataObject.y = taskCategoryCount[category];
+
+      formattedCategoryData.push(dataObject);
+    }
+
+    //CREATE PIECHART
+  new PieChart(formattedCategoryData);
+
   }
+
 }
+
 
 
           // <div class="task-wrapper">
