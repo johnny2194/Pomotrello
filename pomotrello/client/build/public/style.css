@@ -175,12 +175,30 @@ body {
   border: 1px solid blue;
 }
 
-#pie-chart-wrapper {
+#pie-chart-backround-container{
+  background-color:#E2E4E6;
   display: flex;
   justify-content: space-around;
   height: 300px;
   width: 300px;
-  border: 1px solid pink;
+  align-items: ; 
+  margin-left: 12px;
+  margin-bottom: 15px; 
+  border-radius: 3px;
+  position: relative;
+
+  /*background: ;*/
+  /*border: 1px solid pink;*/
+}
+#pie-chart-wrapper {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-around;
+  height: 240px;
+  width: 280px;
+  /*border: 1px solid pink;*/
 }
 
 /*CHECKBOX STYlING*/
@@ -232,3 +250,16 @@ body {
 .checkbox input[type=checkbox]:checked + label:after {
   opacity: 1;
 }*/
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+    /*background-color: grey;*/
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    /*background-color: lightgrey;*/
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}

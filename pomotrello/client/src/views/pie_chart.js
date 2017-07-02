@@ -8,7 +8,10 @@ var PieChart = function(data) {
  var chart = new Highcharts.Chart({
    chart: {
      type: "pie",
-     renderTo: container
+     renderTo: container,
+     plotBackgroundColor: blue,
+     plotBorderWidth: 100,
+     plotShadow: true,
    },
    title: {text: "Your Pomotrello Balance"},
    series: [
@@ -17,7 +20,17 @@ var PieChart = function(data) {
        data: data
      }
    ]
- });
+
+   plotOptions: {
+       pie: {
+           allowPointSelect: true,
+           cursor: 'pointer',
+               dataLabels: {
+                   enabled: false,
+               }
+           }
+       }
+  });
 
 }
 
