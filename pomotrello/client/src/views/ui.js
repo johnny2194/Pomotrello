@@ -1,6 +1,7 @@
 var TaskList = require('../models/task_list.js');
 var PieChart = require("./pie_chart.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
+var EditModalPopup = require("./edit_modal_popup.js");
 
 var UI = function() {
   var taskList = new TaskList();
@@ -8,9 +9,10 @@ var UI = function() {
     this.renderTask(allTasks);
   }.bind(this));
   this.addTaskModalPopUp();
-  this.editTaskModalPopUp();
   this.dashboardModalPopUp();
 }
+
+var editModalPopup = new EditModalPopup();
 
 UI.prototype = {
 
@@ -33,29 +35,6 @@ UI.prototype = {
     addTaskModal.onclick = function(event) {
         if (event.target == addTaskModal) {
             addTaskModal.style.display = "none";
-        }
-    }
-  },
-
-  editTaskModalPopUp: function() {
-    var editTaskModal = document.getElementById('edit-task-modal-popup');
-    var editTaskButton = document.getElementById("edit-task-button");
-    var editTaskSpan = document.getElementById("close-edit-task-modal-popup");
-
-    // When the user clicks on the button, open the modal
-    editTaskButton.onclick = function() {
-        editTaskModal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    editTaskSpan.onclick = function() {
-        editTaskModal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    editTaskModal.onclick = function(event) {
-        if (event.target == editTaskModal) {
-            editTaskModal.style.display = "none";
         }
     }
   },
@@ -96,6 +75,20 @@ UI.prototype = {
 
       var taskWrapper = document.createElement('div');
       taskWrapper.classList.add('task-wrapper');
+      taskWrapper.classList.add('edit-task-button');
+      taskWrapper.addEventListener("click", function(event){
+        console.log("taskwrapper clicked", event);
+        var editTaskModal = document.getElementById('edit-task-modal-popup');
+        editTaskModal.style.display = "block";
+        var editTaskContent = document.getElementById("edit-task-modal-content");
+        editTaskContent.innerHTML = "";
+
+        var taskToEdit = document.createElement("p");
+        var taskToEditNode = document.createTextNode(event.target.textContent);
+        taskToEdit.appendChild(taskToEditNode);
+        editTaskContent.appendChild(taskToEdit);
+        console.log(event.target.textContent);
+      })
       var taskDescription = document.createElement('p');
       taskDescription.classList.add('task-description');
       var taskNode = document.createTextNode(task.description)
@@ -140,5 +133,6 @@ UI.prototype = {
 
 }
 
+window.addEventListener("load", editModalPopup.editTaskModalPopUp)
 
 module.exports = UI;
