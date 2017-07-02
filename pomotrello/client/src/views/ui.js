@@ -1,5 +1,7 @@
 var TaskList = require('../models/task_list.js');
-var PieChart = require("./pie_chart.js")
+var PieChart = require("./pie_chart.js");
+// var eventDashboardLogic = require("./event_dashboard_logic.js");
+var getTechCalendar = require("../models/get_tech_calendar.js");
 
 var UI = function() {
   var taskList = new TaskList();
@@ -16,9 +18,16 @@ UI.prototype = {
     var btn = document.getElementById("event-dashboard-button");
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on the button, open the modal 
+    // When the user clicks on the button, open the modal
     btn.onclick = function() {
         modal.style.display = "block";
+        // var data = function() {
+          getTechCalendar();
+          console.log("Get Tech Calendar clicked, btn.onClick");
+        // }
+        // data.addEventListener("load", function() {
+        // })
+
     }
 
     // When the user clicks on <span> (x), close the modal
@@ -32,7 +41,7 @@ UI.prototype = {
             modal.style.display = "none";
         }
     }
-  }, 
+  },
 
 
   renderTask: function(tasks) {

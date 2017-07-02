@@ -67,7 +67,6 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getTechCalendar = __webpack_require__(1);
 var UI = __webpack_require__(2);
 
 var app = function() {
@@ -75,15 +74,9 @@ var app = function() {
 
   new UI();
 
-  var techButton = document.getElementById("test-tech-calendar");
-  techButton.addEventListener("click", handleButtonClick)
-
 
 }
 
-var handleButtonClick = function() {
-  getTechCalendar()
-}
 
 
 window.addEventListener("load", app)
@@ -91,10 +84,12 @@ window.addEventListener("load", app)
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+var eventDashboardLogic = __webpack_require__(8);
 
 var getTechCalendar = function() {
-  console.log("getTechCalendar clicked");
+  console.log("getTechCalendar clicked, in getTechCalendar");
 
   var url = "https://opentechcalendar.co.uk/api1/area/62/events.json";
 
@@ -105,16 +100,28 @@ var getTechCalendar = function() {
   request.addEventListener("load", function() {
     var jsonString = request.responseText;
     var techCalendarData = JSON.parse(jsonString);
+    var techCalendarDataArray = techCalendarData.data;
+    console.log("Received tech calendar data", techCalendarDataArray[0]);
 
-    console.log("Received tech calendar data", techCalendarData);
-    //USE RENDER FUNCTION HERE
+    eventDashboardLogic(techCalendarDataArray);
+
   });
+
 request.send();
 
 }
 
+var eventDashboardLogic = function(techCalendarData) {
+  var container = document.getElementById("event-dashboard-modal-content");
+  console.log("eventDashboardLogic invoked");
+  for(event of techCalendarData) {
+    var eventEntry = document.createElement("p");
+    var eventNode = document.createTextNode(event.summary + " - " + event.start.displaylocal);
+    eventEntry.appendChild(eventNode);
+    container.appendChild(eventEntry);
+  }
 
-
+}
 
 module.exports = getTechCalendar;
 
@@ -124,7 +131,9 @@ module.exports = getTechCalendar;
 /***/ (function(module, exports, __webpack_require__) {
 
 var TaskList = __webpack_require__(3);
-var PieChart = __webpack_require__(5)
+var PieChart = __webpack_require__(5);
+// var eventDashboardLogic = require("./event_dashboard_logic.js");
+var getTechCalendar = __webpack_require__(1);
 
 var UI = function() {
   var taskList = new TaskList();
@@ -141,9 +150,16 @@ UI.prototype = {
     var btn = document.getElementById("event-dashboard-button");
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on the button, open the modal 
+    // When the user clicks on the button, open the modal
     btn.onclick = function() {
         modal.style.display = "block";
+        // var data = function() {
+          getTechCalendar();
+          console.log("Get Tech Calendar clicked, btn.onClick");
+        // }
+        // data.addEventListener("load", function() {
+        // })
+
     }
 
     // When the user clicks on <span> (x), close the modal
@@ -157,7 +173,7 @@ UI.prototype = {
             modal.style.display = "none";
         }
     }
-  }, 
+  },
 
 
   renderTask: function(tasks) {
@@ -788,6 +804,12 @@ b.buttonOffset+=(d.width+c.buttonSpacing)*("right"===c.align?-1:1);b.exportSVGEl
 null;B(a)}),e.length=0);c&&(h(c,function(a){a()}),c.length=0)}});K.menu=function(a,b,e,c){return["M",a,b+2.5,"L",a+e,b+2.5,"M",a,b+c/2+.5,"L",a+e,b+c/2+.5,"M",a,b+c-1.5,"L",a+e,b+c-1.5]};A.prototype.renderExporting=function(){var a=this,b=a.options.exporting,e=b.buttons,c=a.isDirtyExporting||!a.exportSVGElements;a.buttonOffset=0;a.isDirtyExporting&&a.destroyExport();c&&!1!==b.enabled&&(a.exportEvents=[],F(e,function(b){a.addButton(b)}),a.isDirtyExporting=!1);w(a,"destroy",a.destroyExport)};A.prototype.callbacks.push(function(a){a.renderExporting();
 w(a,"redraw",a.renderExporting);h(["exporting","navigation"],function(b){a[b]={update:function(e,c){a.isDirtyExporting=!0;n(!0,a.options[b],e);C(c,!0)&&a.redraw()}}})})})(k)});
 
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/user/Desktop/cohort_12_notes/projects/project_03/pomotrello/client/src/views/event_dashboard_logic.js'");
 
 /***/ })
 /******/ ]);

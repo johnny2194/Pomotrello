@@ -181,9 +181,9 @@ body {
   justify-content: space-around;
   height: 300px;
   width: 300px;
-  align-items: ; 
+  align-items: ;
   margin-left: 12px;
-  margin-bottom: 15px; 
+  margin-bottom: 15px;
   border-radius: 3px;
   position: relative;
 
@@ -281,7 +281,7 @@ body {
 }
 
 /* Modal Content/Box */
-.event-dashboard-modal-content {
+#event-dashboard-modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
