@@ -1,5 +1,3 @@
-var eventDashboardLogic = require("../views/event_dashboard_logic.js");
-
 var getTechCalendar = function() {
   console.log("getTechCalendar clicked, in getTechCalendar");
 
@@ -7,7 +5,6 @@ var getTechCalendar = function() {
 
   var request = new XMLHttpRequest();
   request.open("GET", url);
-  // request.withCredentials = true;
   request.setRequestHeader("Content-Type", "text/plain");
   request.addEventListener("load", function() {
     var jsonString = request.responseText;

@@ -1,6 +1,5 @@
 var TaskList = require('../models/task_list.js');
 var PieChart = require("./pie_chart.js");
-// var eventDashboardLogic = require("./event_dashboard_logic.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
 
 var UI = function() {
