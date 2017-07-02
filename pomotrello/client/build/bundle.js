@@ -87,8 +87,8 @@ window.addEventListener("load", app)
 /***/ (function(module, exports, __webpack_require__) {
 
 var TaskList = __webpack_require__(2);
-var PieChart = __webpack_require__(4);
-var getTechCalendar = __webpack_require__(7);
+var PieChart = __webpack_require__(5);
+var getTechCalendar = __webpack_require__(8);
 
 var UI = function() {
   var taskList = new TaskList();
@@ -156,7 +156,7 @@ UI.prototype = {
     container.innerHTML = '';
 
     var taskCategoryCount = {};
-
+    var indexCounter = 0;
     for (var task of tasks) {
 
       //RENDER TO SCREEN
@@ -165,14 +165,30 @@ UI.prototype = {
       taskWrapper.classList.add('task-wrapper');
       var taskDescription = document.createElement('p');
       taskDescription.classList.add('task-description');
-      var taskNode = document.createTextNode(task.description)
+      var taskNode = document.createTextNode(task.description);
       taskDescription.appendChild(taskNode);
       taskWrapper.appendChild(taskDescription);
 
-      var checkboxWrapper = document.createElement('div');
+      var checkboxWrapper = document.createElement('form');
       checkboxWrapper.classList.add('checkbox');
+      checkboxWrapper.method = "put";
+      checkboxWrapper.value = indexCounter;
+      // checkboxWrapper.addEventListener("change", function(event) {
+      //   event.preventDefault()
+      //   checkboxWrapper.submit()
+      //   console.log("submitted");
+      // })
+      // checkboxWrapper.action = "pomotrello/" + checkboxWrapper.value;
+      // console.log(checkboxWrapper.value);
+      // indexCounter ++;
       var checkboxInput = document.createElement('input');
       checkboxInput.type = "checkbox";
+      // checkboxInput.addEventListener("change", function(event) {
+      //   event.preventDefault();
+      //   checkboxWrapper.submit()
+      //   console.log("checkbox changed", checkboxWrapper.action);
+      // });
+
 
       if(task.completed === true) {
         checkboxInput.checked = true;
@@ -300,11 +316,12 @@ var Task = function(options){
 module.exports = Task;
 
 /***/ }),
-/* 4 */
+/* 4 */,
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Highcharts = __webpack_require__(5);
-__webpack_require__(6)(Highcharts);
+var Highcharts = __webpack_require__(6);
+__webpack_require__(7)(Highcharts);
 
 var PieChart = function(data) {
 
@@ -343,7 +360,7 @@ module.exports = PieChart;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 /*
@@ -748,7 +765,7 @@ e[b]||null})}var u={};q(g,this.options,u,0);return u}})(K);return K});
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 /*
@@ -781,7 +798,7 @@ w(a,"redraw",a.renderExporting);h(["exporting","navigation"],function(b){a[b]={u
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 var getTechCalendar = function() {
