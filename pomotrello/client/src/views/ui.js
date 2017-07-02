@@ -7,18 +7,63 @@ var UI = function() {
   taskList.all(function (allTasks) {
     this.renderTask(allTasks);
   }.bind(this));
-  this.newTaskModalPopUp();
+  this.addTaskModalPopUp();
   this.dashboardModalPopUp();
-  this.taskModalPopUp();
   this.editTaskModalPopUp();
 }
 
 UI.prototype = {
 
+  addTaskModalPopUp: function() {
+    var addTaskModal = document.getElementById('add-task-modal-popup');
+    var addTaskButton = document.getElementById("add-task-button");
+    var addTaskSpan = document.getElementById("close-add-task-modal-popup");
+
+    // When the user clicks on the button, open the modal
+    addTaskButton.onclick = function() {
+        addTaskModal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    addTaskSpan.onclick = function() {
+        addTaskModal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == addTaskModal) {
+            addTaskModal.style.display = "none";
+        }
+    }
+  },
+
+  editTaskModalPopUp: function() {
+    var editTaskModal = document.getElementById('edit-task-modal-popup');
+    var editTaskButton = document.getElementById("edit-task-button");
+    var editTaskSpan = document.getElementById("close-edit-task-modal-popup");
+
+    // When the user clicks on the button, open the modal
+    editTaskButton.onclick = function() {
+        editTaskModal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    editTaskSpan.onclick = function() {
+        editTaskModal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == editTaskModal) {
+            editTaskModal.style.display = "none";
+        }
+    }
+  },
+
   dashboardModalPopUp: function() {
     var eventModal = document.getElementById('event-dashboard-modal-popup');
     var eventButton = document.getElementById("event-dashboard-button");
-    var eventSpan = document.getElementsByClassName("close")[0];
+    var eventSpan = document.getElementById("close-event-dashboard-modal-popup");
 
     // When the user clicks on the button, open the modal
     eventButton.onclick = function() {
@@ -35,77 +80,6 @@ UI.prototype = {
     window.onclick = function(event) {
         if (event.target == eventModal) {
             eventModal.style.display = "none";
-        }
-    }
-  },
-
-  taskModalPopUp: function() {
-    var taskModal = document.getElementById('task-modal-popup');
-    var taskButton = document.getElementsByClassName("default-list-title");
-    var span = document.getElementsByClassName("close")[0];
-
-
-    // When the user clicks on the button, open the modal
-    taskButton.onclick = function() {
-        taskModal.style.display = "block";
-        console.log("test", "this is default-list-title")
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        taskModal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == taskModal) {
-            taskModal.style.display = "none";
-        }
-    }
-  },
-
-  newTaskModalPopUp: function() {
-    var newTaskModal = document.getElementById('add-task-modal-popup');
-    var newTaskButton = document.getElementById("add-task-button");
-    var newTaskSpan = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-    newTaskButton.onclick = function() {
-        newTaskModal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    newTaskSpan.onclick = function() {
-        newTaskModal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == newTaskModal) {
-            newTaskModal.style.display = "none";
-        }
-    }
-  },
-
-  editTaskModalPopUp: function() {
-    var editTaskModal = document.getElementById('edit-task-modal-popup');
-    var editTaskButton = document.getElementById("edit-task-button");
-    var editTaskSpan = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-    editTaskButton.onclick = function() {
-        editTaskModal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    editTaskSpan.onclick = function() {
-        editTaskModal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == editTaskModal) {
-            editTaskModal.style.display = "none";
         }
     }
   },
@@ -165,17 +139,6 @@ UI.prototype = {
   }
 
 }
-
-
-
-          // <div class="task-wrapper">
-          //   <p class="task">Look to make task lists wider to account for checkbox divs</p>
-          //   <div class="checkbox">
-          //     <input type="checkbox" value="None" id="checkbox" name="check" checked />
-          //     <label for="checkbox"></label>
-          //   </div>
-          // </div>
-
 
 
 module.exports = UI;
