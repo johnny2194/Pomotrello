@@ -6,30 +6,55 @@ var UI = function() {
   taskList.all(function (allTasks) {
     this.renderTask(allTasks);
   }.bind(this));
-  this.modalPopUp();
+  this.taskModalPopUp();  
+  this.dashboardModalPopUp();
 }
 
 UI.prototype = {
 
-  modalPopUp: function() {
-    var modal = document.getElementById('event-dashboard-modal-popup');
-    var btn = document.getElementById("event-dashboard-button");
-    var span = document.getElementsByClassName("close")[0];
+  dashboardModalPopUp: function() {
+    var eventModal = document.getElementById('event-dashboard-modal-popup');
+    var eventButton = document.getElementById("event-dashboard-button");
+    var eventSpan = document.getElementsByClassName("close")[0];
 
     // When the user clicks on the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
+    eventButton.onclick = function() {
+        eventModal.style.display = "block";
     }
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
+    eventSpan.onclick = function() {
+        eventModal.style.display = "none";
     }
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        if (event.target == eventModal) {
+            eventModal.style.display = "none";
+        }
+    }
+  }, 
+
+  taskModalPopUp: function() {
+    var taskModal = document.getElementById('task-modal-popup');
+    var taskButton = document.getElementsByClassName("default-list-title");
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal 
+    taskButton.onclick = function() {
+        taskModal.style.display = "block";
+        console.log("test", "this is default-list-title")
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        taskModal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == taskModal) {
+            taskModal.style.display = "none";
         }
     }
   }, 
