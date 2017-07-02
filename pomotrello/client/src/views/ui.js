@@ -6,9 +6,35 @@ var UI = function() {
   taskList.all(function (allTasks) {
     this.renderTask(allTasks);
   }.bind(this));
+  this.modalPopUp();
 }
 
 UI.prototype = {
+
+  modalPopUp: function() {
+    var modal = document.getElementById('event-dashboard-modal-popup');
+    var btn = document.getElementById("event-dashboard-button");
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+  }, 
+
+
   renderTask: function(tasks) {
     var container = document.getElementById('todo-tasks-container');
     container.innerHTML = '';
