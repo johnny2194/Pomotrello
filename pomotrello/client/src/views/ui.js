@@ -91,15 +91,19 @@ UI.prototype = {
 
 }
 
-
-
-          // <div class="task-wrapper">
-          //   <p class="task">Look to make task lists wider to account for checkbox divs</p>
-          //   <div class="checkbox">
-          //     <input type="checkbox" value="None" id="checkbox" name="check" checked />
-          //     <label for="checkbox"></label>
-          //   </div>
-          // </div>
+function MyTimer(newNumber, number) {
+     number = number || 60; 
+     var timer=setInterval(function() { 
+         newNumber(number);
+         if(number-- <= 0) { 
+             clearInterval(timer); 
+         } 
+     }, 1000);
+ }
+ new MyTimer(function(number) {
+     var display_timer = "00:" + (number >= 10 ? number : "0" + number);
+     document.getElementById("countdown-wrapper").textContent = display_timer; 
+ });
 
 
 

@@ -201,6 +201,18 @@ body {
   /*border: 1px solid pink;*/
 }
 
+#countdown-wrapper {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 12px;
+  margin-left: 600px;
+  display: flex;
+  justify-content: space-around;
+  height: 240px;
+  width: 280px;
+  /*border: 1px solid pink;*/
+}
+
 /*CHECKBOX STYlING*/
 
 .checkbox {
