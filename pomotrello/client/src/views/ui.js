@@ -151,10 +151,11 @@ UI.prototype = {
            }
 
 
-       }, 10);
+       }, 1000);
    }
-  
-  var display_timer
+  var display_timer = "25:00"
+  document.getElementById("countdown-wrapper").textContent = display_timer; 
+
    var countdown 
    var startTimer = document.getElementById('countdown-start');
    var resetTimer = document.getElementById('countdown-reset');
