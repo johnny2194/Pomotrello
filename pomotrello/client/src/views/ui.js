@@ -138,7 +138,7 @@ UI.prototype = {
 
 
   function Countdown(newNumber, number, minute) {
-       number = number || 60; 
+       number = number || 0; 
        minute = minute || 25;
        var timer=setInterval(function() { 
            newNumber(number,minute);
@@ -151,10 +151,10 @@ UI.prototype = {
            }
 
 
-       }, 10);
+       }, 1000);
    }
-  
-  var display_timer
+  var display_timer = "25:00"
+  document.getElementById("countdown-wrapper").textContent = display_timer; 
    var countdown 
    var startTimer = document.getElementById('countdown-start');
    var resetTimer = document.getElementById('countdown-reset');
