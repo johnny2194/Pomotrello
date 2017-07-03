@@ -23,6 +23,7 @@ TaskList.prototype = {
   },
   add: function(newTask, onRequestComplete) {
     var jsonString = JSON.stringify(newTask);
+    console.log("jsonString", jsonString);
     this.makePostRequest("http://localhost:3000/pomotrello", onRequestComplete, jsonString);
   },
   makePostRequest: function(url, onRequestComplete, payLoad) {
@@ -32,9 +33,10 @@ TaskList.prototype = {
     request.addEventListener("load", function() {
       var jsonString = request.responseText;
       var updatedTasks = JSON.parse(jsonString);
+      console.log("data updated", updatedTasks)
       onRequestComplete(updatedTasks);
     });
-    request.send();
+    request.send(payLoad);
   }
 }
 
