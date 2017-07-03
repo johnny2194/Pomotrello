@@ -1,4 +1,3 @@
-var getTechCalendar = require("./models/get_tech_calendar");
 var UI = require("./views/ui.js");
 
 var app = function() {
@@ -6,15 +5,9 @@ var app = function() {
 
   new UI();
 
-  var techButton = document.getElementById("test-tech-calendar");
-  techButton.addEventListener("click", handleButtonClick)
-
 
 }
 
-var handleButtonClick = function() {
-  getTechCalendar()
-}
 
 
 window.addEventListener("load", app)

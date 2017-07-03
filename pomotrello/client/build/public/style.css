@@ -70,7 +70,7 @@ body {
 #all-list-container{
   display: flex;
   flex-flow: row;
-  height: 370px;
+  max-height: 370px;
   white-space: nowrap;
   margin-bottom: 10px;
   overflow-x: auto;
@@ -86,7 +86,7 @@ body {
   /*margin-bottom: px;*/
   margin-left: 10px;
   min-width: 275px;
-  height: 360px;
+  max-height: 100px;
   background: #E2E4E6;
   border-radius: 3px;
   box-sizing: border-box;
@@ -139,8 +139,8 @@ body {
   border-bottom: 1px solid #ccc;
   border-radius: 3px;
   cursor: pointer;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  /*margin-top: 3px;*/
+  margin: 0px 7px 7px 7px;
   /*width: 255px;*/
   min-height: 20px;
   position: relative;
@@ -154,7 +154,7 @@ body {
   font-weight: 300;
   /*margin: 0 0 4px;*/
   /*margin-right: 16px;*/
-  width: 220px;
+  width: 250px;
   padding: 5px;
   overflow: hidden;
   word-wrap: break-word;
@@ -181,9 +181,9 @@ body {
   justify-content: space-around;
   height: 300px;
   width: 300px;
-  align-items: ; 
+  align-items: ;
   margin-left: 12px;
-  margin-bottom: 15px; 
+  margin-bottom: 15px;
   border-radius: 3px;
   position: relative;
 
@@ -267,17 +267,85 @@ body {
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
-    /*background-color: grey;*/
+    background-color: rgba(196,199,199,.2);
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0,0,0,.5);
+    border-radius: 10px;
+    background-color: rgba(160,160,160,.6);
     /*background-color: lightgrey;*/
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
 
+/* The Modal (background) */
+#add-task-modal-popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+#add-task-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Modal (background) */
+#edit-task-modal-popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+#edit-task-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Modal (background) */
+#task-modal-popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+#task-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
 
 /* The Modal (background) */
 #event-dashboard-modal-popup {
@@ -294,7 +362,7 @@ body {
 }
 
 /* Modal Content/Box */
-.event-dashboard-modal-content {
+#event-dashboard-modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
