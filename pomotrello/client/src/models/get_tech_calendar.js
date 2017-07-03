@@ -1,4 +1,6 @@
 var _ = require('lodash');
+var TaskList = require('../models/task_list.js');
+
 
 var getTechCalendar = function() {
   console.log("getTechCalendar clicked, in getTechCalendar");
@@ -60,7 +62,7 @@ var eventDashboardLogic = function(techCalendarData) {
         furtherDetails.appendChild(furtherDetailsNode);
         eventEntryDetails.appendChild(furtherDetails);
     //INCLUDE VENUE DETAILS IF LISTED
-        if (techEvent.venue.address) {
+        if (techEvent.venue) {
           var eventAddress = "Venue: ";
           eventAddress += techEvent.venue.address;
           eventAddress += ", " + techEvent.venue.addresscode;
@@ -79,10 +81,40 @@ var eventDashboardLogic = function(techCalendarData) {
         eventEntryDetails.appendChild(eventLink);
 
     //BUTTON TO ADD TO TASK LISTED
-        var addEventButton = document.createElement("button");
-        addEventButton.innerText = "Add this event to my Pomotrello";
+        var eventForm = document.createElement("form");
+        eventForm.action = "pomotrello";
+        eventForm.method = "POST";
+
+        var addEventButton = document.createElement("input");
+        addEventButton.type = "submit";
+        addEventButton.value = "Add this event to my Pomotrello";
         addEventButton.classList = "add-event-button";
-        eventEntryDetails.appendChild(addEventButton);
+        eventForm.appendChild(addEventButton);
+        eventEntryDetails.appendChild(eventForm);
+
+
+        eventForm.addEventListener("submit", function(event) {
+          event.preventDefault();
+    //EXPERIMENTAL SHIZ
+
+          var taskToAdd = {
+            description: techEvent.summaryDisplay,
+            category: "Socialising",
+            // pomCount: pomCount,
+            date: techEvent.start.yearlocal + "-" + techEvent.start.monthlocal + "-" + techEvent.start.daylocal,
+            startTime: techEvent.start.hourlocal + ":" + techEvent.start.minutelocal,
+            // endTime: techEvent.,
+            completed: false
+          }
+
+          var taskList = new TaskList();
+          taskList.add(taskToAdd, function(newTask){
+            console.log('response in ui:', newTask);
+            window.location.reload()
+          });
+
+      });
+
       });
 
     }
