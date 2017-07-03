@@ -18,22 +18,23 @@ UI.prototype = {
     form.addEventListener('submit', function (event) {
       event.preventDefault();  //this stops redirect to new page
 
-      // var description =form['description-field'].value
-      // var category =form['category-field'].value
-      // var pomCount =form['pomCount-field'].value
-      // var date =form['date-field'].value
-      // var startTime =form['startTime-field'].value
-      // var completed =form['completed-field'].value
+      var description =form['description-field'].value
+      var category =form['category-field'].value
+      var pomCount =form['pomCount-field'].value
+      var date =form['date-field'].value
+      var startTime =form['startTime-field'].value
+      var endTime = form['endTime-field'].value
+      var completed =form['completed-field'].value
 
 
       var taskToAdd = {
-        description: "Test",
-        category: "Test",
-        pomCount: "Test",
-        date: "Test",
-        startTime: "Test",
-        endTime: "Test",            
-        completed: "Test"  
+        description: description,
+        category: category,
+        pomCount: pomCount,
+        date: date,
+        startTime: startTime,
+        endTime: endTime,            
+        completed: completed 
       }
 
       console.log(taskToAdd)
@@ -41,6 +42,8 @@ UI.prototype = {
       var taskList = new TaskList();
       taskList.add(taskToAdd, function(newTask){
         console.log('response in ui:', newTask);
+        window.location.reload()
+        // here we need to call the function that updates to get dynamic feedback
       })
     })
   },  
@@ -92,7 +95,7 @@ UI.prototype = {
     }
   },
 
-  renderTask: function(tasks) {
+    renderTask: function(tasks) {
     var container = document.getElementById('todo-tasks-container');
     container.innerHTML = '';
 
