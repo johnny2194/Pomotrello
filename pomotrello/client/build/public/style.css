@@ -401,6 +401,10 @@ body {
     margin-left: 10px;
 }*/
 
+.add-event-button {
+  float: right;
+}
+
 /* The Close Buttons */
 #close-add-task-modal-popup {
     color: #aaa;

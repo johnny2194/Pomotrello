@@ -78,7 +78,11 @@ var eventDashboardLogic = function(techCalendarData) {
         eventLink.target = "_blank";
         eventEntryDetails.appendChild(eventLink);
 
-
+    //BUTTON TO ADD TO TASK LISTED
+        var addEventButton = document.createElement("button");
+        addEventButton.innerText = "Add this event to my Pomotrello";
+        addEventButton.classList = "add-event-button";
+        eventEntryDetails.appendChild(addEventButton);
       });
 
     }
