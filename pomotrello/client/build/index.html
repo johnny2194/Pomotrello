@@ -143,20 +143,50 @@
           <fieldset>
           <legend><!-- <span class="number">1</span> --> What task needs done?</legend>
           <input type="text" name="description" placeholder="Give a description" class="max-width">
-          <ul><label for="pom-count">Pomodoro Count:</label><input type="text" name="pom-count" placeholder="A number like 1, 2 or 3" class="mid-width"></ul>
-          <textarea name="field3" placeholder="About yourself"></textarea>
-          <label for="job">Interests:</label>
-          <select id="job" name="field4">
-          <optgroup label="Indoors">
-            <option value="fishkeeping">Type 1</option>
-            <option value="reading">Type 2</option>
-        
-          </optgroup>
-          </select>      
-          </fieldset>
-          <fieldset>
-          <legend><span class="number">2</span> Additional Info</legend>
-          <textarea name="field3" placeholder="About Your School"></textarea>
+          <div id="pomcount-category-wrapper" class="form-input-divider" class="max-width">
+            <div class="mid-width" >
+              <label for="pom-count">Pomodoro Count:</label>
+              <input type="number" name="pom-count" placeholder="A number like 1, 2 or 3" class="max-width" />
+            </div>
+              <div class="mid-width right-form-divder">
+                <label for="job">Select Category:</label>
+                <select id="category-select" name="category" class="max-width" value="Select Category">
+                  <option value="Admin">Admin</option>
+                  <option value="Education">Education</option>
+                  <option value="Exercise">Exercise</option>
+                  <option value="Handywork">Handywork</option>
+                  <option value="Leisure">Leisure</option>
+                  <option value="Planning">Planning</option>
+                  <option value="Project">Project</option>
+                  <option value="Reflection">Reflection</option>
+                  <option value="Research">Research</option>
+                  <option value="Shopping">Shopping</option>
+                  <option value="Work">Work</option>
+                </select>      
+              </div>
+          </div>
+          <div id="date-time-input-wrapper" class="form-input-divider" class="max-width">
+            <div id="date-input-wrapper" class="mid-width" >
+              <label for="date-picker">I'm doing it on:</label>
+              <input type="date" name="date-picker" placeholder="Select Date" class="max-width" />
+            </div>
+
+            <div id="time-picker-wrapper" class="form-input-divider right-form-divder" >
+
+              <div id="start-time-wrapper" class="max-width">
+                <label for="start-time-picker">Start Time:</label>
+                <input type="time" name="start-time-picker" placeholder="Select time" class="time-picker-width" />
+              </div>
+
+              <div id="end-picker-wrapper" class="max-width">
+                <label for="end-time-picker">End Time:</label>
+                <input type="time" name="end-time-picker" placeholder="Select time" class="time-picker-width" />
+              </div>
+
+            </div>
+          
+          </div>
+          
           </fieldset>
         <input type="submit" value="ADD TASK" />
         </form>
