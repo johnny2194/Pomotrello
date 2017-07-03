@@ -1,7 +1,6 @@
 var TaskList = require('../models/task_list.js');
 var PieChart = require("./pie_chart.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
-var EditModalPopup = require("./edit_modal_popup.js");
 
 var UI = function() {
   var taskList = new TaskList();
@@ -11,8 +10,6 @@ var UI = function() {
   this.addTaskModalPopUp();
   this.dashboardModalPopUp();
 }
-
-// var editModalPopup = new EditModalPopup();
 
 UI.prototype = {
 
@@ -69,30 +66,33 @@ UI.prototype = {
 
     var taskCategoryCount = {};
 
+////////START OF FOR LOOP
+
     for (var task of tasks) {
 
-      //RENDER TO SCREEN
+      //RENDER BASIC LIST ITEM TO SCREEN
 
       var taskWrapper = document.createElement('div');
       taskWrapper.classList.add('task-wrapper');
-
-
       var taskDescription = document.createElement('p');
       taskDescription.classList.add('task-description');
       var taskNode = document.createTextNode(task.description)
       taskDescription.appendChild(taskNode);
 
+    // When the user clicks on the button, open the modal
       taskDescription.classList.add('edit-task-button');
       taskDescription.addEventListener("click", function(event){
         var editTaskModal = document.getElementById('edit-task-modal-popup');
         editTaskModal.style.display = "block";
 
+    // When the user clicks anywhere outside of the modal, close it
         editTaskModal.addEventListener("click", function(event) {
           if(event.target == editTaskModal) {
             editTaskModal.style.display = "none";
           }
         });
 
+    // When the user clicks on <span> (x), close the modal
         var editTaskContent = document.getElementById("edit-task-modal-content");
         editTaskContent.innerHTML = "";
         var editTaskSpan = document.createElement("span");
@@ -102,6 +102,7 @@ UI.prototype = {
           editTaskModal.style.display = "none";
         })
 
+    // POPULATE MODAL POPUP - ADD FORM HERE
         editTaskContent.appendChild(editTaskSpan);
         var taskToEdit = document.createElement("p");
         var taskToEditNode = document.createTextNode(event.target.textContent);
@@ -110,10 +111,10 @@ UI.prototype = {
       })
 
 
-
-
       taskWrapper.appendChild(taskDescription);
 
+
+    //CHECKBOX MECHANICS
       var checkboxWrapper = document.createElement('div');
       checkboxWrapper.classList.add('checkbox');
       var checkboxInput = document.createElement('input');
@@ -135,6 +136,9 @@ UI.prototype = {
       taskCategoryCount[category] = taskCategoryCount[category] ? taskCategoryCount[category]+pomCountInt : pomCountInt;
     }
 
+////////////END OF FOR LOOP
+
+
     var formattedCategoryData = [];
 
     for(category in taskCategoryCount) {
@@ -149,9 +153,7 @@ UI.prototype = {
   new PieChart(formattedCategoryData);
 
   }
-
 }
 
-// window.addEventListener("load", editModalPopup.editTaskModalPopUp)
 
 module.exports = UI;
