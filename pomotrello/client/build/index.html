@@ -119,18 +119,48 @@
       <div id="pie-chart-backround-container">
         <div id="pie-chart-wrapper"></div>
       </div>
-      <div id="countdown-wrapper"></div>
+      <div id="pomodoro-graph-container">
       </div>
-
-    </div>
+      <div id="countdown-and-buttons-container">  
+        <div id="countdown-wrapper">
+        </div>
+        <div id="coundown-buttons-wrapper">
+          <input type="button" id="countdown-start" value = "Start Timer">
+          <input type="button" id="countdown-reset" value = "Reset Timer">
+        <div>
+      </div>
   </div>
+</div>
 
 
   <div id="add-task-modal-popup">
     <!-- Modal content -->
     <div id="add-task-modal-content">
       <span id="close-add-task-modal-popup">&times;</span>
-      <p>Add Task:</p>
+      
+      <div class="add-form">
+        <form id="add-task-form">
+          <fieldset>
+          <legend><!-- <span class="number">1</span> --> What task needs done?</legend>
+          <input type="text" name="description" placeholder="Give a description" class="max-width">
+          <ul><label for="pom-count">Pomodoro Count:</label><input type="text" name="pom-count" placeholder="A number like 1, 2 or 3" class="mid-width"></ul>
+          <textarea name="field3" placeholder="About yourself"></textarea>
+          <label for="job">Interests:</label>
+          <select id="job" name="field4">
+          <optgroup label="Indoors">
+            <option value="fishkeeping">Type 1</option>
+            <option value="reading">Type 2</option>
+        
+          </optgroup>
+          </select>      
+          </fieldset>
+          <fieldset>
+          <legend><span class="number">2</span> Additional Info</legend>
+          <textarea name="field3" placeholder="About Your School"></textarea>
+          </fieldset>
+        <input type="submit" value="ADD TASK" />
+        </form>
+      </div>
     </div>
   </div>
 
@@ -149,11 +179,7 @@
       <p>Search Events:</p>
     </div>
   </div>
-
-
-  </div>
-  <input type="button" id="countdown-start" value = "Start Timer">
-  <input type="button" id="countdown-reset" value = "Reset Timer">
+ 
 
 </body>
 </html>
