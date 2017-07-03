@@ -14,6 +14,11 @@ body {
   background-size: cover;
 }
 
+
+/**********************************
+              HEADER
+**********************************/
+
 .navbar-default {
   /*background: #FFF;*/
   border: none;
@@ -53,6 +58,11 @@ body {
   /*padding: 7.5px 12px 7.5px; */
 }
 
+
+/**********************************
+              MAIN
+**********************************/
+
 #main-wrapper {
   /*padding: 45px 130px;*/
   display: flex;
@@ -81,6 +91,23 @@ body {
   bottom: 0;
   left: 0;
 }
+
+.analytics-and-pomo-countdown-wrapper{
+  display: flex;
+  flex-flow: row;
+  /*height: 370px;*/
+  white-space: nowrap;
+  padding-bottom: 10px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 1px solid blue;
+}
+
+/**********************************
+              LISTS
+**********************************/
 
 .default-list-wrapper{
   /*margin-bottom: px;*/
@@ -162,18 +189,19 @@ body {
   font-size: 13px;
 }
 
-.analytics-and-pomo-countdown-wrapper{
+
+.checkbox {
+  width: 40px;
+  /*position: relative;*/
+  align-items: center;
   display: flex;
-  flex-flow: row;
-  /*height: 370px;*/
-  white-space: nowrap;
-  padding-bottom: 10px;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 1px solid blue;
+  flex-direction: column;
+  justify-content: space-around;
 }
+
+/**********************************
+              PIE CHART
+**********************************/
 
 #pie-chart-backround-container{
   background-color:#E2E4E6;
@@ -201,6 +229,10 @@ body {
   /*border: 1px solid pink;*/
 }
 
+/**********************************
+              COUNTDOWN
+**********************************/
+
 #countdown-wrapper {
   font-size: 50px;
   position: absolute;
@@ -214,55 +246,10 @@ body {
   /*border: 1px solid pink;*/
 }
 
-/*CHECKBOX STYlING*/
+/**********************************
+              SCROLLBARS
+**********************************/
 
-.checkbox {
-  width: 40px;
-  /*position: relative;*/
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-
-  /*margin: 20px auto;*/
-
-}
-/*.checkbox label {
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-  position: absolute;
-  background: #fcfff4;
-  background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-  background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-  border-radius: 4px;
-  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
-}
-.checkbox label:after {
-  content: '';
-  width: 8px;
-  height: 4px;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  border: 2px solid #333;
-  border-top: none;
-  border-right: none;
-  background: transparent;
-  opacity: 0;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-.checkbox label:hover::after {
-  opacity: 0.5;
-}
-.checkbox input[type=checkbox] {
-  visibility: hidden;
-}
-.checkbox input[type=checkbox]:checked + label:after {
-  opacity: 1;
-}*/
 
 ::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -277,6 +264,10 @@ body {
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
+
+/**********************************
+              MODAL POPUPS
+**********************************/
 
 /* The Modal (background) */
 #add-task-modal-popup {
