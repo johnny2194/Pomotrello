@@ -319,7 +319,7 @@ body {
 /* Modal Content/Box */
 #add-task-modal-content {
     border-radius: 7px;
-    background-color: #fefefe;
+    background-color: #f4f7f8;
     margin: 3% auto; /* 15% from the top and centered */
     padding: 10px;
     border: 1px solid #888;
@@ -421,6 +421,40 @@ body {
               FORMS
 **********************************/
 
+.form-input-divider {
+  display: flex;
+  flex-direction: row;
+  /*justify-content: space-around;*/
+}
+
+.right-form-divder {
+  margin-left: 4%;
+}
+
+.time-picker-width { 
+  width: 100%; 
+}
+
+.time-picker-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width:70%;
+}
+
+.mid-width {
+  width: 47%;
+}
+
+.max-width {
+  width: 100%;
+}
+
+#end-picker-wrapper {
+  margin-left:18%;
+}
+
+
 
 /*<style type="text/css">*/
 .add-form{
@@ -463,20 +497,14 @@ body {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box; 
     background-color: #e8eeef;
-    color:#8a97a0;
+    /*color:#8a97a0;*/
     -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     margin-bottom: 30px;
+    color: #757575;
     
 }
 
-.mid-width {
-  width: 48%;
-}
-
-.max-width {
-  width: 100%;
-}
 
 
 .add-form input[type="text"]:focus,
@@ -490,6 +518,7 @@ body {
 .add-form textarea:focus,
 .add-form select:focus{
     background: #d2d9dd;
+    color: black;
 }
 .add-form select{
     -webkit-appearance: menulist-button;
