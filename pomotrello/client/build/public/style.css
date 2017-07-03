@@ -92,17 +92,18 @@ body {
   left: 0;
 }
 
-.analytics-and-pomo-countdown-wrapper{
+#analytics-and-pomo-countdown-wrapper{
   display: flex;
   flex-flow: row;
   /*height: 370px;*/
   white-space: nowrap;
-  padding-bottom: 10px;
+  /*padding-bottom: 10px;*/
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  border: 1px solid blue;
+  /*justify-content: space-around;*/
+  /*align-items: center;*/
 }
 
 /**********************************
@@ -207,7 +208,7 @@ body {
   background-color:#E2E4E6;
   display: flex;
   justify-content: space-around;
-  height: 300px;
+  height: 290px;
   width: 300px;
   align-items: ;
   margin-left: 12px;
@@ -232,16 +233,39 @@ body {
 /**********************************
               COUNTDOWN
 **********************************/
+#countdown-and-buttons-container {
+  background-color:#E2E4E6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 290px;
+  width: 300px;
+  align-items: center;
+  /*margin-left: 12px;*/
+  margin-bottom: 15px;
+  border-radius: 3px;
+  right: 0;
+
+}
+
 
 #countdown-wrapper {
-  font-size: 50px;
-  position: absolute;
+  font-size: 50px;  /*position: absolute;*/
   bottom: 0;
-  margin-bottom: 12px;
-  margin-left: 800px;
+  /*margin-bottom: 12px;*/
   display: flex;
   justify-content: space-around;
   height: 240px;
+  width: 280px;
+  /*border: 1px solid blue;*/
+}
+
+#coundown-buttons-wrapper {
+
+  /*margin-bottom: 12px;*/
+  display: flex;
+  justify-content: space-around;
+  height: 100px;
   width: 280px;
   /*border: 1px solid pink;*/
 }
@@ -273,23 +297,24 @@ body {
 #add-task-modal-popup {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 1;  /*Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    overflow: auto;  Enable scroll if needed 
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 #add-task-modal-content {
+    border-radius: 7px;
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
+    width: 40%; /* Could be more or less, depending on screen size */
 }
 
 /* The Modal (background) */
@@ -384,43 +409,40 @@ body {
 
 
 /**********************************
-              MODAL POPUPS
+              FORMS
 **********************************/
 
 
-<style type="text/css">
-.form-style-5{
-    max-width: 500px;
-    padding: 10px 20px;
+/*<style type="text/css">*/
+.add-form{
+    /*padding: 10px 20px;*/
     background: #f4f7f8;
     margin: 10px auto;
     padding: 20px;
     background: #f4f7f8;
     border-radius: 8px;
-    font-family: Georgia, "Times New Roman", Times, serif;
 }
-.form-style-5 fieldset{
+.add-form fieldset{
     border: none;
 }
-.form-style-5 legend {
+.add-form legend {
     font-size: 1.4em;
     margin-bottom: 10px;
 }
-.form-style-5 label {
+.add-form label {
     display: block;
     margin-bottom: 8px;
 }
-.form-style-5 input[type="text"],
-.form-style-5 input[type="date"],
-.form-style-5 input[type="datetime"],
-.form-style-5 input[type="email"],
-.form-style-5 input[type="number"],
-.form-style-5 input[type="search"],
-.form-style-5 input[type="time"],
-.form-style-5 input[type="url"],
-.form-style-5 textarea,
-.form-style-5 select {
-    font-family: Georgia, "Times New Roman", Times, serif;
+.add-form input[type="text"],
+.add-form input[type="date"],
+.add-form input[type="datetime"],
+.add-form input[type="email"],
+.add-form input[type="number"],
+.add-form input[type="search"],
+.add-form input[type="time"],
+.add-form input[type="url"],
+.add-form textarea,
+.add-form select {
     background: rgba(255,255,255,.1);
     border: none;
     border-radius: 4px;
@@ -428,7 +450,6 @@ body {
     margin: 0;
     outline: 0;
     padding: 7px;
-    width: 100%;
     box-sizing: border-box; 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box; 
@@ -439,23 +460,33 @@ body {
     margin-bottom: 30px;
     
 }
-.form-style-5 input[type="text"]:focus,
-.form-style-5 input[type="date"]:focus,
-.form-style-5 input[type="datetime"]:focus,
-.form-style-5 input[type="email"]:focus,
-.form-style-5 input[type="number"]:focus,
-.form-style-5 input[type="search"]:focus,
-.form-style-5 input[type="time"]:focus,
-.form-style-5 input[type="url"]:focus,
-.form-style-5 textarea:focus,
-.form-style-5 select:focus{
+
+.mid-width {
+  width: 48%;
+}
+
+.max-width {
+  width: 100%;
+}
+
+
+.add-form input[type="text"]:focus,
+.add-form input[type="date"]:focus,
+.add-form input[type="datetime"]:focus,
+.add-form input[type="email"]:focus,
+.add-form input[type="number"]:focus,
+.add-form input[type="search"]:focus,
+.add-form input[type="time"]:focus,
+.add-form input[type="url"]:focus,
+.add-form textarea:focus,
+.add-form select:focus{
     background: #d2d9dd;
 }
-.form-style-5 select{
+.add-form select{
     -webkit-appearance: menulist-button;
     height:35px;
 }
-.form-style-5 .number {
+/*.add-form .number {
     background: #1abc9c;
     color: #fff;
     height: 30px;
@@ -467,10 +498,11 @@ body {
     text-align: center;
     text-shadow: 0 1px 0 rgba(255,255,255,0.2);
     border-radius: 15px 15px 15px 0px;
-}
+}*/
 
-.form-style-5 input[type="submit"],
-.form-style-5 input[type="button"]
+
+.add-form input[type="submit"],
+.add-form input[type="button"]
 {
     position: relative;
     display: block;
@@ -485,9 +517,11 @@ body {
     border: 1px solid #16a085;
     border-width: 1px 1px 3px;
     margin-bottom: 10px;
+    border-radius: 7px
+
 }
-.form-style-5 input[type="submit"]:hover,
-.form-style-5 input[type="button"]:hover
+.add-form input[type="submit"]:hover,
+.add-form input[type="button"]:hover
 {
     background: #109177;
 }
