@@ -42,7 +42,6 @@ UI.prototype = {
       taskList.add(taskToAdd, function(newTask){
         console.log('response in ui:', newTask);
         window.location.reload()
-        // here we need to call the function that updates to get dynamic feedback
       })
     })
   },  
