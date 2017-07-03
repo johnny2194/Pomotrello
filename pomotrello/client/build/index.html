@@ -119,18 +119,78 @@
       <div id="pie-chart-backround-container">
         <div id="pie-chart-wrapper"></div>
       </div>
-      <div id="countdown-wrapper"></div>
+      <div id="pomodoro-graph-container">
       </div>
-
-    </div>
+      <div id="countdown-and-buttons-container">  
+        <div id="countdown-wrapper">
+        </div>
+        <div id="coundown-buttons-wrapper">
+          <input type="button" id="countdown-start" value = "Start Timer">
+          <input type="button" id="countdown-reset" value = "Reset Timer">
+        <div>
+      </div>
   </div>
+</div>
 
 
   <div id="add-task-modal-popup">
     <!-- Modal content -->
     <div id="add-task-modal-content">
       <span id="close-add-task-modal-popup">&times;</span>
-      <p>Add Task:</p>
+      
+      <div class="add-form">
+        <form method="POST" action = "pomotrello" id = 'add-task-form'">
+          <fieldset>
+          <legend><!-- <span class="number">1</span> --> What task needs done?</legend>
+          <input type="text" name="description" id= 'description-field' class="max-width">
+          <div id="pomcount-category-wrapper" class="form-input-divider" class="max-width">
+            <div class="mid-width" >
+              <label for="pom-count">Pomodoro Count:</label>
+              <input type="number" name="pom-count" id='pomCount-field' class="max-width" />
+            </div>
+              <div class="mid-width right-form-divder">
+                <label for="job">Select Category:</label>
+                <select id="category-field" name="category" class="max-width" value="Select Category">
+                  <option value="Admin">Admin</option>
+                  <option value="Education">Education</option>
+                  <option value="Exercise">Exercise</option>
+                  <option value="Handywork">Handywork</option>
+                  <option value="Leisure">Leisure</option>
+                  <option value="Planning">Planning</option>
+                  <option value="Project">Project</option>
+                  <option value="Reflection">Reflection</option>
+                  <option value="Research">Research</option>
+                  <option value="Shopping">Shopping</option>
+                  <option value="Work">Work</option>
+                </select>      
+              </div>
+          </div>
+          <div id="date-time-input-wrapper" class="form-input-divider" class="max-width">
+            <div id="date-input-wrapper" class="mid-width" >
+              <label for="date-picker">I'm doing it on:</label>
+              <input type="date" name="date-picker" id='date-field' class="max-width" />
+            </div>
+
+            <div id="time-picker-wrapper" class="form-input-divider right-form-divder" >
+
+              <div id="start-time-wrapper" class="max-width">
+                <label for="start-time-picker">Start Time:</label>
+                <input type="time" name="start-time-picker" id="startTime-field" class="time-picker-width" />
+              </div>
+
+              <div id="end-picker-wrapper" class="max-width">
+                <label for="end-time-picker">End Time:</label>
+                <input type="time" name="end-time-picker" id='endTime-field' class="time-picker-width" />
+              </div>
+
+            </div>
+          
+          </div>
+          
+          </fieldset>
+        <input type="submit" value="Add Task" />
+        </form>
+      </div>
     </div>
   </div>
 
@@ -149,13 +209,9 @@
       <p>Search Events:</p>
     </div>
   </div>
+ 
 
-
-  </div>
-  <input type="button" id="countdown-start" value = "Start Timer">
-  <input type="button" id="countdown-reset" value = "Reset Timer">
-
-  <form method="POST" action = "pomotrello" id = 'add-task-form'">
+<!--   <form method="POST" action = "pomotrello" id = 'add-task-form'">
     <label for ="description-field">Description:</label>
     <input type = "text" id ="description-field" name = "Description" />
     <label for ="'category-field'">Description:</label>
@@ -172,7 +228,7 @@
     <input type = "text" id ="completed-field" name = "Description" />
 
     <input type="submit" value="Add Task"/>
-  </form>
+  </form> -->
 
 </body>
 </html>
