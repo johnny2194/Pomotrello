@@ -339,6 +339,19 @@ body {
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
+.event-description{
+  clear: both;
+  font-weight: 300;
+  /*margin: 0 0 4px;*/
+  /*margin-right: 16px;*/
+  /*width: 250px;*/
+  padding: 5px;
+  overflow: hidden;
+  word-wrap: break-word;
+  color: #4d4d4d;
+  font-size: 13px;
+}
+
 /* The Close Buttons */
 #close-add-task-modal-popup {
     color: #aaa;

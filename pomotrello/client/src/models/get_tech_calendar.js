@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 var getTechCalendar = function() {
   console.log("getTechCalendar clicked, in getTechCalendar");
 
@@ -10,9 +12,13 @@ var getTechCalendar = function() {
     var jsonString = request.responseText;
     var techCalendarData = JSON.parse(jsonString);
     var techCalendarDataArray = techCalendarData.data;
-    console.log("Received tech calendar data", techCalendarDataArray[0]);
 
-    eventDashboardLogic(techCalendarDataArray);
+    var uniqTechCalendarDataArray = _.uniqBy(techCalendarDataArray, function(event) {
+      return event.summary && event.start.displaylocal;
+    })
+    console.log("Received tech calendar data", uniqTechCalendarDataArray);
+
+    eventDashboardLogic(uniqTechCalendarDataArray);
 
   });
 
@@ -22,14 +28,20 @@ request.send();
 
 var eventDashboardLogic = function(techCalendarData) {
   var container = document.getElementById("event-dashboard-modal-content");
-  console.log("eventDashboardLogic invoked");
   for(event of techCalendarData) {
+    if(event.cancelled == false) {
     var eventEntry = document.createElement("p");
-    var eventNode = document.createTextNode(event.summary + " - " + event.start.displaylocal);
+    eventEntry.classList = ("event-description");
+    var eventAddress = "";
+    if (event.venue) {
+      eventAddress += event.venue.address;
+    }
+    // event.venue.addresscode
+    var eventNode = document.createTextNode(event.start.displaylocal  + " - " + event.summary + " - " + eventAddress);
     eventEntry.appendChild(eventNode);
     container.appendChild(eventEntry);
+    }
   }
-
 }
 
 module.exports = getTechCalendar;
