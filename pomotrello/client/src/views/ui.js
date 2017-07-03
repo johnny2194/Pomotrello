@@ -82,6 +82,15 @@ UI.prototype = {
         editTaskModal.style.display = "block";
         var editTaskContent = document.getElementById("edit-task-modal-content");
         editTaskContent.innerHTML = "";
+        var editTaskSpan = document.createElement("span");
+        editTaskSpan.innerHTML = "&times";
+        editTaskSpan.id = "close-edit-task-modal-popup";
+        editTaskSpan.addEventListener("click", function() {
+          editTaskModal.style.display = "none";
+        })
+
+        editTaskContent.appendChild(editTaskSpan);
+
 
         var taskToEdit = document.createElement("p");
         var taskToEditNode = document.createTextNode(event.target.textContent);
