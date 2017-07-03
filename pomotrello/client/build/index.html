@@ -144,18 +144,18 @@
       <span id="close-add-task-modal-popup">&times;</span>
 
       <div class="add-form">
-        <form id="add-task-form">
+        <form method="POST" action = "pomotrello" id = 'add-task-form'>
           <fieldset>
           <legend><!-- <span class="number">1</span> --> What task needs done?</legend>
-          <input type="text" name="description" placeholder="Give a description" class="max-width">
+          <input type="text" name="description" id= 'description-field' class="max-width">
           <div id="pomcount-category-wrapper" class="form-input-divider" class="max-width">
             <div class="mid-width" >
               <label for="pom-count">Pomodoro Count:</label>
-              <input type="number" name="pom-count" placeholder="A number like 1, 2 or 3" class="max-width" />
+              <input type="number" name="pom-count" id='pomCount-field' class="max-width" />
             </div>
               <div class="mid-width right-form-divder">
                 <label for="job">Select Category:</label>
-                <select id="category-select" name="category" class="max-width" value="Select Category">
+                <select id="category-field" name="category" class="max-width" value="Select Category">
                   <option value="Admin">Admin</option>
                   <option value="Education">Education</option>
                   <option value="Exercise">Exercise</option>
@@ -173,19 +173,19 @@
           <div id="date-time-input-wrapper" class="form-input-divider" class="max-width">
             <div id="date-input-wrapper" class="mid-width" >
               <label for="date-picker">I'm doing it on:</label>
-              <input type="date" name="date-picker" placeholder="Select Date" class="max-width" />
+              <input type="date" name="date-picker" id='date-field' class="max-width" />
             </div>
 
             <div id="time-picker-wrapper" class="form-input-divider right-form-divder" >
 
               <div id="start-time-wrapper" class="max-width">
                 <label for="start-time-picker">Start Time:</label>
-                <input type="time" name="start-time-picker" placeholder="Select time" class="time-picker-width" />
+                <input type="time" name="start-time-picker" id="startTime-field" class="time-picker-width" />
               </div>
 
               <div id="end-picker-wrapper" class="max-width">
                 <label for="end-time-picker">End Time:</label>
-                <input type="time" name="end-time-picker" placeholder="Select time" class="time-picker-width" />
+                <input type="time" name="end-time-picker" id='endTime-field' class="time-picker-width" />
               </div>
 
             </div>
@@ -193,7 +193,7 @@
           </div>
 
           </fieldset>
-        <input type="submit" value="ADD TASK" />
+        <input type="submit" value="Add Task" />
         </form>
       </div>
     </div>
@@ -216,24 +216,6 @@
   </div>
 
 
-  <!-- <form method="POST" action = "pomotrello" id = 'add-task-form'">
-    <label for ="description-field">Description:</label>
-    <input type = "text" id ="description-field" name = "Description" />
-    <label for ="'category-field'">Description:</label>
-    <input type = "text" id ="category-field" name = "Description" />
-    <label for ="pomCount-field">Description:</label>
-    <input type = "text" id ="pomCount-field" name = "Description" />
-    <label for ="date-field">Description:</label>
-    <input type = "text" id ="date-field" name = "Description" />
-    <label for ="startTime-field">Description:</label>
-    <input type = "text" id ="startTime-field" name = "Description" />
-    <label for ="endTime-field">Description:</label>
-    <input type = "text" id ="endTime-field" name = "Description" />
-    <label for ="completed-field">Description:</label>
-    <input type = "text" id ="completed-field" name = "Description" />
-
-    <input type="submit" value="Add Task"/>
-  </form> -->
 
 </body>
 </html>
