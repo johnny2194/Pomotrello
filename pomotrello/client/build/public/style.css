@@ -321,7 +321,7 @@ body {
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto;  Enable scroll if needed 
+    overflow: auto;  Enable scroll if needed
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
 }
@@ -394,6 +394,7 @@ body {
   word-wrap: break-word;
   color: #4d4d4d;
   font-size: 13px;
+  white-space: normal;
 }
 
 /*.event-info-button{
@@ -458,8 +459,8 @@ body {
   margin-left: 4%;
 }
 
-.time-picker-width { 
-  width: 100%; 
+.time-picker-width {
+  width: 100%;
 }
 
 .time-picker-wrapper {
@@ -520,16 +521,16 @@ body {
     margin: 0;
     outline: 0;
     padding: 7px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box; 
+    -moz-box-sizing: border-box;
     background-color: #e8eeef;
     /*color:#8a97a0;*/
     -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     margin-bottom: 30px;
     color: #757575;
-    
+
 }
 
 
