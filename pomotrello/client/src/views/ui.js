@@ -187,8 +187,8 @@ UI.prototype = {
 
 
   function Countdown(newNumber, number, minute) {
-       number = number || 0;
-       minute = minute || 25;
+       number = number || 59;
+       minute = minute || 24;
        var timer=setInterval(function() {
            newNumber(number,minute);
            if(number-- <= 0) {
