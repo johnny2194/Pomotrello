@@ -87,25 +87,58 @@ UI.prototype = {
     //CREATE PIECHART
   new PieChart(formattedCategoryData);
 
+
+  function Countdown(newNumber, number, minute) {
+       number = number || 60; 
+       minute = minute || 25;
+       var timer=setInterval(function() { 
+           newNumber(number,minute);
+           if(number-- <= 0) { 
+               number = 59;
+               minute -- 
+           } 
+           if(minute <= 0 && number === 0){
+            clearInterval(timer);
+           }
+
+
+       }, 10);
+   }
+  
+  var display_timer
+   var countdown 
+   var startTimer = document.getElementById('countdown-start');
+   var resetTimer = document.getElementById('countdown-reset');
+
+   resetTimer.onclick = function(number, minute,timer){
+    clearInterval(timer)
+     display_timer = "25:00"
+     document.getElementById("countdown-wrapper").textContent = display_timer; 
+   }
+
+
+   startTimer.onclick = function(timer) {
+    
+    countdown = new Countdown(function(number, minute) {
+      display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
+      document.getElementById("countdown-wrapper").textContent = display_timer; 
+   });
+
   }
+
+  }
+
 
 }
 
+
+
+
 // Create Timer
-function Countdown(newNumber, number) {
-     number = number || 60; 
-     var timer=setInterval(function() { 
-         newNumber(number);
-         if(number-- <= 0) { 
-             clearInterval(timer); 
-         } 
-     }, 1000);
- }
- new Countdown(function(number) {
-     var display_timer = "00:" + (number >= 10 ? number : "0" + number);
-     document.getElementById("countdown-wrapper").textContent = display_timer; 
- });
 
 
+
+
+ 
 
 module.exports = UI;

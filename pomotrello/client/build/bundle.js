@@ -67,8 +67,8 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getTechCalendar = __webpack_require__(1);
-var UI = __webpack_require__(2);
+var getTechCalendar = __webpack_require__(7);
+var UI = __webpack_require__(1);
 
 var app = function() {
   console.log("app.js happens");
@@ -91,40 +91,10 @@ window.addEventListener("load", app)
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-var getTechCalendar = function() {
-  console.log("getTechCalendar clicked");
-
-  var url = "https://opentechcalendar.co.uk/api1/area/62/events.json";
-
-  var request = new XMLHttpRequest();
-  request.open("GET", url);
-  // request.withCredentials = true;
-  request.setRequestHeader("Content-Type", "text/plain");
-  request.addEventListener("load", function() {
-    var jsonString = request.responseText;
-    var techCalendarData = JSON.parse(jsonString);
-
-    console.log("Received tech calendar data", techCalendarData);
-    //USE RENDER FUNCTION HERE
-  });
-request.send();
-
-}
-
-
-
-
-module.exports = getTechCalendar;
-
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var TaskList = __webpack_require__(3);
-var PieChart = __webpack_require__(5)
+var TaskList = __webpack_require__(2);
+var PieChart = __webpack_require__(4)
 
 var UI = function() {
   var taskList = new TaskList();
@@ -212,35 +182,68 @@ UI.prototype = {
     //CREATE PIECHART
   new PieChart(formattedCategoryData);
 
+
+  function Countdown(newNumber, number, minute) {
+       number = number || 60; 
+       minute = minute || 25;
+       var timer=setInterval(function() { 
+           newNumber(number,minute);
+           if(number-- <= 0) { 
+               number = 59;
+               minute -- 
+           } 
+           if(minute <= 0 && number === 0){
+            clearInterval(timer);
+           }
+
+
+       }, 10);
+   }
+  
+  var display_timer
+   var countdown 
+   var startTimer = document.getElementById('countdown-start');
+   var resetTimer = document.getElementById('countdown-reset');
+
+   resetTimer.onclick = function(number, minute,timer){
+    clearInterval(timer)
+     display_timer = "25:00"
+     document.getElementById("countdown-wrapper").textContent = display_timer; 
+   }
+
+
+   startTimer.onclick = function(timer) {
+    
+    countdown = new Countdown(function(number, minute) {
+      display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
+      document.getElementById("countdown-wrapper").textContent = display_timer; 
+   });
+
   }
+
+  }
+
 
 }
 
+
+
+
 // Create Timer
-function Countdown(newNumber, number) {
-     number = number || 60; 
-     var timer=setInterval(function() { 
-         newNumber(number);
-         if(number-- <= 0) { 
-             clearInterval(timer); 
-         } 
-     }, 1000);
- }
- new Countdown(function(number) {
-     var display_timer = "00:" + (number >= 10 ? number : "0" + number);
-     document.getElementById("countdown-wrapper").textContent = display_timer; 
- });
 
 
+
+
+ 
 
 module.exports = UI;
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Task = __webpack_require__(4);
+var Task = __webpack_require__(3);
 
 var TaskList = function() {}
 
@@ -296,7 +299,7 @@ module.exports = TaskList;
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 var Task = function(options){
@@ -314,11 +317,11 @@ var Task = function(options){
 module.exports = Task;
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Highcharts = __webpack_require__(6);
-__webpack_require__(7)(Highcharts);
+var Highcharts = __webpack_require__(5);
+__webpack_require__(6)(Highcharts);
 
 var PieChart = function(data) {
 
@@ -357,7 +360,7 @@ module.exports = PieChart;
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /*
@@ -762,7 +765,7 @@ e[b]||null})}var u={};q(g,this.options,u,0);return u}})(K);return K});
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
 /*
@@ -792,6 +795,36 @@ height:c.height,padding:0});d=e.button(c.text,0,0,l,h,p,q).addClass(a.className)
 b.buttonOffset+=(d.width+c.buttonSpacing)*("right"===c.align?-1:1);b.exportSVGElements.push(d,g)}},destroyExport:function(a){var b=a?a.target:this;a=b.exportSVGElements;var e=b.exportDivElements,c=b.exportEvents,f;a&&(h(a,function(a,c){a&&(a.onclick=a.ontouchstart=null,f="cache-"+a.menuClassName,b[f]&&delete b[f],b.exportSVGElements[c]=a.destroy())}),a.length=0);e&&(h(e,function(a,c){clearTimeout(a.hideTimer);I(a,"mouseleave");b.exportDivElements[c]=a.onmouseout=a.onmouseover=a.ontouchstart=a.onclick=
 null;B(a)}),e.length=0);c&&(h(c,function(a){a()}),c.length=0)}});K.menu=function(a,b,e,c){return["M",a,b+2.5,"L",a+e,b+2.5,"M",a,b+c/2+.5,"L",a+e,b+c/2+.5,"M",a,b+c-1.5,"L",a+e,b+c-1.5]};A.prototype.renderExporting=function(){var a=this,b=a.options.exporting,e=b.buttons,c=a.isDirtyExporting||!a.exportSVGElements;a.buttonOffset=0;a.isDirtyExporting&&a.destroyExport();c&&!1!==b.enabled&&(a.exportEvents=[],F(e,function(b){a.addButton(b)}),a.isDirtyExporting=!1);w(a,"destroy",a.destroyExport)};A.prototype.callbacks.push(function(a){a.renderExporting();
 w(a,"redraw",a.renderExporting);h(["exporting","navigation"],function(b){a[b]={update:function(e,c){a.isDirtyExporting=!0;n(!0,a.options[b],e);C(c,!0)&&a.redraw()}}})})})(k)});
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+var getTechCalendar = function() {
+  console.log("getTechCalendar clicked");
+
+  var url = "https://opentechcalendar.co.uk/api1/area/62/events.json";
+
+  var request = new XMLHttpRequest();
+  request.open("GET", url);
+  // request.withCredentials = true;
+  request.setRequestHeader("Content-Type", "text/plain");
+  request.addEventListener("load", function() {
+    var jsonString = request.responseText;
+    var techCalendarData = JSON.parse(jsonString);
+
+    console.log("Received tech calendar data", techCalendarData);
+    //USE RENDER FUNCTION HERE
+  });
+request.send();
+
+}
+
+
+
+
+module.exports = getTechCalendar;
 
 
 /***/ })
