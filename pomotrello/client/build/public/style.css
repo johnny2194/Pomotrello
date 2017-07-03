@@ -231,6 +231,14 @@ body {
 }
 
 /**********************************
+              POM GRAPH
+**********************************/
+
+#pomodoro-graph-container{
+  width:850px;
+}
+
+/**********************************
               COUNTDOWN
 **********************************/
 #countdown-and-buttons-container {
@@ -245,6 +253,7 @@ body {
   margin-bottom: 15px;
   border-radius: 3px;
   right: 0;
+  margin-right: 13px;
 
 }
 
@@ -311,7 +320,7 @@ body {
 #add-task-modal-content {
     border-radius: 7px;
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 3% auto; /* 15% from the top and centered */
     padding: 10px;
     border: 1px solid #888;
     width: 40%; /* Could be more or less, depending on screen size */
