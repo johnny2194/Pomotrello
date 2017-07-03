@@ -7,11 +7,46 @@ var UI = function() {
   taskList.all(function (allTasks) {
     this.renderTask(allTasks);
   }.bind(this));
+  this.attachFormOnSubmit();
   this.addTaskModalPopUp();
   this.dashboardModalPopUp();
 }
 
 UI.prototype = {
+  attachFormOnSubmit: function(){
+    var form = document.getElementById('add-task-form');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();  //this stops redirect to new page
+
+      var description =form['description-field'].value
+      var category =form['category-field'].value
+      var pomCount =form['pomCount-field'].value
+      var date =form['date-field'].value
+      var startTime =form['startTime-field'].value
+      var endTime = form['endTime-field'].value
+      var completed =form['completed-field'].value
+
+
+      var taskToAdd = {
+        description: description,
+        category: category,
+        pomCount: pomCount,
+        date: date,
+        startTime: startTime,
+        endTime: endTime,            
+        completed: completed 
+      }
+
+      console.log(taskToAdd)
+
+      var taskList = new TaskList();
+      taskList.add(taskToAdd, function(newTask){
+        console.log('response in ui:', newTask);
+        window.location.reload()
+        // here we need to call the function that updates to get dynamic feedback
+      })
+    })
+  },  
 
   addTaskModalPopUp: function() {
     var addTaskModal = document.getElementById("add-task-modal-popup");
@@ -60,7 +95,7 @@ UI.prototype = {
     }
   },
 
-  renderTask: function(tasks) {
+    renderTask: function(tasks) {
     var container = document.getElementById('todo-tasks-container');
     container.innerHTML = '';
 
@@ -194,7 +229,4 @@ UI.prototype = {
   }
 
 }
-
-
-
 module.exports = UI;
