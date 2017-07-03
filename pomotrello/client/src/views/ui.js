@@ -12,7 +12,7 @@ var UI = function() {
   this.dashboardModalPopUp();
 }
 
-var editModalPopup = new EditModalPopup();
+// var editModalPopup = new EditModalPopup();
 
 UI.prototype = {
 
@@ -75,11 +75,24 @@ UI.prototype = {
 
       var taskWrapper = document.createElement('div');
       taskWrapper.classList.add('task-wrapper');
-      taskWrapper.classList.add('edit-task-button');
-      taskWrapper.addEventListener("click", function(event){
-        console.log("taskwrapper clicked", event);
+
+
+      var taskDescription = document.createElement('p');
+      taskDescription.classList.add('task-description');
+      var taskNode = document.createTextNode(task.description)
+      taskDescription.appendChild(taskNode);
+
+      taskDescription.classList.add('edit-task-button');
+      taskDescription.addEventListener("click", function(event){
         var editTaskModal = document.getElementById('edit-task-modal-popup');
         editTaskModal.style.display = "block";
+
+        editTaskModal.addEventListener("click", function(event) {
+          if(event.target == editTaskModal) {
+            editTaskModal.style.display = "none";
+          }
+        });
+
         var editTaskContent = document.getElementById("edit-task-modal-content");
         editTaskContent.innerHTML = "";
         var editTaskSpan = document.createElement("span");
@@ -90,18 +103,15 @@ UI.prototype = {
         })
 
         editTaskContent.appendChild(editTaskSpan);
-
-
         var taskToEdit = document.createElement("p");
         var taskToEditNode = document.createTextNode(event.target.textContent);
         taskToEdit.appendChild(taskToEditNode);
         editTaskContent.appendChild(taskToEdit);
-        console.log(event.target.textContent);
       })
-      var taskDescription = document.createElement('p');
-      taskDescription.classList.add('task-description');
-      var taskNode = document.createTextNode(task.description)
-      taskDescription.appendChild(taskNode);
+
+
+
+
       taskWrapper.appendChild(taskDescription);
 
       var checkboxWrapper = document.createElement('div');
@@ -142,6 +152,6 @@ UI.prototype = {
 
 }
 
-window.addEventListener("load", editModalPopup.editTaskModalPopUp)
+// window.addEventListener("load", editModalPopup.editTaskModalPopUp)
 
 module.exports = UI;
