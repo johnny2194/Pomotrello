@@ -34,7 +34,7 @@ TaskList.prototype = {
       var updatedTasks = JSON.parse(jsonString);
       onRequestComplete(updatedTasks);
     });
-    request.send();
+    request.send(payLoad);
   }
 }
 

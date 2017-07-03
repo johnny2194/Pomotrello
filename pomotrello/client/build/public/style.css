@@ -352,6 +352,10 @@ body {
   font-size: 13px;
 }
 
+/*.event-info-button{
+    margin-left: 10px;
+}*/
+
 /* The Close Buttons */
 #close-add-task-modal-popup {
     color: #aaa;
