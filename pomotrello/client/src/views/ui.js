@@ -1,5 +1,6 @@
 var TaskList = require('../models/task_list.js');
 var PieChart = require("./pie_chart.js");
+var RangeFinder = require("./range_finder.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
 var moment = require('moment');
 
@@ -116,9 +117,7 @@ UI.prototype = {
 
 //SET DATE TODAY TOMORROW WHENEVER
     var today = moment();
-    console.log("today", today);
     var tomorrow = moment().add(1, "d");
-    console.log("tomorrow", tomorrow);
     var dayAfterTomorrow = moment().add(2, "d");
     var endOfWeek = moment().add(7, "d");
 
@@ -230,8 +229,9 @@ for(category in taskCategoryCount) {
   formattedCategoryData.push(dataObject);
 }
 
-    //CREATE PIECHART
+    //CREATE PIECHART & LINE CHART
     new PieChart(formattedCategoryData);
+    new RangeFinder(formattedCategoryData)
 
 
 
@@ -300,13 +300,13 @@ for(category in taskCategoryCount) {
       document.getElementById("countdown-wrapper").textContent = display_timer;
       startToggle = 1
     });
-      
+
 
 
     }
   })
 
-  
+
 
 
   startTimer.addEventListener('click', function(timer) {
