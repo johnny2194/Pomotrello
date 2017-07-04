@@ -1,6 +1,8 @@
 var TaskList = require('../models/task_list.js');
 var PieChart = require("./pie_chart.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
+var moment = require('moment');
+
 
 var UI = function() {
   var taskList = new TaskList();
@@ -108,8 +110,13 @@ UI.prototype = {
     var upcomingContainer = document.getElementById('upcoming-tasks-container');
     upcomingContainer.innerHTML = '';
 
-//SET DATE TODAY
-    // var today = new Date();
+//SET DATE TODAY TOMORROW WHENEVER
+    var today = moment();
+    console.log("today", today);
+    var tomorrow = moment().add(1, "d");
+    console.log("tomorrow", tomorrow);
+    var dayAfterTomorrow = moment().add(2, "d");
+    var endOfWeek = moment().add(7, "d");
 
 
     var taskCategoryCount = {};
@@ -120,12 +127,12 @@ tasks.forEach(function(task) {
 
       //RENDER BASIC LIST ITEM TO SCREEN
 
-      var taskWrapper = document.createElement('div');
-      taskWrapper.classList.add('task-wrapper');
-      var taskDescription = document.createElement('p');
-      taskDescription.classList.add('task-description');
-      var taskNode = document.createTextNode(task.description + " (" + task.pomCount + ")");
-      taskDescription.appendChild(taskNode);
+    var taskWrapper = document.createElement('div');
+    taskWrapper.classList.add('task-wrapper');
+    var taskDescription = document.createElement('p');
+    taskDescription.classList.add('task-description');
+    var taskNode = document.createTextNode(task.description + " (" + task.pomCount + ")");
+    taskDescription.appendChild(taskNode);
 
     // When the user clicks on the button, open the modal
     taskDescription.classList.add('edit-task-button');
@@ -134,11 +141,11 @@ tasks.forEach(function(task) {
       editTaskModal.style.display = "block";
 
     // When the user clicks anywhere outside of the modal, close it
-    editTaskModal.addEventListener("click", function(event) {
-      if(event.target == editTaskModal) {
-        editTaskModal.style.display = "none";
-      }
-    });
+      editTaskModal.addEventListener("click", function(event) {
+        if(event.target == editTaskModal) {
+          editTaskModal.style.display = "none";
+        }
+      });
 
     // When the user clicks on <span> (x), close the modal
     var editTaskContent = document.getElementById("edit-task-modal-content");
@@ -180,20 +187,23 @@ tasks.forEach(function(task) {
 
     if(task.date == null) {
           todoContainer.appendChild(taskWrapper);
-    } else {
+    }
+
+    if(moment(task.date, "YYYY-MM-DD").isSame(today, "day")) {
       todayContainer.appendChild(taskWrapper);
     }
 
-    // switch(task.date){
-    //   case dateToday:
-    //     todayContainer.appendChild(taskWrapper);
-    //     break;
-    //   case dateToday+1
-    //
-    //
-    // }
+    if(moment(task.date, "YYYY-MM-DD").isSame(tomorrow, "day")) {
+      tomorrowContainer.appendChild(taskWrapper);
+    }
 
+    if(moment(task.date, "YYYY-MM-DD").isBetween(dayAfterTomorrow, endOfWeek, "day")) {
+      thisweekContainer.appendChild(taskWrapper);
+    }
 
+    if(moment(task.date, "YYYY-MM-DD").isAfter(endOfWeek, "day")) {
+      upcomingContainer.appendChild(taskWrapper);
+    }
 
 
       //PIE CHART INFO
