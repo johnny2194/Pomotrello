@@ -114,6 +114,9 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
+  align-items: flex-start;
+  margin-right:10px;
+  margin-top: 12px;
 }
 
 #analytics-and-pomo-countdown-wrapper{
@@ -126,7 +129,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  /*justify-content: space-around;*/
+  justify-content: space-around;
   /*align-items: center;*/
 }
 
@@ -138,7 +141,6 @@ body {
   /*margin-bottom: px;*/
   margin-left: 10px;
   min-width: 275px;
-  max-height: 100px;
   background: #E2E4E6;
   border-radius: 3px;
   box-sizing: border-box;
@@ -146,9 +148,9 @@ body {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  max-height: 100%;
   position: relative;
   white-space: normal;
+  min-height: 70px;
 
 
 }
@@ -156,8 +158,8 @@ body {
 .tasks-container{
   /*margin-bottom: px;*/
   min-width: 275px;
-  min-height: 100px;
-  max-height: 360px;
+  /*min-height: 100px;*/
+  /*max-height: 360px;*/
   box-sizing: border-box;
   /*display: flex;*/
   /*-webkit-flex-direction: column;*/
@@ -168,6 +170,7 @@ body {
   white-space: normal;
   align-items: center;
   overflow: auto;
+  margin-bottom: 5px;
   /*flex: 0 0 350px;*/
   /*overflow-y: auto;*/
   /*height: 400px;*/
@@ -242,7 +245,8 @@ body {
   margin-left: 12px;
   margin-bottom: 15px;
   border-radius: 3px;
-  position: relative;
+  position: absolute;
+  left: 0;
 
   /*background: ;*/
   /*border: 1px solid pink;*/
@@ -269,12 +273,36 @@ body {
 }
 
 /**********************************
-              POM GRAPH
+              GRAPH
 **********************************/
 
 #pomodoro-graph-container{
-  width:850px;
+  background-color:#E2E4E6;
+  display: flex;
+  justify-content: space-around;
+  height: 290px;
+  width: 630px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  /*position: relative;*/
+
+  /*background: ;*/
+  /*border: 1px solid pink;*/
 }
+
+#graph-wrapper {
+  /*position: absolute;*/
+  /*bottom: 0;*/
+  /*margin-bottom: 12px;*/
+  display: flex;
+  justify-content: space-around;
+  /*height: 240px;*/
+  /*width: 280px;*/
+  /*border: 1px solid pink;*/
+}
+
 
 /**********************************
               COUNTDOWN
@@ -290,6 +318,7 @@ body {
   /*margin-left: 12px;*/
   margin-bottom: 15px;
   border-radius: 3px;
+  position: absolute;
   right: 0;
   margin-right: 13px;
 
