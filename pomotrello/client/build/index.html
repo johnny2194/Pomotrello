@@ -238,18 +238,18 @@
 
 
       <div class="add-form">
-        <form method="POST" action = "pomotrello" id = "add-task-form">
+        <form method="POST" action = "pomotrello" id = "edit-task-form">
           <fieldset>
-          <legend>What needs doing?</legend>
-          <input type="text" name="description" id= "description-field" class="max-width" placeholder="Give task a description">
-          <div id="pomcount-category-wrapper" class="form-input-divider" class="max-width">
+          <legend>Anything need editing?</legend>
+          <input type="text" name="description" id= "edit-description-field" class="max-width">
+          <div id="edit-pomcount-category-wrapper" class="form-input-divider" class="max-width">
             <div class="mid-width" >
               <label for="pom-count">Pomodoro Count:</label>
-              <input type="number" name="pom-count" id="pomCount-field" class="max-width" placeholder="More than 1 pomodoro?" />
+              <input type="number" name="pom-count" id="edit-pomCount-field" class="max-width" />
             </div>
               <div class="mid-width right-form-divder">
                 <label for="job">Select Category:</label>
-                <select id="category-field" name="category" class="max-width" value="Select Category">
+                <select id="edit-category-field" name="category" class="max-width">
                   <option value="Admin">Admin</option>
                   <option value="Education">Education</option>
                   <option value="Exercise">Exercise</option>
@@ -264,28 +264,28 @@
                 </select>
               </div>
           </div>
-          <div id="date-time-input-wrapper" class="form-input-divider" class="max-width">
-            <div id="date-input-wrapper" class="mid-width" >
+          <div id="edit-date-time-input-wrapper" class="form-input-divider" class="max-width">
+            <div id="edit-date-input-wrapper" class="mid-width" >
 
               <label for="date-picker" class="date-width" >I'm doing it on:<div data-balloon="Want this task to appear in ToDo? Just leave me blank!" data-balloon-pos="up">?</div></label>
-              <input type="date" name="date-picker" id="date-field" class="max-width" />
+              <input type="date" name="date-picker" id="edit-date-field" class="max-width" />
             </div>
 
-            <div id="time-picker-wrapper" class="form-input-divider right-form-divder" >
+            <div id="edit-time-picker-wrapper" class="form-input-divider right-form-divder" >
 
-              <div id="start-time-wrapper" class="max-width">
-                <label for="start-time-picker" id="start-time-label" class="max-width" >Start Time:  <div data-balloon="Time's aren't essential so feel free to leave us blank!" data-balloon-pos="up">?</div></label>
-                <input type="time" name="start-time-picker" id="startTime-field" class="time-picker-width" />
+              <div id="edit-start-time-wrapper" class="max-width">
+                <label for="start-time-picker" id="edit-start-time-label" class="max-width">Start Time:  <div data-balloon="Time's aren't essential so feel free to leave us blank!" data-balloon-pos="up">?</div></label>
+                <input type="time" name="start-time-picker" id="edit-startTime-field" class="time-picker-width" />
               </div>
 
-              <div id="end-picker-wrapper" class="max-width">
+              <div id="edit-end-picker-wrapper" class="max-width">
                 <label for="end-time-picker">End Time:</label>
-                <input type="time" name="end-time-picker" id="endTime-field" class="time-picker-width" />
+                <input type="time" name="end-time-picker" id="edit-endTime-field" class="time-picker-width" />
               </div>
             </div>
           </div>
           </fieldset>
-        <input type="submit" value="Add Task" />
+        <input type="submit" value="Update Task" />
         </form>
       </div>
 

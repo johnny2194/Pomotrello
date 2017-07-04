@@ -157,6 +157,10 @@ tasks.forEach(function(task) {
     })
 
     // POPULATE MODAL POPUP - ADD FORM HERE
+    var editDescriptionField = document.getElementById("edit-description-field");
+    editDescriptionField.value = task.description;
+    console.log(task.description);
+
     // editTaskContent.appendChild(editTaskSpan);
     // var taskToEdit = document.createElement("p");
     // var taskToEditNode = document.createTextNode(event.target.textContent);
