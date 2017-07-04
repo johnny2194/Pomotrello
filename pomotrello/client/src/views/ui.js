@@ -274,7 +274,7 @@ for(category in taskCategoryCount) {
 
       lineGraphData.push(dataObject);
     }
-    new RangeFinder
+    new RangeFinder(lineGraphData)
 
 
 
