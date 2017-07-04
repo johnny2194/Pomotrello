@@ -11,7 +11,11 @@ var UI = function() {
     this.renderTask(allTasks);
   }.bind(this));
   this.attachFormOnSubmit();
-  this.addTaskModalPopUp();
+  this.addTaskModalPopUp('add-task-button');
+  this.addTaskModalPopUp('add-task-button-today');
+  this.addTaskModalPopUp('add-task-button-tomorrow');
+  this.addTaskModalPopUp('add-task-button-this-week');
+  this.addTaskModalPopUp('add-task-button-upcoming');
   this.dashboardModalPopUp();
 }
 
@@ -49,9 +53,9 @@ UI.prototype = {
     })
   },
 
-  addTaskModalPopUp: function() {
+  addTaskModalPopUp: function(id) {
     var addTaskModal = document.getElementById("add-task-modal-popup");
-    var addTaskButton = document.getElementById("add-task-button");
+    var addTaskButton = document.getElementById(id);
     var addTaskSpan = document.getElementById("close-add-task-modal-popup");
 
     // When the user clicks on the button, open the modal
@@ -147,26 +151,51 @@ tasks.forEach(function(task) {
       });
 
     // When the user clicks on <span> (x), close the modal
-    var editTaskContent = document.getElementById("edit-task-modal-content");
-    editTaskContent.innerHTML = "";
-    var editTaskSpan = document.createElement("span");
-    editTaskSpan.innerHTML = "&times";
-    editTaskSpan.id = "close-edit-task-modal-popup";
+    var editTaskSpan = document.getElementById("close-edit-task-modal-popup");
     editTaskSpan.addEventListener("click", function() {
       editTaskModal.style.display = "none";
     })
 
-    // POPULATE MODAL POPUP - ADD FORM HERE
-    editTaskContent.appendChild(editTaskSpan);
-    var taskToEdit = document.createElement("p");
-    var taskToEditNode = document.createTextNode(event.target.textContent);
-    taskToEdit.appendChild(taskToEditNode);
-    editTaskContent.appendChild(taskToEdit);
-  })
+    // POPULATE EDIT TASK MODAL POPUP
+    var editDescriptionField = document.getElementById("edit-description-field");
+    editDescriptionField.value = task.description;
+
+    var editPomCountField = document.getElementById("edit-pomCount-field");
+    editPomCountField.value = task.pomCount;
+
+    var editCategoryField = document.getElementById("edit-category-field");
+    editCategoryField.value = task.category;
+
+    var editDateField = document.getElementById("edit-date-field");
+    if(task.date) {
+      editDateField.value = task.date;
+    } else {
+      editDateField.value = null;
+    }
+
+    var editStartTimeField = document.getElementById("edit-startTime-field");
+    if(task.startTime) {
+      editStartTimeField.value = task.startTime;
+    } else {
+      editStartTimeField.value = null;
+    }
+
+    var editEndTimeField = document.getElementById("edit-endTime-field");
+    if(task.endTime) {
+      editEndTimeField.value = task.endTime;
+    } else {
+      editEndTimeField.value = null;
+    }
+
+   })
 
 
+
+
+
+
+//BACK TO RENDERING TO SCREEN
     taskWrapper.appendChild(taskDescription);
-
 
     //CHECKBOX MECHANICS
     var checkboxWrapper = document.createElement('div');
