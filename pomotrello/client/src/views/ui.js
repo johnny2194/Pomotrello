@@ -1,5 +1,6 @@
 var TaskList = require('../models/task_list.js');
 var PieChart = require("./pie_chart.js");
+var RangeFinder = require("./range_finder.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
 var moment = require('moment');
 
@@ -224,8 +225,9 @@ for(category in taskCategoryCount) {
   formattedCategoryData.push(dataObject);
 }
 
-    //CREATE PIECHART
+    //CREATE PIECHART & LINE CHART
     new PieChart(formattedCategoryData);
+    new RangeFinder(formattedCategoryData)
 
 
 
