@@ -74,12 +74,12 @@ UI.prototype = {
       })
       var categorySelect = document.getElementById("category-field");
       categorySelect.addEventListener("click", function() {
+      categorySelect.innerHTML = "";
         for(category in allCategories) {
           var option = document.createElement("option");
           option.value = category;
           option.innerText = category;
           categorySelect.appendChild(option);
-          console.log("option", option);
         }
       })
     }
