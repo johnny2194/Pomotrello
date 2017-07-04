@@ -215,19 +215,33 @@ tasks.forEach(function(task) {
 ////////////END OF FOREACH LOOP
 
 
+//PIECHART CHART DATA AND CREATE
+
 var formattedCategoryData = [];
+var lineGraphData = [];
 
 for(category in taskCategoryCount) {
   var dataObject = {}
   dataObject.name = category;
   dataObject.y = taskCategoryCount[category];
-
   formattedCategoryData.push(dataObject);
 }
-
-    //CREATE PIECHART & LINE CHART
     new PieChart(formattedCategoryData);
-    new RangeFinder(formattedCategoryData)
+
+//LINE CHART DATA AND CREATE
+
+  for(category in taskCategoryCount) {
+      var dataObject = {}
+      dataObject.name = "Total Poms"
+
+      totalPoms = [4,5,6,7,8]
+      dataObject.y = totalPoms
+      dataObject.x =[1,2,3,4,5,6,7,8]
+
+
+      lineGraphData.push(dataObject);
+    }
+    new RangeFinder
 
 
 
