@@ -103,7 +103,7 @@ var eventDashboardLogic = function(techCalendarData) {
             // pomCount: pomCount,
             date: techEvent.start.yearlocal + "-" + techEvent.start.monthlocal + "-" + techEvent.start.daylocal,
             startTime: techEvent.start.hourlocal + ":" + techEvent.start.minutelocal,
-            // endTime: techEvent.,
+            endTime: techEvent.end.hourlocal + ":" + techEvent.end.minutelocal,
             completed: false
           }
 
