@@ -233,12 +233,14 @@ for(category in taskCategoryCount) {
 
 
 
-    function Countdown(newNumber, number, minute) {
-      number = number || 59;
-      minute = minute || 24;
+    // CLOCK FUNCTION
+      function Countdown(newNumber, number, minute) {
+      number = stored_sec || number || 59;
+      minute = minute || stored_min ||  24;
+
       var timer=setInterval(function() {
         newNumber(number,minute);
-        console.log (going)
+        console.log (newNumber)
         if (going == 1){
           if(number-- <= 0) {
             number = 59;
@@ -271,7 +273,8 @@ for(category in taskCategoryCount) {
     window.location.reload()
   }
 
-
+  var stored_sec
+  var stored_min
   var startToggle = 0
   var going = 0
 
@@ -282,9 +285,27 @@ for(category in taskCategoryCount) {
     else{
       going = 1
 
+
+    var storedTimer = display_timer.split(":")
+    stored_sec = parseInt(storedTimer[1]-1)
+    if (stored_sec == -1){stored_sec ++}
+    stored_min = parseInt(storedTimer[0])
+    if (stored_min == 25){stored_min --}
+
+
+    countdown = new Countdown(function(number, minute) {
+      display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
+      document.getElementById("countdown-wrapper").textContent = display_timer;
+      startToggle = 1
+    });
+      
+
+
     }
-    console.log(going)
   })
+
+  
+
 
   startTimer.addEventListener('click', function(timer) {
     if (startToggle == 0){
@@ -296,7 +317,6 @@ for(category in taskCategoryCount) {
 
     }
   })
-
 }
 
 }
