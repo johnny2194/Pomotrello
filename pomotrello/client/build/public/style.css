@@ -211,6 +211,12 @@ body {
   flex-direction: row;
 }
 
+.task-wrapper:hover{
+  background-color: #ededed;
+}
+
+
+
 .task-description{
   clear: both;
   font-weight: 300;
