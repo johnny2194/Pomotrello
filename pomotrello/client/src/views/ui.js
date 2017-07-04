@@ -112,9 +112,7 @@ UI.prototype = {
 
 //SET DATE TODAY TOMORROW WHENEVER
     var today = moment();
-    console.log("today", today);
     var tomorrow = moment().add(1, "d");
-    console.log("tomorrow", tomorrow);
     var dayAfterTomorrow = moment().add(2, "d");
     var endOfWeek = moment().add(7, "d");
 
@@ -148,26 +146,26 @@ tasks.forEach(function(task) {
       });
 
     // When the user clicks on <span> (x), close the modal
-    var editTaskContent = document.getElementById("edit-task-modal-content");
-    editTaskContent.innerHTML = "";
-    var editTaskSpan = document.createElement("span");
-    editTaskSpan.innerHTML = "&times";
-    editTaskSpan.id = "close-edit-task-modal-popup";
+    var editTaskSpan = document.getElementById("close-edit-task-modal-popup");
     editTaskSpan.addEventListener("click", function() {
       editTaskModal.style.display = "none";
     })
 
     // POPULATE MODAL POPUP - ADD FORM HERE
-    editTaskContent.appendChild(editTaskSpan);
-    var taskToEdit = document.createElement("p");
-    var taskToEditNode = document.createTextNode(event.target.textContent);
-    taskToEdit.appendChild(taskToEditNode);
-    editTaskContent.appendChild(taskToEdit);
-  })
+    // editTaskContent.appendChild(editTaskSpan);
+    // var taskToEdit = document.createElement("p");
+    // var taskToEditNode = document.createTextNode(event.target.textContent);
+    // taskToEdit.appendChild(taskToEditNode);
+    // editTaskContent.appendChild(taskToEdit);
+   })
 
 
+
+
+
+
+//BACK TO RENDERING TO SCREEN
     taskWrapper.appendChild(taskDescription);
-
 
     //CHECKBOX MECHANICS
     var checkboxWrapper = document.createElement('div');
@@ -296,13 +294,13 @@ for(category in taskCategoryCount) {
       document.getElementById("countdown-wrapper").textContent = display_timer;
       startToggle = 1
     });
-      
+
 
 
     }
   })
 
-  
+
 
 
   startTimer.addEventListener('click', function(timer) {
