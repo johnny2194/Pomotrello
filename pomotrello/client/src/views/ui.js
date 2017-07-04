@@ -53,19 +53,19 @@ UI.prototype = {
 
     // When the user clicks on the button, open the modal
     addTaskButton.onclick = function() {
-        addTaskModal.style.display = "block";
+      addTaskModal.style.display = "block";
     }
 
     // When the user clicks on <span> (x), close the modal
     addTaskSpan.onclick = function() {
-        addTaskModal.style.display = "none";
+      addTaskModal.style.display = "none";
     }
 
     // When the user clicks anywhere outside of the modal, close it
     addTaskModal.onclick = function(event) {
-        if (event.target == addTaskModal) {
-            addTaskModal.style.display = "none";
-        }
+      if (event.target == addTaskModal) {
+        addTaskModal.style.display = "none";
+      }
     }
   },
 
@@ -76,24 +76,24 @@ UI.prototype = {
 
     // When the user clicks on the button, open the modal
     eventButton.onclick = function() {
-        eventModal.style.display = "block";
-        getTechCalendar();
+      eventModal.style.display = "block";
+      getTechCalendar();
     }
 
     // When the user clicks on <span> (x), close the modal
     eventSpan.onclick = function() {
-        eventModal.style.display = "none";
+      eventModal.style.display = "none";
     }
 
     // When the user clicks anywhere outside of the modal, close it
     eventModal.onclick = function(event) {
-        if (event.target == eventModal) {
-            eventModal.style.display = "none";
-        }
+      if (event.target == eventModal) {
+        eventModal.style.display = "none";
+      }
     }
   },
 
-    renderTask: function(tasks) {
+  renderTask: function(tasks) {
     var container = document.getElementById('todo-tasks-container');
     container.innerHTML = '';
 
@@ -101,7 +101,7 @@ UI.prototype = {
 
 ////////START OF FOR LOOP
 
-    for (var task of tasks) {
+for (var task of tasks) {
 
       //RENDER BASIC LIST ITEM TO SCREEN
 
@@ -113,54 +113,54 @@ UI.prototype = {
       taskDescription.appendChild(taskNode);
 
     // When the user clicks on the button, open the modal
-      taskDescription.classList.add('edit-task-button');
-      taskDescription.addEventListener("click", function(event){
-        var editTaskModal = document.getElementById('edit-task-modal-popup');
-        editTaskModal.style.display = "block";
+    taskDescription.classList.add('edit-task-button');
+    taskDescription.addEventListener("click", function(event){
+      var editTaskModal = document.getElementById('edit-task-modal-popup');
+      editTaskModal.style.display = "block";
 
     // When the user clicks anywhere outside of the modal, close it
-        editTaskModal.addEventListener("click", function(event) {
-          if(event.target == editTaskModal) {
-            editTaskModal.style.display = "none";
-          }
-        });
+    editTaskModal.addEventListener("click", function(event) {
+      if(event.target == editTaskModal) {
+        editTaskModal.style.display = "none";
+      }
+    });
 
     // When the user clicks on <span> (x), close the modal
-        var editTaskContent = document.getElementById("edit-task-modal-content");
-        editTaskContent.innerHTML = "";
-        var editTaskSpan = document.createElement("span");
-        editTaskSpan.innerHTML = "&times";
-        editTaskSpan.id = "close-edit-task-modal-popup";
-        editTaskSpan.addEventListener("click", function() {
-          editTaskModal.style.display = "none";
-        })
+    var editTaskContent = document.getElementById("edit-task-modal-content");
+    editTaskContent.innerHTML = "";
+    var editTaskSpan = document.createElement("span");
+    editTaskSpan.innerHTML = "&times";
+    editTaskSpan.id = "close-edit-task-modal-popup";
+    editTaskSpan.addEventListener("click", function() {
+      editTaskModal.style.display = "none";
+    })
 
     // POPULATE MODAL POPUP - ADD FORM HERE
-        editTaskContent.appendChild(editTaskSpan);
-        var taskToEdit = document.createElement("p");
-        var taskToEditNode = document.createTextNode(event.target.textContent);
-        taskToEdit.appendChild(taskToEditNode);
-        editTaskContent.appendChild(taskToEdit);
-      })
+    editTaskContent.appendChild(editTaskSpan);
+    var taskToEdit = document.createElement("p");
+    var taskToEditNode = document.createTextNode(event.target.textContent);
+    taskToEdit.appendChild(taskToEditNode);
+    editTaskContent.appendChild(taskToEdit);
+  })
 
 
-      taskWrapper.appendChild(taskDescription);
+    taskWrapper.appendChild(taskDescription);
 
 
     //CHECKBOX MECHANICS
-      var checkboxWrapper = document.createElement('div');
-      checkboxWrapper.classList.add('checkbox');
-      var checkboxInput = document.createElement('input');
-      checkboxInput.type = "checkbox";
+    var checkboxWrapper = document.createElement('div');
+    checkboxWrapper.classList.add('checkbox');
+    var checkboxInput = document.createElement('input');
+    checkboxInput.type = "checkbox";
 
-      if(task.completed === true) {
-        checkboxInput.checked = true;
-      } else {
-        checkboxInput.checked = false;
-      }
-      checkboxWrapper.appendChild(checkboxInput);
-      taskWrapper.appendChild(checkboxWrapper);
-      container.appendChild(taskWrapper);
+    if(task.completed === true) {
+      checkboxInput.checked = true;
+    } else {
+      checkboxInput.checked = false;
+    }
+    checkboxWrapper.appendChild(checkboxInput);
+    taskWrapper.appendChild(checkboxWrapper);
+    container.appendChild(taskWrapper);
 
       //PIE CHART INFO
 
@@ -172,66 +172,86 @@ UI.prototype = {
 ////////////END OF FOR LOOP
 
 
-    var formattedCategoryData = [];
+var formattedCategoryData = [];
 
-    for(category in taskCategoryCount) {
-      var dataObject = {}
-      dataObject.name = category;
-      dataObject.y = taskCategoryCount[category];
+for(category in taskCategoryCount) {
+  var dataObject = {}
+  dataObject.name = category;
+  dataObject.y = taskCategoryCount[category];
 
-      formattedCategoryData.push(dataObject);
-    }
+  formattedCategoryData.push(dataObject);
+}
 
     //CREATE PIECHART
-  new PieChart(formattedCategoryData);
+    new PieChart(formattedCategoryData);
 
- 
 
-  function Countdown(newNumber, number, minute) {
-       number = number || 59;
-       minute = minute || 24;
-           var timer=setInterval(function() {
-           newNumber(number,minute);
-           if(number-- <= 0) {
-               number = 59;
-               minute --
-           }
-           if(minute <= 0 && number === 0){
+
+    function Countdown(newNumber, number, minute) {
+      number = number || 59;
+      minute = minute || 24;
+      var timer=setInterval(function() {
+        newNumber(number,minute);
+        console.log (going)
+        if (going == 1){
+          if(number-- <= 0) {
+            number = 59;
+            minute --
+          }
+          if(minute <= 0 && number === 0){
             clearInterval(timer);
-           }
+          }
+        }
 
+        else
+        {
+          clearInterval(timer);
+        }
 
-       }, 1000);
+      }, 1000);
 
    }
 
-  var display_timer = "25:00"
-  document.getElementById("countdown-wrapper").textContent = display_timer;
+   var display_timer = "25:00"
+   document.getElementById("countdown-wrapper").textContent = display_timer;
    var countdown
    var startTimer = document.getElementById('countdown-start');
    var resetTimer = document.getElementById('countdown-reset');
 
    resetTimer.onclick = function(number, minute,timer){
     clearInterval(timer)
-     display_timer = "25:00"
-     document.getElementById("countdown-wrapper").textContent = display_timer;
-     window.location.reload()
-   }
+    display_timer = "25:00"
+    document.getElementById("countdown-wrapper").textContent = display_timer;
+    window.location.reload()
+  }
 
-    var startToggle = 0
-   startTimer.onclick = function(timer) {
+
+  var startToggle = 0
+  var going = 0
+
+  startTimer.addEventListener('click', function(timer){
+    if(going == 1){
+      going = 0
+    }
+    else{
+      going = 1
+      
+    }
+    console.log(going)
+  })
+  
+  startTimer.addEventListener('click', function(timer) {
     if (startToggle == 0){
       countdown = new Countdown(function(number, minute) {
-      display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
-      document.getElementById("countdown-wrapper").textContent = display_timer;
-      startToggle = 1
+        display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
+        document.getElementById("countdown-wrapper").textContent = display_timer;
+        startToggle = 1
       });
+
     }
+  })
 
-
-  }
-
-  }
+}
 
 }
 module.exports = UI;
