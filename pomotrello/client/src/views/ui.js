@@ -94,14 +94,29 @@ UI.prototype = {
   },
 
   renderTask: function(tasks) {
-    var container = document.getElementById('todo-tasks-container');
-    container.innerHTML = '';
+
+//TASK DEALER TARGETS
+
+    var todoContainer = document.getElementById('todo-tasks-container');
+    todoContainer.innerHTML = '';
+    var todayContainer = document.getElementById('today-tasks-container');
+    todayContainer.innerHTML = '';
+    var tomorrowContainer = document.getElementById('tomorrow-tasks-container');
+    tomorrowContainer.innerHTML = '';
+    var thisweekContainer = document.getElementById('thisweek-tasks-container');
+    thisweekContainer.innerHTML = '';
+    var upcomingContainer = document.getElementById('upcoming-tasks-container');
+    upcomingContainer.innerHTML = '';
+
+//SET DATE TODAY
+    // var today = new Date();
+
 
     var taskCategoryCount = {};
 
-////////START OF FOR LOOP
+////////START OF FOREACH LOOP
 
-for (var task of tasks) {
+tasks.forEach(function(task) {
 
       //RENDER BASIC LIST ITEM TO SCREEN
 
@@ -160,16 +175,35 @@ for (var task of tasks) {
     }
     checkboxWrapper.appendChild(checkboxInput);
     taskWrapper.appendChild(checkboxWrapper);
-    container.appendChild(taskWrapper);
+
+    //TASK DEALER BABY
+
+    if(task.date == null) {
+          todoContainer.appendChild(taskWrapper);
+    } else {
+      todayContainer.appendChild(taskWrapper);
+    }
+
+    // switch(task.date){
+    //   case dateToday:
+    //     todayContainer.appendChild(taskWrapper);
+    //     break;
+    //   case dateToday+1
+    //
+    //
+    // }
+
+
+
 
       //PIE CHART INFO
 
       var category = task.category;
       var pomCountInt = parseInt(task.pomCount);
       taskCategoryCount[category] = taskCategoryCount[category] ? taskCategoryCount[category]+pomCountInt : pomCountInt;
-    }
+    });
 
-////////////END OF FOR LOOP
+////////////END OF FOREACH LOOP
 
 
 var formattedCategoryData = [];
@@ -235,11 +269,11 @@ for(category in taskCategoryCount) {
     }
     else{
       going = 1
-      
+
     }
     console.log(going)
   })
-  
+
   startTimer.addEventListener('click', function(timer) {
     if (startToggle == 0){
       countdown = new Countdown(function(number, minute) {
