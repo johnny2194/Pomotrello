@@ -101,15 +101,30 @@ var eventDashboardLogic = function(techCalendarData) {
           var startMoment = moment(techEvent.start.rfc2882utc);
           var endMoment = moment(techEvent.end.rfc2882utc);
           var duration = endMoment.diff(startMoment, 'minutes');
-          console.log("duration", duration);
           var pomCount = duration/30;
-          console.log("pomCount", pomCount);
+
+          if(techEvent.start.monthlocal.length == 1) {
+            var month = "0" + techEvent.start.monthlocal;
+          } else {
+            var month = techEvent.start.monthlocal;
+          }
+
+          if(techEvent.start.daylocal.length == 1) {
+            var day = "0" + techEvent.start.daylocal;
+          } else {
+            var day = techEvent.start.daylocal;
+          }
+
+
+          console.log("month", month)
+          console.log("day", day)
+
 
           var taskToAdd = {
             description: techEvent.summaryDisplay,
             category: "Socialising",
             pomCount: pomCount,
-            date: techEvent.start.yearlocal + "-" + techEvent.start.monthlocal + "-" + techEvent.start.daylocal,
+            date: techEvent.start.yearlocal + "-" + month + "-" + day,
             startTime: techEvent.start.hourlocal + ":" + techEvent.start.minutelocal,
             endTime: techEvent.end.hourlocal + ":" + techEvent.end.minutelocal,
             completed: false
