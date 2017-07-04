@@ -110,7 +110,7 @@ UI.prototype = {
       taskWrapper.classList.add('task-wrapper');
       var taskDescription = document.createElement('p');
       taskDescription.classList.add('task-description');
-      var taskNode = document.createTextNode(task.description)
+      var taskNode = document.createTextNode(task.description + " (" + task.pomCount + ")");
       taskDescription.appendChild(taskNode);
 
     // When the user clicks on the button, open the modal
