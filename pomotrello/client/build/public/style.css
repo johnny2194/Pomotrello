@@ -104,7 +104,7 @@ body {
 #all-list-container{
   display: flex;
   flex-flow: row;
-  max-height: 370px;
+  height: 360px;
   white-space: nowrap;
   margin-bottom: 10px;
   overflow-x: auto;

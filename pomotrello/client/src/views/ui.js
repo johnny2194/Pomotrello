@@ -10,7 +10,11 @@ var UI = function() {
     this.renderTask(allTasks);
   }.bind(this));
   this.attachFormOnSubmit();
-  this.addTaskModalPopUp();
+  this.addTaskModalPopUp('add-task-button');
+  this.addTaskModalPopUp('add-task-button-today');
+  this.addTaskModalPopUp('add-task-button-tomorrow');
+  this.addTaskModalPopUp('add-task-button-this-week');
+  this.addTaskModalPopUp('add-task-button-upcoming');
   this.dashboardModalPopUp();
 }
 
@@ -48,9 +52,9 @@ UI.prototype = {
     })
   },
 
-  addTaskModalPopUp: function() {
+  addTaskModalPopUp: function(id) {
     var addTaskModal = document.getElementById("add-task-modal-popup");
-    var addTaskButton = document.getElementById("add-task-button");
+    var addTaskButton = document.getElementById(id);
     var addTaskSpan = document.getElementById("close-add-task-modal-popup");
 
     // When the user clicks on the button, open the modal
