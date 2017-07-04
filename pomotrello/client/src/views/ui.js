@@ -1,6 +1,8 @@
 var TaskList = require('../models/task_list.js');
 var PieChart = require("./pie_chart.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
+var moment = require('moment');
+
 
 var UI = function() {
   var taskList = new TaskList();
@@ -94,23 +96,43 @@ UI.prototype = {
   },
 
   renderTask: function(tasks) {
-    var container = document.getElementById('todo-tasks-container');
-    container.innerHTML = '';
+
+//TASK DEALER TARGETS
+
+    var todoContainer = document.getElementById('todo-tasks-container');
+    todoContainer.innerHTML = '';
+    var todayContainer = document.getElementById('today-tasks-container');
+    todayContainer.innerHTML = '';
+    var tomorrowContainer = document.getElementById('tomorrow-tasks-container');
+    tomorrowContainer.innerHTML = '';
+    var thisweekContainer = document.getElementById('thisweek-tasks-container');
+    thisweekContainer.innerHTML = '';
+    var upcomingContainer = document.getElementById('upcoming-tasks-container');
+    upcomingContainer.innerHTML = '';
+
+//SET DATE TODAY TOMORROW WHENEVER
+    var today = moment();
+    console.log("today", today);
+    var tomorrow = moment().add(1, "d");
+    console.log("tomorrow", tomorrow);
+    var dayAfterTomorrow = moment().add(2, "d");
+    var endOfWeek = moment().add(7, "d");
+
 
     var taskCategoryCount = {};
 
-////////START OF FOR LOOP
+////////START OF FOREACH LOOP
 
-for (var task of tasks) {
+tasks.forEach(function(task) {
 
       //RENDER BASIC LIST ITEM TO SCREEN
 
-      var taskWrapper = document.createElement('div');
-      taskWrapper.classList.add('task-wrapper');
-      var taskDescription = document.createElement('p');
-      taskDescription.classList.add('task-description');
-      var taskNode = document.createTextNode(task.description + " (" + task.pomCount + ")");
-      taskDescription.appendChild(taskNode);
+    var taskWrapper = document.createElement('div');
+    taskWrapper.classList.add('task-wrapper');
+    var taskDescription = document.createElement('p');
+    taskDescription.classList.add('task-description');
+    var taskNode = document.createTextNode(task.description + " (" + task.pomCount + ")");
+    taskDescription.appendChild(taskNode);
 
     // When the user clicks on the button, open the modal
     taskDescription.classList.add('edit-task-button');
@@ -119,11 +141,11 @@ for (var task of tasks) {
       editTaskModal.style.display = "block";
 
     // When the user clicks anywhere outside of the modal, close it
-    editTaskModal.addEventListener("click", function(event) {
-      if(event.target == editTaskModal) {
-        editTaskModal.style.display = "none";
-      }
-    });
+      editTaskModal.addEventListener("click", function(event) {
+        if(event.target == editTaskModal) {
+          editTaskModal.style.display = "none";
+        }
+      });
 
     // When the user clicks on <span> (x), close the modal
     var editTaskContent = document.getElementById("edit-task-modal-content");
@@ -160,16 +182,38 @@ for (var task of tasks) {
     }
     checkboxWrapper.appendChild(checkboxInput);
     taskWrapper.appendChild(checkboxWrapper);
-    container.appendChild(taskWrapper);
+
+    //TASK DEALER BABY
+
+    if(task.date == null) {
+          todoContainer.appendChild(taskWrapper);
+    }
+
+    if(moment(task.date, "YYYY-MM-DD").isSame(today, "day")) {
+      todayContainer.appendChild(taskWrapper);
+    }
+
+    if(moment(task.date, "YYYY-MM-DD").isSame(tomorrow, "day")) {
+      tomorrowContainer.appendChild(taskWrapper);
+    }
+
+    if(moment(task.date, "YYYY-MM-DD").isBetween(dayAfterTomorrow, endOfWeek, "day")) {
+      thisweekContainer.appendChild(taskWrapper);
+    }
+
+    if(moment(task.date, "YYYY-MM-DD").isAfter(endOfWeek, "day")) {
+      upcomingContainer.appendChild(taskWrapper);
+    }
+
 
       //PIE CHART INFO
 
       var category = task.category;
       var pomCountInt = parseInt(task.pomCount);
       taskCategoryCount[category] = taskCategoryCount[category] ? taskCategoryCount[category]+pomCountInt : pomCountInt;
-    }
+    });
 
-////////////END OF FOR LOOP
+////////////END OF FOREACH LOOP
 
 
 var formattedCategoryData = [];
@@ -235,11 +279,11 @@ for(category in taskCategoryCount) {
     }
     else{
       going = 1
-      
+
     }
     console.log(going)
   })
-  
+
   startTimer.addEventListener('click', function(timer) {
     if (startToggle == 0){
       countdown = new Countdown(function(number, minute) {
