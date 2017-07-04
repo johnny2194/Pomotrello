@@ -22,8 +22,8 @@ UI.prototype = {
       var category =form['category-field'].value;
       var pomCount =form['pomCount-field'].value;
       var date =form['date-field'].value;
-      var startTime =form['startTime-field'].value; 
-      var endTime = form['endTime-field'].value; 
+      var startTime =form['startTime-field'].value;
+      var endTime = form['endTime-field'].value;
 
 
       var taskToAdd = {
@@ -32,8 +32,8 @@ UI.prototype = {
         pomCount: pomCount,
         date: date,
         startTime: startTime,
-        endTime: endTime,            
-        completed: false 
+        endTime: endTime,
+        completed: false
       }
 
       console.log(taskToAdd)
@@ -44,7 +44,7 @@ UI.prototype = {
         window.location.reload()
       })
     })
-  },  
+  },
 
   addTaskModalPopUp: function() {
     var addTaskModal = document.getElementById("add-task-modal-popup");
@@ -109,7 +109,7 @@ for (var task of tasks) {
       taskWrapper.classList.add('task-wrapper');
       var taskDescription = document.createElement('p');
       taskDescription.classList.add('task-description');
-      var taskNode = document.createTextNode(task.description)
+      var taskNode = document.createTextNode(task.description + " (" + task.pomCount + ")");
       taskDescription.appendChild(taskNode);
 
     // When the user clicks on the button, open the modal

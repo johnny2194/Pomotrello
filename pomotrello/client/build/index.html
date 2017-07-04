@@ -144,14 +144,15 @@
       <span id="close-add-task-modal-popup">&times;</span>
 
       <div class="add-form">
+
         <form method="POST" action = "pomotrello" id = "add-task-form">
           <fieldset>
-          <legend><!-- <span class="number">1</span> --> What task needs done?</legend>
-          <input type="text" name="description" id= "description-field" class="max-width">
+          <legend>What needs doing?</legend>
+          <input type="text" name="description" id= "description-field" class="max-width" placeholder="Give task a description">
           <div id="pomcount-category-wrapper" class="form-input-divider" class="max-width">
             <div class="mid-width" >
               <label for="pom-count">Pomodoro Count:</label>
-              <input type="number" name="pom-count" id="pomCount-field" class="max-width" />
+              <input type="number" name="pom-count" id="pomCount-field" class="max-width" placeholder="More than 1 pomodoro?" />
             </div>
               <div class="mid-width right-form-divder">
                 <label for="job">Select Category:</label>
@@ -172,14 +173,15 @@
           </div>
           <div id="date-time-input-wrapper" class="form-input-divider" class="max-width">
             <div id="date-input-wrapper" class="mid-width" >
-              <label for="date-picker">I'm doing it on:</label>
+
+              <label for="date-picker" class="date-width" >I'm doing it on:<div data-balloon="Want this task to appear in ToDo? Just leave me blank!" data-balloon-pos="up">?</div></label>
               <input type="date" name="date-picker" id="date-field" class="max-width" />
             </div>
 
             <div id="time-picker-wrapper" class="form-input-divider right-form-divder" >
 
               <div id="start-time-wrapper" class="max-width">
-                <label for="start-time-picker">Start Time:</label>
+                <label for="start-time-picker" id="start-time-label" class="max-width" >Start Time:  <div data-balloon="Time's aren't essential so feel free to leave us blank!" data-balloon-pos="up">?</div></label>
                 <input type="time" name="start-time-picker" id="startTime-field" class="time-picker-width" />
               </div>
 
@@ -214,6 +216,7 @@
       <p>Search Events:</p>
     </div>
   </div>
+
 
 
 </body>
