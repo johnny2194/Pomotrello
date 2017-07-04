@@ -60,7 +60,28 @@ UI.prototype = {
 
     // When the user clicks on the button, open the modal
     addTaskButton.onclick = function() {
+      console.log("addTaskButton clicked");
       addTaskModal.style.display = "block";
+      // <option value="Education">Education</option>
+
+      var allCategories = {};
+      var taskList = new TaskList();
+      taskList.all(function (allTasks) {
+        allTasks.forEach(function(task) {
+          var category = task.category;
+          allCategories[category] = allCategories[category] ? allCategories[category]+1 : 1;
+        });
+      })
+      var categorySelect = document.getElementById("category-field");
+      categorySelect.addEventListener("click", function() {
+        for(category in allCategories) {
+          var option = document.createElement("option");
+          option.value = category;
+          option.innerText = category;
+          categorySelect.appendChild(option);
+          console.log("option", option);
+        }
+      })
     }
 
     // When the user clicks on <span> (x), close the modal
