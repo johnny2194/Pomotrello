@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var TaskList = require('../models/task_list.js');
+var moment = require('moment');
 
 
 var getTechCalendar = function() {
@@ -97,10 +98,17 @@ var eventDashboardLogic = function(techCalendarData) {
           event.preventDefault();
     //EXPERIMENTAL SHIZ
 
+          var startMoment = moment(techEvent.start.rfc2882utc);
+          var endMoment = moment(techEvent.end.rfc2882utc);
+          var duration = endMoment.diff(startMoment, 'minutes');
+          console.log("duration", duration);
+          var pomCount = duration/30;
+          console.log("pomCount", pomCount);
+
           var taskToAdd = {
             description: techEvent.summaryDisplay,
             category: "Socialising",
-            // pomCount: pomCount,
+            pomCount: pomCount,
             date: techEvent.start.yearlocal + "-" + techEvent.start.monthlocal + "-" + techEvent.start.daylocal,
             startTime: techEvent.start.hourlocal + ":" + techEvent.start.minutelocal,
             endTime: techEvent.end.hourlocal + ":" + techEvent.end.minutelocal,
