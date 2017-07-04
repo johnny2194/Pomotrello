@@ -5,7 +5,7 @@ db.tasks.insert([
     description: "Setup database and file structure for Pomotrello",
     category: "Planning",
     pomCount: "2",
-    date: "2017-08-1",
+    date: "2017-08-01",
     startTime: "09:00",
     endTime: "10:00",
     completed: false

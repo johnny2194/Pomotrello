@@ -217,6 +217,10 @@ tasks.forEach(function(task) {
           todoContainer.appendChild(taskWrapper);
     }
 
+    if(task.date == "") {
+          todoContainer.appendChild(taskWrapper);
+    }
+
     if(moment(task.date, "YYYY-MM-DD").isSame(today, "day")) {
       todayContainer.appendChild(taskWrapper);
     }
