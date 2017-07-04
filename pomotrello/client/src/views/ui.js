@@ -1,5 +1,6 @@
 var TaskList = require('../models/task_list.js');
 var PieChart = require("./pie_chart.js");
+var RangeFinder = require("./range_finder.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
 var moment = require('moment');
 
@@ -10,7 +11,11 @@ var UI = function() {
     this.renderTask(allTasks);
   }.bind(this));
   this.attachFormOnSubmit();
-  this.addTaskModalPopUp();
+  this.addTaskModalPopUp('add-task-button');
+  this.addTaskModalPopUp('add-task-button-today');
+  this.addTaskModalPopUp('add-task-button-tomorrow');
+  this.addTaskModalPopUp('add-task-button-this-week');
+  this.addTaskModalPopUp('add-task-button-upcoming');
   this.dashboardModalPopUp();
 }
 
@@ -48,9 +53,9 @@ UI.prototype = {
     })
   },
 
-  addTaskModalPopUp: function() {
+  addTaskModalPopUp: function(id) {
     var addTaskModal = document.getElementById("add-task-modal-popup");
-    var addTaskButton = document.getElementById("add-task-button");
+    var addTaskButton = document.getElementById(id);
     var addTaskSpan = document.getElementById("close-add-task-modal-popup");
 
     // When the user clicks on the button, open the modal
@@ -224,8 +229,9 @@ for(category in taskCategoryCount) {
   formattedCategoryData.push(dataObject);
 }
 
-    //CREATE PIECHART
+    //CREATE PIECHART & LINE CHART
     new PieChart(formattedCategoryData);
+    new RangeFinder(formattedCategoryData)
 
 
 
