@@ -178,15 +178,16 @@
         <form method="POST" action = "pomotrello" id = "add-task-form">
           <fieldset>
           <legend>What needs doing?</legend>
-          <input type="text" name="description" id= "description-field" class="max-width" placeholder="Give task a description">
+          <input type="text" name="description" id= "description-field" class="max-width" placeholder="Give task a description" required>
           <div id="pomcount-category-wrapper" class="form-input-divider" class="max-width">
             <div class="mid-width" >
               <label for="pom-count">Pomodoro Count:</label>
-              <input type="number" name="pom-count"  min="1" id="pomCount-field" class="max-width" placeholder="More than 1 pomodoro?" />
+              <input type="number" name="pom-count"  min="1" id="pomCount-field" class="max-width" placeholder="More than 1 pomodoro?" required/>
             </div>
               <div class="mid-width right-form-divder">
                 <label for="job">Select Category:</label>
-                <select id="category-field" name="category" class="max-width" value="Select Category">
+                <select id="category-field" name="category" class="max-width" required>
+                  <option selected disabled value="">Select Category</option>
                   <option value="Admin">Admin</option>
                   <option value="Education">Education</option>
                   <option value="Exercise">Exercise</option>
@@ -244,15 +245,15 @@
         <form method="POST" action = "pomotrello" id = "edit-task-form">
           <fieldset>
           <legend>Anything need editing?</legend>
-          <input type="text" name="description" id= "edit-description-field" class="max-width">
+          <input type="text" name="description" id= "edit-description-field" class="max-width" required>
           <div id="edit-pomcount-category-wrapper" class="form-input-divider" class="max-width">
             <div class="mid-width" >
               <label for="pom-count">Pomodoro Count:</label>
-              <input type="number" name="pom-count"  min="1" id="edit-pomCount-field" class="max-width" />
+              <input type="number" name="pom-count"  min="1" id="edit-pomCount-field" class="max-width" required/>
             </div>
               <div class="mid-width right-form-divder">
                 <label for="job">Select Category:</label>
-                <select id="edit-category-field" name="category" class="max-width">
+                <select id="edit-category-field" name="category" class="max-width" required>
                   <option value="Admin">Admin</option>
                   <option value="Education">Education</option>
                   <option value="Exercise">Exercise</option>
