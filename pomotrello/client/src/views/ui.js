@@ -218,15 +218,16 @@ UI.prototype = {
      window.location.reload()
    }
 
-
-   startTimer.onclick = function(timer) {
     var startToggle = 0
+   startTimer.onclick = function(timer) {
     if (startToggle == 0){
       countdown = new Countdown(function(number, minute) {
       display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
       document.getElementById("countdown-wrapper").textContent = display_timer;
+      startToggle = 1
       });
     }
+
 
   }
 
