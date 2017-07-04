@@ -806,3 +806,46 @@ button[data-balloon] {
   width: 100%;
 }
 
+/**********************************
+            LOGO
+**********************************/
+
+#logo-wrapper {
+  width: 135px;
+  /*background-color: blue;*/
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#icon-wrapper{
+  padding-right: 4px;
+}
+
+#logo-wrapper:hover {
+  color: #ffffff;
+}
+
+#header-square {
+  width:20px;
+  height: 20px;
+  background-color: grey;
+  border-radius: 5px;
+}
+
+.standard-header-styling {
+  color: #d3d3d3;
+  text-decoration: rgba(0,0,0, 0.1);
+}
+
+/**********************************
+            BUTTONS
+**********************************/
+
+#add-task-button {
+  font-size: 20px;
+  font-weight: 400;
+  background-color: none;
+}

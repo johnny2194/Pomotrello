@@ -6,12 +6,22 @@
   <link rel="stylesheet" href="public/style.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400" rel="stylesheet">
   <script src="bundle.js"></script>
+  <script src="https://use.fontawesome.com/5d2c2b682f.js"></script>
 </head>
 <body>
   <header id="header">
     <div class="navbar-default">
-      <button id="add-task-button">Add Task Modular</button>
-      <h1 id="logo">Pomotrello</h1>
+      <button id="add-task-button">+</button>
+      <a class="standard-header-styling" href="http://localhost:3000/">
+        <div id="logo-wrapper">
+          <!-- <i id="logo-square" class="fa fa-square fa-stack-2x"></i> -->
+          <div id="icon-wrapper"> 
+            <div class="header-square"></div>
+            <i class="fa fa-check-square-o fa-lg"></i>
+          </div>
+          <h1 id="logo">Pomotrello</h1>
+        </div>
+      </a>
       <button id="event-dashboard-button">Search Events</button>
     </div>
   </header>
