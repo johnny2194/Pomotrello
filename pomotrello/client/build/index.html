@@ -53,7 +53,7 @@
         <div class ="default-list-title">
           <p>Today</p>
         </div>
-        <div id="today-tasks-container"class="tasks-container">
+        <div id="today-tasks-container" class="tasks-container">
           <!-- <div class="task-wrapper">
             <p class="task-description">Plan awesome project with Lewis and Matt</p>
             <div class="checkbox">
@@ -244,8 +244,9 @@
       <div class="add-form">
         <form method="POST" action = "pomotrello" id = "edit-task-form">
           <fieldset>
-          <legend>Anything need editing?</legend>
+          <legend>Do I need updated?</legend>
           <input type="text" name="description" id= "edit-description-field" class="max-width" required>
+
           <div id="edit-pomcount-category-wrapper" class="form-input-divider" class="max-width">
             <div class="mid-width" >
               <label for="pom-count">Pomodoro Count:</label>
@@ -287,6 +288,15 @@
                 <input type="time" name="end-time-picker" id="edit-endTime-field" class="time-picker-width" />
               </div>
             </div>
+          </div>
+          <div id="completed-delete-wrapper" class="form-input-divider" class="max-width">
+            <div id="checkbox-container" class="mid-width" >
+              <label id="form-checkbox-label" for="checkbox">Completed?</label>
+              <input type="checkbox" class="form-checkbox" value="None" id="checkbox" name="check" checked />
+            </div>
+              <div class="mid-width right-form-divder">
+                <button id="edit-form-delete-button">Delete Task?</button>
+              </div>
           </div>
           </fieldset>
         <input type="submit" value="Update Task" />
