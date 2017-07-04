@@ -188,8 +188,9 @@ for(category in taskCategoryCount) {
 
 
       function Countdown(newNumber, number, minute) {
-      number = number || stored_sec || 59;
-      minute = minute || stored_min || 24;
+      number = stored_sec || number || 59;
+      minute = stored_min || minute ||  24;
+
       var timer=setInterval(function() {
         newNumber(number,minute);
         console.log (newNumber)
@@ -237,8 +238,8 @@ for(category in taskCategoryCount) {
     else{
       going = 1
     var res = display_timer.split(":")
-    stored_sec = res[1]
-    stored_min = res[0]
+    stored_sec = parseInt(res[1])
+    stored_min = parseInt(res[0])
     countdown = new Countdown(function(number, minute) {
       display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
       document.getElementById("countdown-wrapper").textContent = display_timer;
@@ -246,9 +247,9 @@ for(category in taskCategoryCount) {
     });
       
     }
-    console.log(stored_sec)
   })
   
+
   startTimer.addEventListener('click', function(timer) {
     if (startToggle == 0){
       countdown = new Countdown(function(number, minute) {
@@ -259,7 +260,6 @@ for(category in taskCategoryCount) {
 
     }
   })
-
 }
 
 }
