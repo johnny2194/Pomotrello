@@ -185,11 +185,12 @@ UI.prototype = {
     //CREATE PIECHART
   new PieChart(formattedCategoryData);
 
+ 
 
   function Countdown(newNumber, number, minute) {
        number = number || 59;
        minute = minute || 24;
-       var timer=setInterval(function() {
+           var timer=setInterval(function() {
            newNumber(number,minute);
            if(number-- <= 0) {
                number = 59;
@@ -201,7 +202,9 @@ UI.prototype = {
 
 
        }, 1000);
+
    }
+
   var display_timer = "25:00"
   document.getElementById("countdown-wrapper").textContent = display_timer;
    var countdown
@@ -212,15 +215,18 @@ UI.prototype = {
     clearInterval(timer)
      display_timer = "25:00"
      document.getElementById("countdown-wrapper").textContent = display_timer;
+     window.location.reload()
    }
 
 
    startTimer.onclick = function(timer) {
-
-    countdown = new Countdown(function(number, minute) {
+    var startToggle = 0
+    if (startToggle == 0){
+      countdown = new Countdown(function(number, minute) {
       display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
       document.getElementById("countdown-wrapper").textContent = display_timer;
-   });
+      });
+    }
 
   }
 
