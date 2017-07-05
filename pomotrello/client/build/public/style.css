@@ -136,6 +136,7 @@ body {
   /*align-items: center;*/
 }
 
+
 /**********************************
               LISTS
 **********************************/
@@ -319,15 +320,16 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 290px;
+  height: 220px;
   width: 300px;
   align-items: center;
   /*margin-left: 12px;*/
-  margin-bottom: 15px;
+  /*margin-bottom: 15px;*/
   border-radius: 3px;
   position: absolute;
   right: 0;
   margin-right: 13px;
+  /*margin-bottom: 30px;*/
 
 }
 
@@ -338,8 +340,9 @@ body {
   /*margin-bottom: 12px;*/
   display: flex;
   justify-content: space-around;
-  height: 240px;
-  width: 280px;
+  color: #585858,
+  /*height: 240px;*/
+  /*width: 280px;*/
   /*border: 1px solid blue;*/
 }
 
@@ -348,9 +351,82 @@ body {
   /*margin-bottom: 12px;*/
   display: flex;
   justify-content: space-around;
+  align-items: center;
   height: 100px;
   width: 280px;
+  margin-bottom: 15px;
   /*border: 1px solid pink;*/
+}
+
+#face-wrapper{
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  /*margin-top: 3px;*/
+  margin: 0px 7px 7px 7px;
+  /*width: 255px;*/
+  height: 260px;
+  width:255px;
+  padding: 0px 60px 0px 60px;
+  margin:20px;
+  justify-content: space-around;
+  align-items: center;
+  /*z-index: 0;*/
+  display: flex;
+  flex-direction: row;
+}
+
+#countdown-start {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  /*display: block;*/
+  padding: 13px 35px 13px 35px;
+  color: /*#585858*/darkgrey;
+  font-weight: 400;
+  margin: 0 auto;
+  background: rgb(232, 238, 239);
+  font-size: 15px;
+  text-align: center;
+  /*font-style: normal;*/
+  width: 100%;
+  border: 1px solid rgb(232, 238, 239) ;
+  border-width: 1px 1px 1px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+#countdown-start:hover {
+   background-color: #1abc9c;
+   color: white;
+}
+
+#countdown-reset {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  /*display: block;*/
+  padding: 13px 35px 13px 35px;
+  color: /*#585858*/darkgrey;
+  font-weight: 400;
+  margin: 0 auto;
+  background: rgb(232, 238, 239);
+  font-size: 15px;
+  text-align: center;
+  /*font-style: normal;*/
+  width: 100%;
+  border: 1px solid rgb(232, 238, 239) ;
+  border-width: 1px 1px 1px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+#countdown-reset:hover {
+   background-color: #7766ad;
+   color: white;
 }
 
 /**********************************
@@ -875,8 +951,11 @@ body {
   opacity: 1;
 }
 
+
+
 button {
   outline: none;
+  cursor: pointer;
 }
 
 /**********************************
