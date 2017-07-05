@@ -6,7 +6,7 @@ var RangeFinder = function(data) {
 var container = document.getElementById("graph-wrapper");
 var today = moment();
 var daysPast = [today]
-var numberOfDaysBack = -4
+var numberOfDaysBack = -100
 var n = -1
 while (n > numberOfDaysBack){
 var yesterday = moment().add(n, "d");
@@ -33,12 +33,30 @@ n--}
          {y:7, color: 'yellow'},
          {y:3, color: 'purple'},
          {y:2, color: 'orange'},
+         {y:7, color: 'yellow'},
+         {y:3, color: 'purple'},
+         {y:2, color: 'orange'},
+         {y:7, color: 'yellow'},
+         {y:3, color: 'purple'},
+         {y:2, color: 'orange'},
+         {y:7, color: 'yellow'},
+         {y:3, color: 'purple'},
+         {y:2, color: 'orange'},
+         {y:7, color: 'yellow'},
+         {y:3, color: 'purple'},
+         {y:2, color: 'orange'},
+         {y:7, color: 'yellow'},
+         {y:3, color: 'purple'},
+         {y:2, color: 'orange'},
          {y:7, color: 'red'}
        ]
      }
      
      ],
      xAxis:{
+      labels: {
+          enabled: false
+      },
        categories: daysPast
      }
    });
