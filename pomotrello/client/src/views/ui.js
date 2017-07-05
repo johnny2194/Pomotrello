@@ -43,11 +43,10 @@ UI.prototype = {
         completed: false
       }
 
-      console.log(taskToAdd)
+      console.log("attachFormToSubmit does a thing")
 
       var taskList = new TaskList();
       taskList.add(taskToAdd, function(newTask){
-        console.log('response in ui:', newTask);
         window.location.reload()
       })
     })
@@ -88,9 +87,8 @@ UI.prototype = {
         categorySelect.appendChild(addNewCategory);
 
         categorySelect.addEventListener("change", function(event) {
-            console.log("categorySelect change", event.target.value);
+
             if(event.target.value == "Add new category"){
-              console.log("I HAVE YOU NOW");
               var addCategoryModal = document.getElementById('add-category-modal-popup');
               addCategoryModal.style.display = "block";
               var addCategoryForm = document.getElementById("add-category-form");
@@ -101,7 +99,6 @@ UI.prototype = {
                 event.preventDefault();  //this stops redirect to new page
 
                 var newCategoryValue = addCategoryForm['new-category-input'].value;
-                console.log("newCategoryValue", newCategoryValue);
 
                 var newCategoryOption = document.createElement("option");
                 newCategoryOption.value = newCategoryValue;
@@ -241,7 +238,83 @@ tasks.forEach(function(task) {
     editPomCountField.value = task.pomCount;
 
     var editCategoryField = document.getElementById("edit-category-field");
-    editCategoryField.value = task.category;
+    editCategoryField.innerHTML = "";
+    var currentOption = document.createElement("option");
+    currentOption.value = task.category;
+    currentOption.innerText = task.category;
+    editCategoryField.appendChild(currentOption);
+
+////////////////////////////////////////////////DYNAMIC CATEGORIES IN EDIT
+
+var allCategories = {};
+var taskList = new TaskList();
+taskList.all(function (allTasks) {
+  allTasks.forEach(function(task) {
+    var category = task.category;
+    allCategories[category] = allCategories[category] ? allCategories[category]+1 : 1;
+  });
+})
+
+editCategoryField.addEventListener("click", function() {
+  editCategoryField.innerHTML = "";
+  for(category in allCategories) {
+    var option = document.createElement("option");
+    option.value = category;
+    option.innerText = category;
+    editCategoryField.appendChild(option);
+  }
+
+      editCategoryField.value = task.category;
+
+  var addNewCategory = document.createElement("option");
+  addNewCategory.innerText = "Add new category";
+  editCategoryField.appendChild(addNewCategory);
+
+  editCategoryField.addEventListener("change", function(event) {
+      if(event.target.value == "Add new category"){
+        var addCategoryModal = document.getElementById('add-category-modal-popup');
+        addCategoryModal.style.display = "block";
+        var addCategoryForm = document.getElementById("add-category-form");
+        var addCategoryInput = document.getElementById("new-category-input");
+        addCategoryInput.autofocus = true;
+
+        addCategoryForm.addEventListener('submit', function (event) {
+          event.preventDefault();  //this stops redirect to new page
+
+          var newCategoryValue = addCategoryForm['new-category-input'].value;
+
+          var newCategoryOption = document.createElement("option");
+          newCategoryOption.value = newCategoryValue;
+          newCategoryOption.innerText = newCategoryValue;
+          newCategoryOption.setAttribute("selected", true);
+          editCategoryField.appendChild(newCategoryOption);
+
+          addCategoryModal.style.display = "none";
+
+          return false;
+        })
+
+        var addCategorySpan = document.getElementById("close-add-category-modal-popup");
+        // When the user clicks on <span> (x), close the modal
+        addCategorySpan.onclick = function() {
+          addCategoryModal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        addCategoryModal.onclick = function(event) {
+          if (event.target == addCategoryModal) {
+            addCategoryModal.style.display = "none";
+          }
+        }
+      }
+  })
+});
+
+
+
+
+//////////////////////////////////////
+
+
 
     var editDateField = document.getElementById("edit-date-field");
     if(task.date) {
@@ -278,17 +351,15 @@ tasks.forEach(function(task) {
 
     deleteButton.addEventListener('click', function(){
 
-       console.log("DELETE BUTTON CLICKED")
        var taskList = new TaskList();
        taskList.delete(task.indexID, task, function(task){
-         // console.log('response in ui:', newTask);
          window.location.reload()
        })
    })
 
 
     editSubmit.addEventListener('submit',function(event){
-      console.log("this is the event you are looking for", event)
+      console.log("editSubmit triggered")
       event.preventDefault();
 
       var description =editSubmit['edit-description-field'].value;
@@ -298,7 +369,7 @@ tasks.forEach(function(task) {
       var startTime =editSubmit['edit-startTime-field'].value;
       var endTime = editSubmit['edit-endTime-field'].value;
       var completed = editSubmit['edit-update-checkbox'].checked;
-      console.log("what is completed?",completed )
+
 
       var taskToUpdate = {
         description: description,
@@ -310,12 +381,10 @@ tasks.forEach(function(task) {
         completed: completed
       }
 
-      console.log(taskToUpdate)
 
 
       var taskList = new TaskList();
       taskList.update(task.indexID, taskToUpdate, function(updatedTask){
-        // console.log('response in ui:', newTask);
         window.location.reload()
       })
 
@@ -356,8 +425,6 @@ taskWrapper.appendChild(taskDescription);
       } else {
         checkboxInput.checked = false;
       }
-
-      console.log("checkbox",checkboxInput.checked)
 
       var taskToUpdate = task
 
@@ -445,7 +512,7 @@ new RangeFinder()
 
       var timer=setInterval(function() {
         newNumber(number,minute);
-        console.log (newNumber)
+        // console.log (newNumber)
         if (going == 1){
           if(number-- <= 0) {
             number = 59;
