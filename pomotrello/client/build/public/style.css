@@ -505,46 +505,35 @@ body {
 #event-dashboard-modal-popup, #add-category-modal-popup {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 1;  /*Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    overflow: auto;  Enable scroll if needed
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
-#event-dashboard-modal-content, #add-category-modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
 
-.event-description{
-  clear: both;
-  font-weight: 300;
-  /*margin: 0 0 4px;*/
-  /*margin-right: 16px;*/
-  /*width: 250px;*/
-  padding: 5px;
-  overflow: hidden;
-  word-wrap: break-word;
-  color: #4d4d4d;
-  font-size: 13px;
-  white-space: normal;
+#event-dashboard-modal-content, #add-category-modal-content {
+    background-color: #f4f7f8;
+    margin: 3% auto; /* 15% from the top and centered */
+    border-radius: 7px;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 70%; /* Could be more or less, depending on screen size */
+    height:85%;
+    /*overflow: auto;*/
+    padding-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 /*.event-info-button{
     margin-left: 10px;
 }*/
 
-.add-event-button {
-  float: right;
-}
 
 /* The Close Buttons */
 #close-add-task-modal-popup {
@@ -589,6 +578,126 @@ body {
     cursor: pointer;
 }
 
+
+/**********************************
+          EVENTS DASHBOARD
+**********************************/
+
+a {
+  text-decoration: none ;
+  color:black;
+}
+
+a:hover {
+  /*text-decoration: underline;*/
+  color: #f8353e;
+
+}
+
+
+#opentech-all-event-container {
+  overflow: auto;
+  /*width:100px;*/
+  height:90%;
+
+}
+.opentech-event-wrapper{
+
+  margin-left: 18px;
+  width: 96%;
+
+}
+#search-events-title{
+  margin: 18px; 
+}
+
+.event-summary{
+
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.event-date{
+
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: 1px;
+}
+
+.info-when-clicked{
+
+  font-weight: 300;
+  margin-top: 1px;
+  width: 95%;
+  clear: both;
+  overflow: hidden;
+  word-wrap: break-word;
+  color: #4d4d4d;
+  font-size: 14px;
+  white-space: normal;
+  margin-top: 2px;
+  
+}
+
+.event-buttons-container {
+  margin-top: 7px;
+  display: flex;
+  width: 100px;
+  align-items: center;
+  /*justify-content:  ;*/
+  margin-right: 15px;
+  margin-bottom: 7px;
+  margin-top: 7px;
+}
+
+.show-more-button {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  /*display: block;*/
+  padding: 4px;
+  color: /*#585858*/darkgrey;
+  font-weight: 400;
+  margin: 0 auto;
+  background: rgb(232, 238, 239);
+  font-size: 12px;
+  text-align: center;
+  /*font-style: normal;*/
+  width: 80px;
+  border: 1px solid rgb(232, 238, 239) ;
+  border-width: 1px 1px 1px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.show-more-button:hover {
+   background-color: #16a085;
+   color: white;
+}
+
+.add-event-button {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  /*display: block;*/
+  padding: 4px;
+  color: /*#585858*/darkgrey;
+  font-weight: 400;
+  /*margin: 0 auto;*/
+  background: rgb(232, 238, 239);
+  font-size: 12px;
+  text-align: center;
+  /*font-style: normal;*/
+  width: 80px;
+  border: 1px solid rgb(232, 238, 239) ;
+  border-width: 1px 1px 1px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.add-event-button:hover {
+   background-color: /*#EEDC82*/#7766ad;
+   color: white;
+}
 
 /**********************************
               FORMS
