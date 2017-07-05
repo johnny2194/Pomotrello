@@ -176,26 +176,26 @@ UI.prototype = {
 
 //TASK DEALER TARGETS
 
-    var todoContainer = document.getElementById('todo-tasks-container');
-    todoContainer.innerHTML = '';
-    var todayContainer = document.getElementById('today-tasks-container');
-    todayContainer.innerHTML = '';
-    var tomorrowContainer = document.getElementById('tomorrow-tasks-container');
-    tomorrowContainer.innerHTML = '';
-    var thisweekContainer = document.getElementById('thisweek-tasks-container');
-    thisweekContainer.innerHTML = '';
-    var upcomingContainer = document.getElementById('upcoming-tasks-container');
-    upcomingContainer.innerHTML = '';
+var todoContainer = document.getElementById('todo-tasks-container');
+todoContainer.innerHTML = '';
+var todayContainer = document.getElementById('today-tasks-container');
+todayContainer.innerHTML = '';
+var tomorrowContainer = document.getElementById('tomorrow-tasks-container');
+tomorrowContainer.innerHTML = '';
+var thisweekContainer = document.getElementById('thisweek-tasks-container');
+thisweekContainer.innerHTML = '';
+var upcomingContainer = document.getElementById('upcoming-tasks-container');
+upcomingContainer.innerHTML = '';
 
 //SET DATE TODAY TOMORROW WHENEVER
-    var today = moment();
-    var tomorrow = moment().add(1, "d");
-    var dayAfterTomorrow = moment().add(2, "d");
-    var endOfWeek = moment().add(7, "d");
+var today = moment();
+var tomorrow = moment().add(1, "d");
+var dayAfterTomorrow = moment().add(2, "d");
+var endOfWeek = moment().add(7, "d");
 
 
-    var taskCategoryCount = {};
-    var counter = 0;
+var taskCategoryCount = {};
+var counter = 0;
 
 ////////START OF FOREACH LOOP
 
@@ -207,12 +207,12 @@ tasks.forEach(function(task) {
 
       //RENDER BASIC LIST ITEM TO SCREEN
 
-    var taskWrapper = document.createElement('div');
-    taskWrapper.classList.add('task-wrapper');
-    var taskDescription = document.createElement('p');
-    taskDescription.classList.add('task-description');
-    var taskNode = document.createTextNode(task.description + " (" + task.pomCount + ")");
-    taskDescription.appendChild(taskNode);
+      var taskWrapper = document.createElement('div');
+      taskWrapper.classList.add('task-wrapper');
+      var taskDescription = document.createElement('p');
+      taskDescription.classList.add('task-description');
+      var taskNode = document.createTextNode(task.description + " (" + task.pomCount + ")");
+      taskDescription.appendChild(taskNode);
 
     // When the user clicks on the button, open the modal
     taskDescription.classList.add('edit-task-button');
@@ -221,11 +221,11 @@ tasks.forEach(function(task) {
       editTaskModal.style.display = "block";
 
     // When the user clicks anywhere outside of the modal, close it
-      editTaskModal.addEventListener("click", function(event) {
-        if(event.target == editTaskModal) {
-          editTaskModal.style.display = "none";
-        }
-      });
+    editTaskModal.addEventListener("click", function(event) {
+      if(event.target == editTaskModal) {
+        editTaskModal.style.display = "none";
+      }
+    });
 
     // When the user clicks on <span> (x), close the modal
     var editTaskSpan = document.getElementById("close-edit-task-modal-popup");
@@ -277,13 +277,14 @@ tasks.forEach(function(task) {
     var deleteButton = document.getElementById('edit-form-delete-button');
 
     deleteButton.addEventListener('click', function(){
+
        console.log("DELETE BUTTON CLICKED")
        var taskList = new TaskList();
        taskList.delete(task.indexID, task, function(task){
          // console.log('response in ui:', newTask);
          window.location.reload()
        })
-    })
+   })
 
 
     editSubmit.addEventListener('submit',function(event){
@@ -321,12 +322,12 @@ tasks.forEach(function(task) {
     })
 
 
-   })
+  })
 
 
 
 //BACK TO RENDERING TO SCREEN
-    taskWrapper.appendChild(taskDescription);
+taskWrapper.appendChild(taskDescription);
 
     //CHECKBOX MECHANICS
     var checkboxWrapper = document.createElement('div');
@@ -339,17 +340,44 @@ tasks.forEach(function(task) {
     } else {
       checkboxInput.checked = false;
     }
+
+    checkboxInput.addEventListener('change', function(){
+      var editSubmit = document.getElementById("edit-task-form");
+      editSubmit.action = "pomotrello/" + task.indexID;
+
+      if(checkboxInput.checked=== true) {
+        task.completed= true;
+      } else {
+        task.completed = false;
+      }
+
+      if(task.completed === true) {
+        checkboxInput.checked = true;
+      } else {
+        checkboxInput.checked = false;
+      }
+
+      console.log("checkbox",checkboxInput.checked)
+
+      var taskToUpdate = task
+
+      var taskList = new TaskList();
+      taskList.update(task.indexID, taskToUpdate, function(updatedTask){
+       })
+
+    })
+
     checkboxWrapper.appendChild(checkboxInput);
     taskWrapper.appendChild(checkboxWrapper);
 
     //TASK DEALER BABY
 
     if(task.date == null) {
-          todoContainer.appendChild(taskWrapper);
+      todoContainer.appendChild(taskWrapper);
     }
 
     if(task.date == "") {
-          todoContainer.appendChild(taskWrapper);
+      todoContainer.appendChild(taskWrapper);
     }
 
     if(moment(task.date, "YYYY-MM-DD").isSame(today, "day")) {
@@ -390,28 +418,28 @@ for(category in taskCategoryCount) {
   dataObject.y = taskCategoryCount[category];
   formattedCategoryData.push(dataObject);
 }
-    new PieChart(formattedCategoryData);
+new PieChart(formattedCategoryData);
 
 //LINE CHART DATA AND CREATE
 
 
-  for(category in taskCategoryCount) {
-      var dataObject = {}
-      dataObject.name = "Total Poms"
+for(category in taskCategoryCount) {
+  var dataObject = {}
+  dataObject.name = "Total Poms"
 
-      totalPoms = [4,5,6,7,8]
-      dataObject.y = [today,tomorrow,dayAfterTomorrow,endOfWeek]
-      dataObject.x =[today,tomorrow,dayAfterTomorrow,endOfWeek]
+  totalPoms = [4,5,6,7,8]
+  dataObject.y = [today,tomorrow,dayAfterTomorrow,endOfWeek]
+  dataObject.x =[today,tomorrow,dayAfterTomorrow,endOfWeek]
 
 
-      lineGraphData.push(dataObject);
-    }
-    new RangeFinder()
+  lineGraphData.push(dataObject);
+}
+new RangeFinder()
 
 
 
     // CLOCK FUNCTION
-      function Countdown(newNumber, number, minute) {
+    function Countdown(newNumber, number, minute) {
       number = stored_sec || number || 59;
       minute = minute || stored_min ||  24;
 
@@ -435,66 +463,66 @@ for(category in taskCategoryCount) {
 
       }, 1000);
 
-   }
+    }
 
-   var display_timer = "25:00"
-   document.getElementById("countdown-wrapper").textContent = display_timer;
-   var countdown
-   var startTimer = document.getElementById('countdown-start');
-   var resetTimer = document.getElementById('countdown-reset');
-
-   resetTimer.onclick = function(number, minute,timer){
-    clearInterval(timer)
-    display_timer = "25:00"
+    var display_timer = "25:00"
     document.getElementById("countdown-wrapper").textContent = display_timer;
-    window.location.reload()
-  }
+    var countdown
+    var startTimer = document.getElementById('countdown-start');
+    var resetTimer = document.getElementById('countdown-reset');
 
-  var stored_sec
-  var stored_min
-  var startToggle = 0
-  var going = 0
-
-  startTimer.addEventListener('click', function(timer){
-    if(going == 1){
-      going = 0
-    }
-    else{
-      going = 1
-
-
-    var storedTimer = display_timer.split(":")
-    stored_sec = parseInt(storedTimer[1]-1)
-    if (stored_sec == -1){stored_sec ++}
-    stored_min = parseInt(storedTimer[0])
-    if (stored_min == 25){stored_min --}
-
-
-    countdown = new Countdown(function(number, minute) {
-      display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
+    resetTimer.onclick = function(number, minute,timer){
+      clearInterval(timer)
+      display_timer = "25:00"
       document.getElementById("countdown-wrapper").textContent = display_timer;
-      startToggle = 1
-    });
-
-
-
+      window.location.reload()
     }
-  })
+
+    var stored_sec
+    var stored_min
+    var startToggle = 0
+    var going = 0
+
+    startTimer.addEventListener('click', function(timer){
+      if(going == 1){
+        going = 0
+      }
+      else{
+        going = 1
+
+
+        var storedTimer = display_timer.split(":")
+        stored_sec = parseInt(storedTimer[1]-1)
+        if (stored_sec == -1){stored_sec ++}
+          stored_min = parseInt(storedTimer[0])
+        if (stored_min == 25){stored_min --}
+
+
+          countdown = new Countdown(function(number, minute) {
+            display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
+            document.getElementById("countdown-wrapper").textContent = display_timer;
+            startToggle = 1
+          });
+
+
+
+      }
+    })
 
 
 
 
-  startTimer.addEventListener('click', function(timer) {
-    if (startToggle == 0){
-      countdown = new Countdown(function(number, minute) {
-        display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
-        document.getElementById("countdown-wrapper").textContent = display_timer;
-        startToggle = 1
-      });
+    startTimer.addEventListener('click', function(timer) {
+      if (startToggle == 0){
+        countdown = new Countdown(function(number, minute) {
+          display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
+          document.getElementById("countdown-wrapper").textContent = display_timer;
+          startToggle = 1
+        });
 
-    }
-  })
-}
+      }
+    })
+  }
 
 }
 module.exports = UI;
