@@ -33,6 +33,12 @@ TaskList.prototype = {
     this.makePutRequest("http://localhost:3000/pomotrello/" + indexID, onRequestComplete, jsonString);
   },
 
+  delete: function(indexID, task, onRequestComplete) {
+    var jsonString = JSON.stringify(task);
+    console.log("jsonString", jsonString);
+    this.makeDeleteRequest("http://localhost:3000/pomotrello/" + indexID, onRequestComplete, jsonString);
+  },
+
   makePostRequest: function(url, onRequestComplete, payLoad) {
     var request = new XMLHttpRequest();
     request.open("POST", url);
@@ -40,7 +46,7 @@ TaskList.prototype = {
     request.addEventListener("load", function() {
       var jsonString = request.responseText;
       var updatedTasks = JSON.parse(jsonString);
-      console.log("data updated", updatedTasks)
+      console.log("data added", updatedTasks)
       onRequestComplete(updatedTasks);
     });
     request.send(payLoad);
@@ -53,6 +59,19 @@ TaskList.prototype = {
       var jsonString = request.responseText;
       var updatedTasks = JSON.parse(jsonString);
       console.log("data updated", updatedTasks)
+      onRequestComplete(updatedTasks);
+    });
+    request.send(payLoad);
+  },
+
+  makeDeleteRequest: function(url, onRequestComplete, payLoad) {
+    var request = new XMLHttpRequest();
+    request.open("DELETE", url);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.addEventListener("load", function() {
+      var jsonString = request.responseText;
+      var updatedTasks = JSON.parse(jsonString);
+      console.log("data deleted", updatedTasks)
       onRequestComplete(updatedTasks);
     });
     request.send(payLoad);

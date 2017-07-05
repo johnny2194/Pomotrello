@@ -201,6 +201,19 @@ tasks.forEach(function(task) {
 
     var editSubmit = document.getElementById("edit-task-form");
     editSubmit.action = "pomotrello/" + task.indexID;
+    
+    var deleteButton = document.getElementById('edit-form-delete-button');
+    
+    deleteButton.addEventListener('click', function(){
+       console.log("DELETE BUTTON CLICKED") 
+       var taskList = new TaskList();
+       taskList.delete(task.indexID, task, function(task){
+         // console.log('response in ui:', newTask);
+         window.location.reload()
+       })
+    })
+
+
     editSubmit.addEventListener('submit',function(event){
       console.log("this is the event you are looking for", event)
       event.preventDefault();
@@ -226,6 +239,7 @@ tasks.forEach(function(task) {
 
       console.log(taskToUpdate)
 
+
       var taskList = new TaskList();
       taskList.update(task.indexID, taskToUpdate, function(updatedTask){
         // console.log('response in ui:', newTask);
@@ -233,6 +247,8 @@ tasks.forEach(function(task) {
       })
 
     })
+
+
    })
 
 
