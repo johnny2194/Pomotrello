@@ -455,7 +455,7 @@ taskWrapper.appendChild(taskDescription);
       tomorrowContainer.appendChild(taskWrapper);
     }
 
-    if(moment(task.date, "YYYY-MM-DD").isBetween(dayAfterTomorrow, endOfWeek, "day")) {
+    if(moment(task.date, "YYYY-MM-DD").isBetween(tomorrow, endOfWeek, "day")) {
       thisweekContainer.appendChild(taskWrapper);
     }
 
