@@ -64,7 +64,7 @@ UI.prototype = {
       console.log("addTaskButton clicked");
       addTaskModal.style.display = "block";
 
-// START DYNAMIC POPULATION OF CATEGORY LIST
+      // START DYNAMIC POPULATION OF CATEGORY LIST
       var allCategories = {};
       var taskList = new TaskList();
       taskList.all(function (allTasks) {
@@ -82,29 +82,43 @@ UI.prototype = {
           option.innerText = category;
           categorySelect.appendChild(option);
         }
-        var addNewCategoryButton = document.getElementById("new-category-button")
+        var addNewCategory = document.createElement("option");
+        addNewCategory.innerText = "Add new category";
+        categorySelect.appendChild(addNewCategory);
 
-        addNewCategoryButton.addEventListener("change", function() {
-//////////////////// ADD ANOTHER MODAL POP UP HERE, I GUESS//////////////////////////////
-            console.log("addCategoryClicked");
-            addCategoryModal.style.display = "block";
-            var addCategoryModal = document.getElementById('add-category-modal-popup');
+        categorySelect.addEventListener("change", function(event) {
+            console.log("categorySelect change", event.target.value);
+            if(event.target.value == "Add new category"){
+              console.log("I HAVE YOU NOW");
+              var addCategoryModal = document.getElementById('add-category-modal-popup');
+              addCategoryModal.style.display = "block";
+              
 
-            var addCategorySpan = document.getElementById("close-add-category-modal-popup");
 
-            // When the user clicks on <span> (x), close the modal
-            addCategorySpan.onclick = function() {   //OK
-              addCategoryModal.style.display = "none";
-            }  //OK
 
-            // When the user clicks anywhere outside of the modal, close it
-            addCategoryModal.onclick = function(event) { //OK
-              if (event.target == eventModal) { //OK
+              var addCategorySpan = document.getElementById("close-add-category-modal-popup");
+              // When the user clicks on <span> (x), close the modal
+              addCategorySpan.onclick = function() {
                 addCategoryModal.style.display = "none";
-              } //OK
-            } //OK
-          })
-        });
+              }
+              // When the user clicks anywhere outside of the modal, close it
+              addCategoryModal.onclick = function(event) {
+                if (event.target == addCategoryModal) {
+                  addCategoryModal.style.display = "none";
+                }
+              }
+
+            }
+        })
+
+
+
+      });
+
+          //
+          //
+          // })
+
     }
 ///BACK TO ADD TASK MODAL POP UP
 
@@ -176,7 +190,7 @@ tasks.forEach(function(task) {
       // ASSIGN indexID
       task.indexID = counter;
       counter++;
-      console.log("indexID", task.indexID);
+      // console.log("indexID", task.indexID);
 
       //RENDER BASIC LIST ITEM TO SCREEN
 
@@ -246,11 +260,11 @@ tasks.forEach(function(task) {
 
     var editSubmit = document.getElementById("edit-task-form");
     editSubmit.action = "pomotrello/" + task.indexID;
-    
+
     var deleteButton = document.getElementById('edit-form-delete-button');
-    
+
     deleteButton.addEventListener('click', function(){
-       console.log("DELETE BUTTON CLICKED") 
+       console.log("DELETE BUTTON CLICKED")
        var taskList = new TaskList();
        taskList.delete(task.indexID, task, function(task){
          // console.log('response in ui:', newTask);
