@@ -53,6 +53,7 @@ UI.prototype = {
     })
   },
 
+//START ADD TASK MODAL POP UP
   addTaskModalPopUp: function(id) {
     var addTaskModal = document.getElementById("add-task-modal-popup");
     var addTaskButton = document.getElementById(id);
@@ -62,8 +63,8 @@ UI.prototype = {
     addTaskButton.onclick = function() {
       console.log("addTaskButton clicked");
       addTaskModal.style.display = "block";
-      // <option value="Education">Education</option>
 
+// START DYNAMIC POPULATION OF CATEGORY LIST
       var allCategories = {};
       var taskList = new TaskList();
       taskList.all(function (allTasks) {
@@ -74,15 +75,38 @@ UI.prototype = {
       })
       var categorySelect = document.getElementById("category-field");
       categorySelect.addEventListener("click", function() {
-      categorySelect.innerHTML = "";
+        categorySelect.innerHTML = "";
         for(category in allCategories) {
           var option = document.createElement("option");
           option.value = category;
           option.innerText = category;
           categorySelect.appendChild(option);
         }
-      })
+        var addNewCategoryButton = document.getElementById("new-category-button")
+
+        addNewCategoryButton.addEventListener("change", function() {
+//////////////////// ADD ANOTHER MODAL POP UP HERE, I GUESS//////////////////////////////
+            console.log("addCategoryClicked");
+            addCategoryModal.style.display = "block";
+            var addCategoryModal = document.getElementById('add-category-modal-popup');
+
+            var addCategorySpan = document.getElementById("close-add-category-modal-popup");
+
+            // When the user clicks on <span> (x), close the modal
+            addCategorySpan.onclick = function() {   //OK
+              addCategoryModal.style.display = "none";
+            }  //OK
+
+            // When the user clicks anywhere outside of the modal, close it
+            addCategoryModal.onclick = function(event) { //OK
+              if (event.target == eventModal) { //OK
+                addCategoryModal.style.display = "none";
+              } //OK
+            } //OK
+          })
+        });
     }
+///BACK TO ADD TASK MODAL POP UP
 
     // When the user clicks on <span> (x), close the modal
     addTaskSpan.onclick = function() {

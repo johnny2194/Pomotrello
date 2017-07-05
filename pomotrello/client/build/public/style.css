@@ -422,7 +422,7 @@ body {
 
 
 /* The Modal (background) */
-#event-dashboard-modal-popup {
+#event-dashboard-modal-popup, #add-category-modal-popup {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -436,7 +436,7 @@ body {
 }
 
 /* Modal Content/Box */
-#event-dashboard-modal-content {
+#event-dashboard-modal-content, #add-category-modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -481,15 +481,15 @@ body {
     cursor: pointer;
 }
 
-#close-edit-task-modal-popup {
+#close-edit-task-modal-popup, #close-add-category-modal-popup {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-#close-edit-task-modal-popup:hover,
-#close-edit-task-modal-popup:focus {
+#close-edit-task-modal-popup:hover, #close-add-category-modal-popup:hover,
+#close-edit-task-modal-popup:focus, #close-add-category-modal-popup:focus {
     color: #109177;
     text-decoration: none;
     cursor: pointer;
@@ -505,7 +505,7 @@ body {
 #close-event-dashboard-modal-popup:hover,
 #close-event-dashboard-modal-popup:focus {
     color: #109177;
-    text-decoration: none;    
+    text-decoration: none;
     cursor: pointer;
 }
 
