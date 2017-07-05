@@ -72,8 +72,75 @@ var eventDashboardLogic = function(techCalendarData) {
       // var eventEntryDetails = document.createElement("div");
       // eventEntry.appendChild(eventEntryDetails);
 
+      //BUTTON TO ADD TO TASK LISTED
+            var eventForm = document.createElement("form");
+            eventForm.action = "pomotrello";
+            eventForm.method = "POST";
+
+            var addEventButton = document.createElement("input");
+            addEventButton.type = "submit";
+            addEventButton.value = "Add to list";
+            addEventButton.classList = "add-event-button";
+            eventForm.appendChild(addEventButton);
+            buttonContainer.appendChild(eventForm);
+            // eventEntryDetails.appendChild(eventLink);
+
+
+            eventForm.addEventListener("submit", function(event) {
+              event.preventDefault();
+
+        //EXPERIMENTAL SHIZ
+
+              var startMoment = moment(techEvent.start.rfc2882utc);
+              var endMoment = moment(techEvent.end.rfc2882utc);
+              var duration = endMoment.diff(startMoment, 'minutes');
+              var pomCount = duration/30;
+
+              if(techEvent.start.monthlocal.length == 1) {
+                var month = "0" + techEvent.start.monthlocal;
+              } else {
+                var month = techEvent.start.monthlocal;
+              }
+
+              if(techEvent.start.daylocal.length == 1) {
+                var day = "0" + techEvent.start.daylocal;
+              } else {
+                var day = techEvent.start.daylocal;
+              }
+
+
+              console.log("month", month)
+              console.log("day", day)
+
+
+              var taskToAdd = {
+                description: techEvent.summaryDisplay,
+                category: "Socialising",
+                pomCount: pomCount,
+                date: techEvent.start.yearlocal + "-" + month + "-" + day,
+                startTime: techEvent.start.hourlocal + ":" + techEvent.start.minutelocal,
+                endTime: techEvent.end.hourlocal + ":" + techEvent.end.minutelocal,
+                completed: false
+              }
+
+              var taskList = new TaskList();
+              taskList.add(taskToAdd, function(newTask){
+                console.log('response in ui:', newTask);
+                window.location.reload()
+              });
+
+          });
+
+
+
+
+
+      var showingInfo = false;    
       eventInfoButton.addEventListener("click", function() {
+        showingInfo = !showingInfo
         eventEntryDetails.innerHTML = "";
+        if(!showingInfo){return}
+       
         var furtherDetails = document.createElement("p");
         furtherDetails.classList = "event-description";
 
@@ -97,64 +164,16 @@ var eventDashboardLogic = function(techCalendarData) {
         eventLink.href = techEvent.url;
         eventLink.innerText = "External Link";
         eventLink.target = "_blank";
-    //BUTTON TO ADD TO TASK LISTED
-        var eventForm = document.createElement("form");
-        eventForm.action = "pomotrello";
-        eventForm.method = "POST";
-
-        var addEventButton = document.createElement("input");
-        addEventButton.type = "submit";
-        addEventButton.value = "Add to list";
-        addEventButton.classList = "add-event-button";
-        eventForm.appendChild(addEventButton);
-        buttonContainer.appendChild(eventForm);
-        eventEntryDetails.appendChild(eventLink);
+    
 
 
-        eventForm.addEventListener("submit", function(event) {
-          event.preventDefault();
-
-    //EXPERIMENTAL SHIZ
-
-          var startMoment = moment(techEvent.start.rfc2882utc);
-          var endMoment = moment(techEvent.end.rfc2882utc);
-          var duration = endMoment.diff(startMoment, 'minutes');
-          var pomCount = duration/30;
-
-          if(techEvent.start.monthlocal.length == 1) {
-            var month = "0" + techEvent.start.monthlocal;
-          } else {
-            var month = techEvent.start.monthlocal;
-          }
-
-          if(techEvent.start.daylocal.length == 1) {
-            var day = "0" + techEvent.start.daylocal;
-          } else {
-            var day = techEvent.start.daylocal;
-          }
 
 
-          console.log("month", month)
-          console.log("day", day)
 
 
-          var taskToAdd = {
-            description: techEvent.summaryDisplay,
-            category: "Socialising",
-            pomCount: pomCount,
-            date: techEvent.start.yearlocal + "-" + month + "-" + day,
-            startTime: techEvent.start.hourlocal + ":" + techEvent.start.minutelocal,
-            endTime: techEvent.end.hourlocal + ":" + techEvent.end.minutelocal,
-            completed: false
-          }
 
-          var taskList = new TaskList();
-          taskList.add(taskToAdd, function(newTask){
-            console.log('response in ui:', newTask);
-            window.location.reload()
-          });
 
-      });
+
 
       });
 
