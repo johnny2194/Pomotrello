@@ -242,7 +242,7 @@
 
 
       <div class="add-form">
-        <form method="POST" action = "pomotrello" id = "edit-task-form">
+        <form method="PUT"  id = "edit-task-form">
           <fieldset>
           <legend>Do I need updated?</legend>
           <input type="text" name="description" id= "edit-description-field" class="max-width" required>
@@ -292,7 +292,7 @@
           <div id="completed-delete-wrapper" class="form-input-divider" class="max-width">
             <div id="checkbox-container" class="mid-width" >
               <label id="form-checkbox-label" for="checkbox">Completed?</label>
-              <input type="checkbox" class="form-checkbox" value="None" id="update-checkbox" name="check" />
+              <input type="checkbox" class="form-checkbox" value="None" id="edit-update-checkbox" name="check" />
             </div>
               <div class="mid-width right-form-divder">
                 <button id="edit-form-delete-button">Delete Task?</button>

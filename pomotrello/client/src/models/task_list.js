@@ -26,9 +26,28 @@ TaskList.prototype = {
     console.log("jsonString", jsonString);
     this.makePostRequest("http://localhost:3000/pomotrello", onRequestComplete, jsonString);
   },
+
+  update: function(indexID, updatedTask, onRequestComplete) {
+    var jsonString = JSON.stringify(updatedTask);
+    console.log("jsonString", jsonString);
+    this.makePutRequest("http://localhost:3000/pomotrello/" + indexID, onRequestComplete, jsonString);
+  },
+
   makePostRequest: function(url, onRequestComplete, payLoad) {
     var request = new XMLHttpRequest();
     request.open("POST", url);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.addEventListener("load", function() {
+      var jsonString = request.responseText;
+      var updatedTasks = JSON.parse(jsonString);
+      console.log("data updated", updatedTasks)
+      onRequestComplete(updatedTasks);
+    });
+    request.send(payLoad);
+  },
+  makePutRequest: function(url, onRequestComplete, payLoad) {
+    var request = new XMLHttpRequest();
+    request.open("PUT", url);
     request.setRequestHeader("Content-Type", "application/json");
     request.addEventListener("load", function() {
       var jsonString = request.responseText;

@@ -8,6 +8,7 @@ var Task = function(options){
   this.endTime = options.endTime;
   this.completed = options.completed;
  
+ this.indexID = options.indexID;
 }
 
 module.exports = Task;
