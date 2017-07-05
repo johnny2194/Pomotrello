@@ -1,5 +1,6 @@
 var TaskList = require('../models/task_list.js');
 var PieChart = require("./pie_chart.js");
+var renderPieChart = require("../models/render_pie_chart.js");
 var RangeFinder = require("./range_finder.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
 var moment = require('moment');
@@ -124,11 +125,7 @@ UI.prototype = {
               }
             }
         })
-
-
-
       });
-
     }
 ///BACK TO ADD TASK MODAL POP UP
 
@@ -212,23 +209,23 @@ tasks.forEach(function(task) {
       taskDescription.appendChild(taskNode);
 
     // When the user clicks on the button, open the modal
-    taskDescription.classList.add('edit-task-button');
-    taskDescription.addEventListener("click", function(event){
-      var editTaskModal = document.getElementById('edit-task-modal-popup');
-      editTaskModal.style.display = "block";
+      taskDescription.classList.add('edit-task-button');
+      taskDescription.addEventListener("click", function(event){
+        var editTaskModal = document.getElementById('edit-task-modal-popup');
+        editTaskModal.style.display = "block";
 
     // When the user clicks anywhere outside of the modal, close it
-    editTaskModal.addEventListener("click", function(event) {
-      if(event.target == editTaskModal) {
-        editTaskModal.style.display = "none";
-      }
-    });
+        editTaskModal.addEventListener("click", function(event) {
+          if(event.target == editTaskModal) {
+            editTaskModal.style.display = "none";
+          }
+        });
 
     // When the user clicks on <span> (x), close the modal
-    var editTaskSpan = document.getElementById("close-edit-task-modal-popup");
-    editTaskSpan.addEventListener("click", function() {
-      editTaskModal.style.display = "none";
-    })
+      var editTaskSpan = document.getElementById("close-edit-task-modal-popup");
+      editTaskSpan.addEventListener("click", function() {
+        editTaskModal.style.display = "none";
+      })
 
     // POPULATE EDIT TASK MODAL POPUP
     var editDescriptionField = document.getElementById("edit-description-field");
@@ -314,8 +311,6 @@ editCategoryField.addEventListener("click", function() {
 
 //////////////////////////////////////
 
-
-
     var editDateField = document.getElementById("edit-date-field");
     if(task.date) {
       editDateField.value = task.date;
@@ -362,11 +357,11 @@ editCategoryField.addEventListener("click", function() {
       console.log("editSubmit triggered")
       event.preventDefault();
 
-      var description =editSubmit['edit-description-field'].value;
-      var category =editSubmit['edit-category-field'].value;
-      var pomCount =editSubmit['edit-pomCount-field'].value;
-      var date =editSubmit['edit-date-field'].value;
-      var startTime =editSubmit['edit-startTime-field'].value;
+      var description = editSubmit['edit-description-field'].value;
+      var category = editSubmit['edit-category-field'].value;
+      var pomCount = editSubmit['edit-pomCount-field'].value;
+      var date = editSubmit['edit-date-field'].value;
+      var startTime = editSubmit['edit-startTime-field'].value;
       var endTime = editSubmit['edit-endTime-field'].value;
       var completed = editSubmit['edit-update-checkbox'].checked;
 
@@ -382,18 +377,12 @@ editCategoryField.addEventListener("click", function() {
       }
 
 
-
       var taskList = new TaskList();
       taskList.update(task.indexID, taskToUpdate, function(updatedTask){
         window.location.reload()
       })
-
     })
-
-
   })
-
-
 
 //BACK TO RENDERING TO SCREEN
 taskWrapper.appendChild(taskDescription);
@@ -431,7 +420,6 @@ taskWrapper.appendChild(taskDescription);
       var taskList = new TaskList();
       taskList.update(task.indexID, taskToUpdate, function(updatedTask){
        })
-
     })
 
     checkboxWrapper.appendChild(checkboxInput);
@@ -521,15 +509,10 @@ new RangeFinder()
           if(minute <= 0 && number === 0){
             clearInterval(timer);
           }
-        }
-
-        else
-        {
+        } else {
           clearInterval(timer);
         }
-
       }, 1000);
-
     }
 
     var display_timer = "25:00"
@@ -554,7 +537,7 @@ new RangeFinder()
       if(going == 1){
         going = 0
       }
-      else{
+      else {
         going = 1
 
 
@@ -570,10 +553,7 @@ new RangeFinder()
             document.getElementById("countdown-wrapper").textContent = display_timer;
             startToggle = 1
           });
-
-
-
-      }
+        }
     })
 
 
@@ -586,10 +566,9 @@ new RangeFinder()
           document.getElementById("countdown-wrapper").textContent = display_timer;
           startToggle = 1
         });
-
       }
     })
   }
-
 }
+
 module.exports = UI;
