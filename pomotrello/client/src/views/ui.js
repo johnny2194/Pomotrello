@@ -263,18 +263,19 @@ for(category in taskCategoryCount) {
 
 //LINE CHART DATA AND CREATE
 
+
   for(category in taskCategoryCount) {
       var dataObject = {}
       dataObject.name = "Total Poms"
 
       totalPoms = [4,5,6,7,8]
-      dataObject.y = totalPoms
-      dataObject.x =[1,2,3,4,5,6,7,8]
+      dataObject.y = [today,tomorrow,dayAfterTomorrow,endOfWeek]
+      dataObject.x =[today,tomorrow,dayAfterTomorrow,endOfWeek]
 
 
       lineGraphData.push(dataObject);
     }
-    new RangeFinder(lineGraphData)
+    new RangeFinder()
 
 
 

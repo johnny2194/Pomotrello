@@ -1,9 +1,20 @@
 var Highcharts = require('highcharts/highstock');
 require('highcharts/modules/exporting')(Highcharts);
+var moment = require('moment');
 
 var RangeFinder = function(data) {
+var container = document.getElementById("graph-wrapper");
+var today = moment();
+var daysPast = [today]
+var numberOfDaysBack = -4
+var n = -1
+while (n > numberOfDaysBack){
+var yesterday = moment().add(n, "d");
+daysPast.unshift(yesterday)
+n--}
 
- var container = document.getElementById("graph-wrapper");
+
+
 
    var chart = new Highcharts.Chart({
      chart:{
@@ -11,11 +22,13 @@ var RangeFinder = function(data) {
        renderTo: container
      },
      title:{text: "Total Poms"},
+     rangeSelector:{
+         enabled:true
+     },
      series:[
      {
        name: "Pom Count",
        color: "#FFAC33",
-       //JS,Java,Ruby,Scratch
        data:[
          {y:7, color: 'yellow'},
          {y:3, color: 'purple'},
@@ -26,7 +39,7 @@ var RangeFinder = function(data) {
      
      ],
      xAxis:{
-       categories: ["January","February","March", "April"]
+       categories: daysPast
      }
    });
  }
