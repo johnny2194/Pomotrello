@@ -46,8 +46,8 @@ var eventDashboardLogic = function(techCalendarData) {
 
 //BUTTON FOR EXTRA DETAILS
       var eventInfoButton = document.createElement("button");
-      eventInfoButton.innerText = "Mo Info";
-      eventInfoButton.classList = "event-info-button";
+      eventInfoButton.innerText = "More info";
+      eventInfoButton.classList = "show-more-button";
       eventEntry.appendChild(eventInfoButton);
 
 //CONTAINER FOR EXTRA DETAILS TO BE SHOWN IN
@@ -80,7 +80,6 @@ var eventDashboardLogic = function(techCalendarData) {
         eventLink.innerText = "External Link";
         eventLink.target = "_blank";
         eventEntryDetails.appendChild(eventLink);
-
     //BUTTON TO ADD TO TASK LISTED
         var eventForm = document.createElement("form");
         eventForm.action = "pomotrello";
@@ -96,6 +95,7 @@ var eventDashboardLogic = function(techCalendarData) {
 
         eventForm.addEventListener("submit", function(event) {
           event.preventDefault();
+
     //EXPERIMENTAL SHIZ
 
           var startMoment = moment(techEvent.start.rfc2882utc);

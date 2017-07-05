@@ -505,28 +505,33 @@ body {
 #event-dashboard-modal-popup {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 1;  /*Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    overflow: auto;  Enable scroll if needed
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 #event-dashboard-modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
+    border-radius: 7px;
+    background-color: #f4f7f8;
+    margin: 3% auto; /* 15% from the top and centered */
+    padding: 10px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 70%; /* Could be more or less, depending on screen size */
+    height:85%;
+    overflow: auto;
+    padding-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 .event-description{
   clear: both;
-  font-weight: 300;
+  font-weight: 500;
   /*margin: 0 0 4px;*/
   /*margin-right: 16px;*/
   /*width: 250px;*/
@@ -534,7 +539,7 @@ body {
   overflow: hidden;
   word-wrap: break-word;
   color: #4d4d4d;
-  font-size: 13px;
+  font-size: 15px;
   white-space: normal;
 }
 
@@ -589,6 +594,75 @@ body {
     cursor: pointer;
 }
 
+
+/**********************************
+          EVENTS DASHBOARD
+**********************************/
+
+#opentech-event-wrapper{
+
+  margin-left: 12px;
+
+}
+#search-events-title{
+  margin: 12px; 
+}
+
+#event-buttons-container {
+  margin-top: 7px;
+  display: flex;
+  width: 180px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.show-more-button {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  /*display: block;*/
+  padding: 5px 6px 5px 6px;
+  color: /*#585858*/darkgrey;
+  font-weight: 400;
+  margin: 0 auto;
+  background: rgb(232, 238, 239);
+  font-size: 12px;
+  text-align: center;
+  /*font-style: normal;*/
+  width: 80px;
+  border: 1px solid rgb(232, 238, 239) ;
+  border-width: 1px 1px 1px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.show-more-button:hover {
+   background-color: #16a085;
+   color: white;
+}
+
+.add-event-button {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  /*display: block;*/
+  padding: 5px 6px 5px 6px;
+  color: /*#585858*/darkgrey;
+  font-weight: 400;
+  margin: 0 auto;
+  background: rgb(232, 238, 239);
+  font-size: 12px;
+  text-align: center;
+  /*font-style: normal;*/
+  width: 80px;
+  border: 1px solid rgb(232, 238, 239) ;
+  border-width: 1px 1px 1px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.add-event-button:hover {
+   background-color: /*#EEDC82*/#7766ad;
+   color: white;
+}
 
 /**********************************
               FORMS
