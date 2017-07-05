@@ -35,32 +35,42 @@ var eventDashboardLogic = function(techCalendarData) {
     if(techEvent.cancelled == false && techEvent.deleted == false) {
 
 //CONTAINER FOR EACH EVENT
-      var eventEntry = document.createElement("div");
-      eventEntry.classList = "opentech-event-wrapper";
-      container.appendChild(eventEntry);
+  var eventEntry = document.createElement("div");
+  eventEntry.classList = "opentech-event-wrapper";
+  container.appendChild(eventEntry);
 
-      var eventSummaryText = document.createElement("p");
-      eventSummaryTextNode = document.createTextNode(techEvent.summaryDisplay);
-      eventSummaryText.appendChild(eventSummaryTextNode);
-      eventSummaryText.classList = "event-summary";
+  var eventSummaryText = document.createElement("p");
+  eventSummaryTextNode = document.createTextNode(techEvent.summaryDisplay);
+  eventSummaryText.appendChild(eventSummaryTextNode);
+  eventSummaryText.classList = "event-summary";
 
-      var eventDateText = document.createElement("p");
-      eventDateTextNode = document.createTextNode(techEvent.start.displaylocal);
-      eventDateText.appendChild(eventDateTextNode);
-      eventDateText.classList = "event-date";
+  var eventDateText = document.createElement("p");
+  eventDateTextNode = document.createTextNode(techEvent.start.displaylocal);
+  eventDateText.appendChild(eventDateTextNode);
+  eventDateText.classList = "event-date";
 
-      eventEntry.appendChild(eventSummaryText);
-      eventEntry.appendChild(eventDateText);
+  var eventEntryDetails = document.createElement("p");
+  eventEntryDetails.classList = "info-when-clicked";
+
+  var buttonContainer = document.createElement("div");
+  buttonContainer.classList = "event-buttons-container";
+
+
+  eventEntry.appendChild(eventSummaryText);
+  eventEntry.appendChild(eventDateText);
+  eventEntry.appendChild(eventEntryDetails);
+  eventEntry.appendChild(buttonContainer);
+
 
 //BUTTON FOR EXTRA DETAILS
       var eventInfoButton = document.createElement("button");
       eventInfoButton.innerText = "More info";
       eventInfoButton.classList = "show-more-button";
-      eventEntry.appendChild(eventInfoButton);
+      buttonContainer.appendChild(eventInfoButton);
 
 //CONTAINER FOR EXTRA DETAILS TO BE SHOWN IN
-      var eventEntryDetails = document.createElement("div");
-      eventEntry.appendChild(eventEntryDetails);
+      // var eventEntryDetails = document.createElement("div");
+      // eventEntry.appendChild(eventEntryDetails);
 
       eventInfoButton.addEventListener("click", function() {
         eventEntryDetails.innerHTML = "";
@@ -87,7 +97,6 @@ var eventDashboardLogic = function(techCalendarData) {
         eventLink.href = techEvent.url;
         eventLink.innerText = "External Link";
         eventLink.target = "_blank";
-        eventEntryDetails.appendChild(eventLink);
     //BUTTON TO ADD TO TASK LISTED
         var eventForm = document.createElement("form");
         eventForm.action = "pomotrello";
@@ -95,10 +104,11 @@ var eventDashboardLogic = function(techCalendarData) {
 
         var addEventButton = document.createElement("input");
         addEventButton.type = "submit";
-        addEventButton.value = "Add this event to my Pomotrello";
+        addEventButton.value = "Add to list";
         addEventButton.classList = "add-event-button";
-        eventEntry.appendChild(addEventButton);
-        eventEntryDetails.appendChild(eventForm);
+        eventForm.appendChild(addEventButton);
+        buttonContainer.appendChild(eventForm);
+        eventEntryDetails.appendChild(eventLink);
 
 
         eventForm.addEventListener("submit", function(event) {

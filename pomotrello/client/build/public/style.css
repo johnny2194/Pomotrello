@@ -547,9 +547,6 @@ body {
     margin-left: 10px;
 }*/
 
-.add-event-button {
-  float: right;
-}
 
 /* The Close Buttons */
 #close-add-task-modal-popup {
@@ -602,6 +599,7 @@ body {
 .opentech-event-wrapper{
 
   margin-left: 12px;
+  width: 96%;
 
 }
 #search-events-title{
@@ -620,7 +618,7 @@ body {
   margin-top: 1px;
 }
 
-#event-buttons-container {
+.event-buttons-container {
   margin-top: 7px;
   display: flex;
   width: 165px;
