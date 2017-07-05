@@ -17,6 +17,7 @@ var UI = function() {
   this.addTaskModalPopUp('add-task-button-this-week');
   this.addTaskModalPopUp('add-task-button-upcoming');
   this.dashboardModalPopUp();
+  this.infoModalPopUp();
 }
 
 UI.prototype = {
@@ -141,6 +142,29 @@ UI.prototype = {
     addTaskModal.onclick = function(event) {
       if (event.target == addTaskModal) {
         addTaskModal.style.display = "none";
+      }
+    }
+  },
+
+  infoModalPopUp: function() {
+    var infoModal = document.getElementById('info-modal-popup');
+    var infoButton = document.getElementById("info-button");
+    var infoSpan = document.getElementById("close-info-modal-popup");
+
+    // When the user clicks on the button, open the modal
+    infoButton.onclick = function() {
+      infoModal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    infoSpan.onclick = function() {
+      infoModal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    infoModal.onclick = function(event) {
+      if (event.target == infoModal) {
+        infoModal.style.display = "none";
       }
     }
   },
