@@ -279,7 +279,29 @@ body {
   align-items: center;
 
 }
+#date-picker-pie-chart {
+background: rgba(255,255,255,.1);
+border: none;
+border-radius: 6px;
+/*font-size: 16px;*/
+margin: 0;
+outline: 0;
+padding: 7px;
+box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+background-color: #e8eeef;
+/*color:#8a97a0;*/
+-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+/*margin-bottom: 30px;*/
+color: #757575;
+}
 
+#date-picker-pie-chart:focus {
+  background: #d2d9dd;
+  color: black;
+}
 /**********************************
               GRAPH
 **********************************/
@@ -353,7 +375,7 @@ body {
   justify-content: space-around;
   align-items: center;
   height: 100px;
-  width: 280px;
+  width: 272px;
   margin-bottom: 15px;
   /*border: 1px solid pink;*/
 }
