@@ -187,6 +187,13 @@ tasks.forEach(function(task) {
       editEndTimeField.value = null;
     }
 
+    var editCompletedField = document.getElementById("update-checkbox");
+    if(task.completed === true) {
+      editCompletedField.checked = true;
+    } else {
+      editCompletedField.checked = false;
+    }
+
    })
 
 
