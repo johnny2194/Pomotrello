@@ -190,17 +190,6 @@
                 <label for="job">Select Category:</label>
                 <select id="category-field" name="category" class="max-width" required>
                   <option selected disabled value="">Select Category</option>
-                  <option value="Admin">Admin</option>
-                  <option value="Education">Education</option>
-                  <option value="Exercise">Exercise</option>
-                  <option value="Handywork">Handywork</option>
-                  <option value="Leisure">Leisure</option>
-                  <option value="Planning">Planning</option>
-                  <option value="Project">Project</option>
-                  <option value="Reflection">Reflection</option>
-                  <option value="Research">Research</option>
-                  <option value="Shopping">Shopping</option>
-                  <option value="Work">Work</option>
                 </select>
               </div>
           </div>
@@ -330,7 +319,17 @@
     </div>
   </div>
 
-
+  <div id="add-category-modal-popup">
+    <!-- Modal content -->
+    <div id="add-category-modal-content">
+      <span id="close-add-category-modal-popup">&times;</span>
+      <form id="add-category-form">
+        <label for="new-category">New Category:</label>
+        <input name="new-category" id= "new-category-input" required>
+        <button>Submit</button>
+      </form>
+    </div>
+  </div>
 
 </body>
 </html>
