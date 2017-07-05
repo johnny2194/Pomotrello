@@ -29,7 +29,7 @@ request.send();
 }
 
 var eventDashboardLogic = function(techCalendarData) {
-  var container = document.getElementById("event-dashboard-modal-content");
+  var container = document.getElementById("opentech-all-event-container");
 
   techCalendarData.forEach(function(techEvent) {
     if(techEvent.cancelled == false && techEvent.deleted == false) {
@@ -38,6 +38,10 @@ var eventDashboardLogic = function(techCalendarData) {
   var eventEntry = document.createElement("div");
   eventEntry.classList = "opentech-event-wrapper";
   container.appendChild(eventEntry);
+
+  var eventLink = document.createElement("a");
+  eventLink.href = techEvent.url;
+  eventLink.target = "_blank";
 
   var eventSummaryText = document.createElement("p");
   eventSummaryTextNode = document.createTextNode(techEvent.summaryDisplay);
@@ -55,8 +59,8 @@ var eventDashboardLogic = function(techCalendarData) {
   var buttonContainer = document.createElement("div");
   buttonContainer.classList = "event-buttons-container";
 
-
-  eventEntry.appendChild(eventSummaryText);
+  eventLink.appendChild(eventSummaryText)
+  eventEntry.appendChild(eventLink);
   eventEntry.appendChild(eventDateText);
   eventEntry.appendChild(eventEntryDetails);
   eventEntry.appendChild(buttonContainer);
@@ -64,7 +68,7 @@ var eventDashboardLogic = function(techCalendarData) {
 
 //BUTTON FOR EXTRA DETAILS
       var eventInfoButton = document.createElement("button");
-      eventInfoButton.innerText = "More info";
+      eventInfoButton.innerText = "Toggle Info";
       eventInfoButton.classList = "show-more-button";
       buttonContainer.appendChild(eventInfoButton);
 
@@ -142,7 +146,7 @@ var eventDashboardLogic = function(techCalendarData) {
         if(!showingInfo){return}
        
         var furtherDetails = document.createElement("p");
-        furtherDetails.classList = "event-description";
+        furtherDetails.classList = "info-when-clicked";
 
         var furtherDetailsNode = document.createTextNode(techEvent.description);
         furtherDetails.appendChild(furtherDetailsNode);
@@ -154,16 +158,12 @@ var eventDashboardLogic = function(techCalendarData) {
           eventAddress += ", " + techEvent.venue.addresscode;
           eventAddress += " - " + techEvent.venue.description;
           var locationDetails = document.createElement("p");
-          locationDetails.classList = "event-description";
+          locationDetails.classList = "info-when-clicked";
           var locationDetailsNode = document.createTextNode(eventAddress);
           locationDetails.appendChild(locationDetailsNode);
           eventEntryDetails.appendChild(locationDetails);
         }
-    //EXTERNAL LINK
-        var eventLink = document.createElement("a");
-        eventLink.href = techEvent.url;
-        eventLink.innerText = "External Link";
-        eventLink.target = "_blank";
+  
     
 
 
