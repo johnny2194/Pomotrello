@@ -53,6 +53,7 @@ UI.prototype = {
     })
   },
 
+//START ADD TASK MODAL POP UP
   addTaskModalPopUp: function(id) {
     var addTaskModal = document.getElementById("add-task-modal-popup");
     var addTaskButton = document.getElementById(id);
@@ -60,8 +61,79 @@ UI.prototype = {
 
     // When the user clicks on the button, open the modal
     addTaskButton.onclick = function() {
+      console.log("addTaskButton clicked");
       addTaskModal.style.display = "block";
+
+      // START DYNAMIC POPULATION OF CATEGORY LIST
+      var allCategories = {};
+      var taskList = new TaskList();
+      taskList.all(function (allTasks) {
+        allTasks.forEach(function(task) {
+          var category = task.category;
+          allCategories[category] = allCategories[category] ? allCategories[category]+1 : 1;
+        });
+      })
+      var categorySelect = document.getElementById("category-field");
+      categorySelect.addEventListener("click", function() {
+        categorySelect.innerHTML = "";
+        for(category in allCategories) {
+          var option = document.createElement("option");
+          option.value = category;
+          option.innerText = category;
+          categorySelect.appendChild(option);
+        }
+
+        var addNewCategory = document.createElement("option");
+        addNewCategory.innerText = "Add new category";
+        categorySelect.appendChild(addNewCategory);
+
+        categorySelect.addEventListener("change", function(event) {
+            console.log("categorySelect change", event.target.value);
+            if(event.target.value == "Add new category"){
+              console.log("I HAVE YOU NOW");
+              var addCategoryModal = document.getElementById('add-category-modal-popup');
+              addCategoryModal.style.display = "block";
+              var addCategoryForm = document.getElementById("add-category-form");
+              var addCategoryInput = document.getElementById("new-category-input");
+              addCategoryInput.autofocus = true;
+
+              addCategoryForm.addEventListener('submit', function (event) {
+                event.preventDefault();  //this stops redirect to new page
+
+                var newCategoryValue = addCategoryForm['new-category-input'].value;
+                console.log("newCategoryValue", newCategoryValue);
+
+                var newCategoryOption = document.createElement("option");
+                newCategoryOption.value = newCategoryValue;
+                newCategoryOption.innerText = newCategoryValue;
+                newCategoryOption.setAttribute("selected", true);
+                categorySelect.appendChild(newCategoryOption);
+
+                addCategoryModal.style.display = "none";
+
+                return false;
+              })
+
+              var addCategorySpan = document.getElementById("close-add-category-modal-popup");
+              // When the user clicks on <span> (x), close the modal
+              addCategorySpan.onclick = function() {
+                addCategoryModal.style.display = "none";
+              }
+              // When the user clicks anywhere outside of the modal, close it
+              addCategoryModal.onclick = function(event) {
+                if (event.target == addCategoryModal) {
+                  addCategoryModal.style.display = "none";
+                }
+              }
+            }
+        })
+
+
+
+      });
+
     }
+///BACK TO ADD TASK MODAL POP UP
 
     // When the user clicks on <span> (x), close the modal
     addTaskSpan.onclick = function() {
@@ -131,7 +203,7 @@ tasks.forEach(function(task) {
       // ASSIGN indexID
       task.indexID = counter;
       counter++;
-      console.log("indexID", task.indexID);
+      // console.log("indexID", task.indexID);
 
       //RENDER BASIC LIST ITEM TO SCREEN
 
@@ -201,13 +273,14 @@ tasks.forEach(function(task) {
 
     var editSubmit = document.getElementById("edit-task-form");
     editSubmit.action = "pomotrello/" + task.indexID;
-    
+
     var deleteButton = document.getElementById('edit-form-delete-button');
-    
+
     deleteButton.addEventListener('click', function(){
-     console.log("DELETE BUTTON CLICKED") 
-     var taskList = new TaskList();
-     taskList.delete(task.indexID, task, function(task){
+
+       console.log("DELETE BUTTON CLICKED")
+       var taskList = new TaskList();
+       taskList.delete(task.indexID, task, function(task){
          // console.log('response in ui:', newTask);
          window.location.reload()
        })
@@ -250,9 +323,6 @@ tasks.forEach(function(task) {
 
 
   })
-
-
-
 
 
 
