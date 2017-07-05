@@ -168,10 +168,15 @@ UI.prototype = {
 
 
     var taskCategoryCount = {};
+    var counter = 0;
 
 ////////START OF FOREACH LOOP
 
 tasks.forEach(function(task) {
+      // ASSIGN indexID
+      task.indexID = counter;
+      counter++;
+      console.log("indexID", task.indexID);
 
       //RENDER BASIC LIST ITEM TO SCREEN
 
@@ -231,6 +236,63 @@ tasks.forEach(function(task) {
     } else {
       editEndTimeField.value = null;
     }
+
+    var editCompletedField = document.getElementById("edit-update-checkbox");
+    if(task.completed === true) {
+      editCompletedField.checked = true;
+    } else {
+      editCompletedField.checked = false;
+    }
+
+    var editSubmit = document.getElementById("edit-task-form");
+    editSubmit.action = "pomotrello/" + task.indexID;
+    
+    var deleteButton = document.getElementById('edit-form-delete-button');
+    
+    deleteButton.addEventListener('click', function(){
+       console.log("DELETE BUTTON CLICKED") 
+       var taskList = new TaskList();
+       taskList.delete(task.indexID, task, function(task){
+         // console.log('response in ui:', newTask);
+         window.location.reload()
+       })
+    })
+
+
+    editSubmit.addEventListener('submit',function(event){
+      console.log("this is the event you are looking for", event)
+      event.preventDefault();
+
+      var description =editSubmit['edit-description-field'].value;
+      var category =editSubmit['edit-category-field'].value;
+      var pomCount =editSubmit['edit-pomCount-field'].value;
+      var date =editSubmit['edit-date-field'].value;
+      var startTime =editSubmit['edit-startTime-field'].value;
+      var endTime = editSubmit['edit-endTime-field'].value;
+      var completed = editSubmit['edit-update-checkbox'].checked;
+      console.log("what is completed?",completed )
+
+      var taskToUpdate = {
+        description: description,
+        category: category,
+        pomCount: pomCount,
+        date: date,
+        startTime: startTime,
+        endTime: endTime,
+        completed: completed
+      }
+
+      console.log(taskToUpdate)
+
+
+      var taskList = new TaskList();
+      taskList.update(task.indexID, taskToUpdate, function(updatedTask){
+        // console.log('response in ui:', newTask);
+        window.location.reload()
+      })
+
+    })
+
 
    })
 
@@ -293,19 +355,34 @@ tasks.forEach(function(task) {
 ////////////END OF FOREACH LOOP
 
 
+//PIECHART CHART DATA AND CREATE
+
 var formattedCategoryData = [];
+var lineGraphData = [];
 
 for(category in taskCategoryCount) {
   var dataObject = {}
   dataObject.name = category;
   dataObject.y = taskCategoryCount[category];
-
   formattedCategoryData.push(dataObject);
 }
-
-    //CREATE PIECHART & LINE CHART
     new PieChart(formattedCategoryData);
-    new RangeFinder(formattedCategoryData)
+
+//LINE CHART DATA AND CREATE
+
+
+  for(category in taskCategoryCount) {
+      var dataObject = {}
+      dataObject.name = "Total Poms"
+
+      totalPoms = [4,5,6,7,8]
+      dataObject.y = [today,tomorrow,dayAfterTomorrow,endOfWeek]
+      dataObject.x =[today,tomorrow,dayAfterTomorrow,endOfWeek]
+
+
+      lineGraphData.push(dataObject);
+    }
+    new RangeFinder()
 
 
 

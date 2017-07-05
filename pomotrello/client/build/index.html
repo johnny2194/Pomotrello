@@ -157,11 +157,13 @@
         <div id="graph-wrapper"></div>
       </div>
       <div id="countdown-and-buttons-container">
-        <div id="countdown-wrapper">
+        <div id="face-wrapper">
+          <div id="countdown-wrapper">
+          </div>
         </div>
         <div id="coundown-buttons-wrapper">
-          <input type="button" id="countdown-start" value = "Start Timer">
-          <input type="button" id="countdown-reset" value = "Reset Timer">
+          <button id="countdown-start"><i class="fa fa-play" aria-hidden="true"></i> / <i class="fa fa-pause" aria-hidden="true"></i></button>
+          <button id="countdown-reset"><i class="fa fa-refresh" aria-hidden="true"></i></button>
         <div>
       </div>
   </div>
@@ -231,7 +233,7 @@
 
 
       <div class="add-form">
-        <form method="POST" action = "pomotrello" id = "edit-task-form">
+        <form method="PUT"  id = "edit-task-form">
           <fieldset>
           <legend>Do I need updated?</legend>
           <input type="text" name="description" id= "edit-description-field" class="max-width" required>
@@ -281,10 +283,10 @@
           <div id="completed-delete-wrapper" class="form-input-divider" class="max-width">
             <div id="checkbox-container" class="mid-width" >
               <label id="form-checkbox-label" for="checkbox">Completed?</label>
-              <input type="checkbox" class="form-checkbox" value="None" id="checkbox" name="check" checked />
+              <input type="checkbox" class="form-checkbox" value="None" id="edit-update-checkbox" name="check" />
             </div>
               <div class="mid-width right-form-divder">
-                <button id="edit-form-delete-button">Delete Task?</button>
+                <button id="edit-form-delete-button" type="button">Delete Task?</button>
               </div>
           </div>
           </fieldset>
