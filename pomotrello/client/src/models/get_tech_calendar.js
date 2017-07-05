@@ -36,13 +36,21 @@ var eventDashboardLogic = function(techCalendarData) {
 
 //CONTAINER FOR EACH EVENT
       var eventEntry = document.createElement("div");
-      eventEntry.classList = "event-description";
+      eventEntry.classList = "opentech-event-wrapper";
       container.appendChild(eventEntry);
 
-      var eventEntryText = document.createElement("p");
-      eventEntryTextNode = document.createTextNode(techEvent.start.displaylocal  + " - " + techEvent.summaryDisplay);
-      eventEntryText.appendChild(eventEntryTextNode);
-      eventEntry.appendChild(eventEntryText);
+      var eventSummaryText = document.createElement("p");
+      eventSummaryTextNode = document.createTextNode(techEvent.summaryDisplay);
+      eventSummaryText.appendChild(eventSummaryTextNode);
+      eventSummaryText.classList = "event-summary";
+
+      var eventDateText = document.createElement("p");
+      eventDateTextNode = document.createTextNode(techEvent.start.displaylocal);
+      eventDateText.appendChild(eventDateTextNode);
+      eventDateText.classList = "event-date";
+
+      eventEntry.appendChild(eventSummaryText);
+      eventEntry.appendChild(eventDateText);
 
 //BUTTON FOR EXTRA DETAILS
       var eventInfoButton = document.createElement("button");
@@ -89,7 +97,7 @@ var eventDashboardLogic = function(techCalendarData) {
         addEventButton.type = "submit";
         addEventButton.value = "Add this event to my Pomotrello";
         addEventButton.classList = "add-event-button";
-        eventForm.appendChild(addEventButton);
+        eventEntry.appendChild(addEventButton);
         eventEntryDetails.appendChild(eventForm);
 
 

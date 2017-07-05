@@ -599,7 +599,7 @@ body {
           EVENTS DASHBOARD
 **********************************/
 
-#opentech-event-wrapper{
+.opentech-event-wrapper{
 
   margin-left: 12px;
 
@@ -608,19 +608,32 @@ body {
   margin: 12px; 
 }
 
+.event-summary{
+
+  font-size: 15px;
+  font-weight: 400;
+}
+.event-date{
+
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: 1px;
+}
+
 #event-buttons-container {
   margin-top: 7px;
   display: flex;
-  width: 180px;
+  width: 165px;
   align-items: center;
-  justify-content: space-around;
+  justify-content:  ;
+  margin-right: 5px;
 }
 
 .show-more-button {
   font-family: 'Montserrat', sans-serif;
   position: relative;
   /*display: block;*/
-  padding: 5px 6px 5px 6px;
+  padding: 4px;
   color: /*#585858*/darkgrey;
   font-weight: 400;
   margin: 0 auto;
@@ -628,7 +641,7 @@ body {
   font-size: 12px;
   text-align: center;
   /*font-style: normal;*/
-  width: 80px;
+  width: 70px;
   border: 1px solid rgb(232, 238, 239) ;
   border-width: 1px 1px 1px;
   margin-bottom: 10px;
@@ -644,10 +657,10 @@ body {
   font-family: 'Montserrat', sans-serif;
   position: relative;
   /*display: block;*/
-  padding: 5px 6px 5px 6px;
+  padding: 4px;
   color: /*#585858*/darkgrey;
   font-weight: 400;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
   background: rgb(232, 238, 239);
   font-size: 12px;
   text-align: center;
