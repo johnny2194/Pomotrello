@@ -107,6 +107,91 @@ db.tasks.insert([
     pomCount: "3",
     date: "2017-07-05",
     completed: false
-  }
+  },
 
+  {
+    description: "Check My History",
+    category: "Admin",
+    pomCount: "4",
+    date: "2017-06-05",
+    completed: true
+  },
+
+  {
+    description: "Check My History",
+    category: "Leisure",
+    pomCount: "4",
+    date: "2017-06-08",
+    completed: true
+  },
+
+  {
+    description: "Check My History",
+    category: "Admin",
+    pomCount: "4",
+    date: "2017-06-08",
+    completed: true
+  },
+
+  {
+    description: "Check My History",
+    category: "Admin",
+    pomCount: "4",
+    date: "2017-06-12",
+    completed: true
+  },
+
+  {
+    description: "Check My History",
+    category: "Admin",
+    pomCount: "3",
+    date: "2017-06-18",
+    completed: true
+  },
+
+  {
+    description: "Check My History",
+    category: "Admin",
+    pomCount: "0",
+    date: "2017-06-19",
+    completed: true
+  },
+  {
+    description: "Check My History",
+    category: "Admin",
+    pomCount: "5",
+    date: "2017-06-21",
+    completed: true
+  },
+  {
+    description: "Check My History",
+    category: "Admin",
+    pomCount: "1",
+    date: "2017-06-24",
+    completed: true
+  },
+  {
+    description: "Check My History",
+    category: "Admin",
+    pomCount: "7",
+    date: "2017-06-26",
+    completed: true
+  },
+  {
+    description: "Check My History",
+    category: "Admin",
+    pomCount: "4",
+    date: "2017-06-28",
+    completed: true
+  },
+  {
+    description: "Check My History",
+    category: "Admin",
+    pomCount: "4",
+    date: "2017-06-28",
+    completed: true
+  },
+  
+  
+  
 ]);
