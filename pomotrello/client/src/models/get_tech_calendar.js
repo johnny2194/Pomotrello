@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var TaskList = require('../models/task_list.js');
+var moment = require('moment');
 
 
 var getTechCalendar = function() {
@@ -28,35 +29,124 @@ request.send();
 }
 
 var eventDashboardLogic = function(techCalendarData) {
-  var container = document.getElementById("event-dashboard-modal-content");
+  var container = document.getElementById("opentech-all-event-container");
 
   techCalendarData.forEach(function(techEvent) {
     if(techEvent.cancelled == false && techEvent.deleted == false) {
 
 //CONTAINER FOR EACH EVENT
-      var eventEntry = document.createElement("div");
-      eventEntry.classList = "event-description";
-      container.appendChild(eventEntry);
+  var eventEntry = document.createElement("div");
+  eventEntry.classList = "opentech-event-wrapper";
+  container.appendChild(eventEntry);
 
-      var eventEntryText = document.createElement("p");
-      eventEntryTextNode = document.createTextNode(techEvent.start.displaylocal  + " - " + techEvent.summaryDisplay);
-      eventEntryText.appendChild(eventEntryTextNode);
-      eventEntry.appendChild(eventEntryText);
+  var eventLink = document.createElement("a");
+  eventLink.href = techEvent.url;
+  eventLink.target = "_blank";
+
+  var eventSummaryText = document.createElement("p");
+  eventSummaryTextNode = document.createTextNode(techEvent.summaryDisplay);
+  eventSummaryText.appendChild(eventSummaryTextNode);
+  eventSummaryText.classList = "event-summary";
+
+  var eventDateText = document.createElement("p");
+  eventDateTextNode = document.createTextNode(techEvent.start.displaylocal);
+  eventDateText.appendChild(eventDateTextNode);
+  eventDateText.classList = "event-date";
+
+  var eventEntryDetails = document.createElement("p");
+  eventEntryDetails.classList = "info-when-clicked";
+
+  var buttonContainer = document.createElement("div");
+  buttonContainer.classList = "event-buttons-container";
+
+  eventLink.appendChild(eventSummaryText)
+  eventEntry.appendChild(eventLink);
+  eventEntry.appendChild(eventDateText);
+  eventEntry.appendChild(eventEntryDetails);
+  eventEntry.appendChild(buttonContainer);
+
 
 //BUTTON FOR EXTRA DETAILS
       var eventInfoButton = document.createElement("button");
-      eventInfoButton.innerText = "Mo Info";
-      eventInfoButton.classList = "event-info-button";
-      eventEntry.appendChild(eventInfoButton);
+      eventInfoButton.innerText = "Toggle Info";
+      eventInfoButton.classList = "show-more-button";
+      buttonContainer.appendChild(eventInfoButton);
 
 //CONTAINER FOR EXTRA DETAILS TO BE SHOWN IN
-      var eventEntryDetails = document.createElement("div");
-      eventEntry.appendChild(eventEntryDetails);
+      // var eventEntryDetails = document.createElement("div");
+      // eventEntry.appendChild(eventEntryDetails);
 
+      //BUTTON TO ADD TO TASK LISTED
+            var eventForm = document.createElement("form");
+            eventForm.action = "pomotrello";
+            eventForm.method = "POST";
+
+            var addEventButton = document.createElement("input");
+            addEventButton.type = "submit";
+            addEventButton.value = "Add to list";
+            addEventButton.classList = "add-event-button";
+            eventForm.appendChild(addEventButton);
+            buttonContainer.appendChild(eventForm);
+            // eventEntryDetails.appendChild(eventLink);
+
+
+            eventForm.addEventListener("submit", function(event) {
+              event.preventDefault();
+
+        //EXPERIMENTAL SHIZ
+
+              var startMoment = moment(techEvent.start.rfc2882utc);
+              var endMoment = moment(techEvent.end.rfc2882utc);
+              var duration = endMoment.diff(startMoment, 'minutes');
+              var pomCount = duration/30;
+
+              if(techEvent.start.monthlocal.length == 1) {
+                var month = "0" + techEvent.start.monthlocal;
+              } else {
+                var month = techEvent.start.monthlocal;
+              }
+
+              if(techEvent.start.daylocal.length == 1) {
+                var day = "0" + techEvent.start.daylocal;
+              } else {
+                var day = techEvent.start.daylocal;
+              }
+
+
+              console.log("month", month)
+              console.log("day", day)
+
+
+              var taskToAdd = {
+                description: techEvent.summaryDisplay,
+                category: "Socialising",
+                pomCount: pomCount,
+                date: techEvent.start.yearlocal + "-" + month + "-" + day,
+                startTime: techEvent.start.hourlocal + ":" + techEvent.start.minutelocal,
+                endTime: techEvent.end.hourlocal + ":" + techEvent.end.minutelocal,
+                completed: false
+              }
+
+              var taskList = new TaskList();
+              taskList.add(taskToAdd, function(newTask){
+                console.log('response in ui:', newTask);
+                window.location.reload()
+              });
+
+          });
+
+
+
+
+
+      var showingInfo = false;    
       eventInfoButton.addEventListener("click", function() {
+        showingInfo = !showingInfo
         eventEntryDetails.innerHTML = "";
+        if(!showingInfo){return}
+       
         var furtherDetails = document.createElement("p");
-        furtherDetails.classList = "event-description";
+        furtherDetails.classList = "info-when-clicked";
 
         var furtherDetailsNode = document.createTextNode(techEvent.description);
         furtherDetails.appendChild(furtherDetailsNode);
@@ -68,52 +158,22 @@ var eventDashboardLogic = function(techCalendarData) {
           eventAddress += ", " + techEvent.venue.addresscode;
           eventAddress += " - " + techEvent.venue.description;
           var locationDetails = document.createElement("p");
-          locationDetails.classList = "event-description";
+          locationDetails.classList = "info-when-clicked";
           var locationDetailsNode = document.createTextNode(eventAddress);
           locationDetails.appendChild(locationDetailsNode);
           eventEntryDetails.appendChild(locationDetails);
         }
-    //EXTERNAL LINK
-        var eventLink = document.createElement("a");
-        eventLink.href = techEvent.url;
-        eventLink.innerText = "External Link";
-        eventLink.target = "_blank";
-        eventEntryDetails.appendChild(eventLink);
-
-    //BUTTON TO ADD TO TASK LISTED
-        var eventForm = document.createElement("form");
-        eventForm.action = "pomotrello";
-        eventForm.method = "POST";
-
-        var addEventButton = document.createElement("input");
-        addEventButton.type = "submit";
-        addEventButton.value = "Add this event to my Pomotrello";
-        addEventButton.classList = "add-event-button";
-        eventForm.appendChild(addEventButton);
-        eventEntryDetails.appendChild(eventForm);
+  
+    
 
 
-        eventForm.addEventListener("submit", function(event) {
-          event.preventDefault();
-    //EXPERIMENTAL SHIZ
 
-          var taskToAdd = {
-            description: techEvent.summaryDisplay,
-            category: "Socialising",
-            // pomCount: pomCount,
-            date: techEvent.start.yearlocal + "-" + techEvent.start.monthlocal + "-" + techEvent.start.daylocal,
-            startTime: techEvent.start.hourlocal + ":" + techEvent.start.minutelocal,
-            endTime: techEvent.end.hourlocal + ":" + techEvent.end.minutelocal,
-            completed: false
-          }
 
-          var taskList = new TaskList();
-          taskList.add(taskToAdd, function(newTask){
-            console.log('response in ui:', newTask);
-            window.location.reload()
-          });
 
-      });
+
+
+
+
 
       });
 
