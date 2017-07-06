@@ -2,6 +2,7 @@ var Highcharts = require('highcharts/highstock');
 require('highcharts/modules/exporting')(Highcharts);
 var moment = require('moment');
 
+
 var RangeFinder = function(data) {
 var container = document.getElementById("graph-wrapper");
 var today = moment();
@@ -12,10 +13,6 @@ while (n > numberOfDaysBack){
 var yesterday = moment().add(n, "d");
 daysPast.unshift(yesterday)
 n--}
-
-console.log("data", data);
-
-
 
    var chart = new Highcharts.Chart({
      chart:{
