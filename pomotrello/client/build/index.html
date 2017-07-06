@@ -12,7 +12,7 @@
   <header id="header">
     <div class="navbar-default">
       <div id="left-navbar">
-        <button id="history-button">Task History</button>
+        <button id="previous-tasks-button">Task History</button>
       </div>
       <div id="center-navbar">
         <a class="standard-header-styling" href="http://localhost:3000/">
@@ -28,7 +28,7 @@
         </a>
       </div>
       <div id="right-navbar">
-        <button id="event-dashboard-button">Events Search</button>
+        <button id="event-dashboard-button">Stop working and Socialise!</button>
         <button id="info-button"><i class="fa fa-question fa-lg" aria-hidden="true"></i></button>
       </div>
     </div>
@@ -55,62 +55,6 @@
           <p>Today</p>
         </div>
         <div id="today-tasks-container" class="tasks-container">
-          <!-- <div class="task-wrapper">
-            <p class="task-description">Plan awesome project with Lewis and Matt</p>
-            <div class="checkbox">
-              <input type="checkbox" value="None" id="checkbox" name="check" checked />
-              <label for="checkbox"></label>
-            </div>
-          </div>
-
-          <div class="task-wrapper">
-            <p class="task-description">Look to make task lists wider to account for checkbox divs</p>
-            <div class="checkbox">
-              <input type="checkbox" value="None" id="checkbox" name="check" checked />
-              <label for="checkbox"></label>
-            </div>
-          </div>
-
-          <div class="task-wrapper">
-            <p class="task-description">Find a way to show visable scroll bar if necessary. Here's what mutlitple lines looks like!</p>
-            <div class="checkbox">
-              <input type="checkbox" value="None" id="checkbox" name="check" checked />
-              <label for="checkbox"></label>
-            </div>
-          </div>
-
-          <div class="task-wrapper">
-            <p class="task-description">Play lots of table tennis</p>
-            <div class="checkbox">
-              <input type="checkbox" value="None" id="checkbox" name="check" checked />
-              <label for="checkbox"></label>
-            </div>
-          </div>
-
-          <div class="task-wrapper">
-            <p class="task-description">Find a way to make moudlar pop ups to create a badass dashboard for our API hook ins</p>
-            <div class="checkbox">
-              <input type="checkbox" value="None" id="checkbox" name="check" checked />
-              <label for="checkbox"></label>
-            </div>
-          </div>
-
-          <div class="task-wrapper">
-            <p class="task-description">Find a way to make moudlar pop ups to create a badass dashboard for our API hook ins</p>
-            <div class="checkbox">
-              <input type="checkbox" value="None" id="checkbox" name="check" checked />
-              <label for="checkbox"></label>
-            </div>
-          </div>
-
-          <div class="task-wrapper">
-            <p class="task-description">Find a way to make moudlar pop ups to create a badass dashboard for our API hook ins</p>
-            <div class="checkbox">
-              <input type="checkbox" value="None" id="checkbox" name="check" checked />
-              <label for="checkbox"></label>
-            </div>
-          </div>
-           -->
         </div>
       </div>
 
@@ -295,15 +239,7 @@
       <span id="close-event-dashboard-modal-popup">&times;</span>
       <p id="search-events-title">Tech events in your area:</p>
       <div id="opentech-all-event-container">
-      <!-- <div class=opentech-event-wrapper>
-        <p class="event-summary">BCS Edinburgh: BCS Voices: Healthcare</p>
-        <p class="event-date">Wed 5 Jul 2017 06:00pm</p>
-        <p class="info-when-clicked"></p>
-        <div class="event-buttons-container">
-          <button class="show-more-button">More info</button>
-          <button class="add-event-button">Add to List</button>
 
-        </div> -->
       </div>
       </div>
     </div>
@@ -318,6 +254,75 @@
         <input name="new-category" id= "new-category-input" required>
         <button>Submit</button>
       </form>
+    </div>
+  </div>
+
+
+  <div id="previous-tasks-modal-popup">
+    <!-- Modal content -->
+    <div id="previous-tasks-modal-content">
+    <div id="all-list-container" class="scroll-bar">
+
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>History</p>
+        </div>
+        <div id="history-tasks-container" class="tasks-container">
+        </div>
+      </div>
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>Last Week</p>
+        </div>
+        <div id="last-week-tasks-container" class="tasks-container">
+        </div>
+      </div>
+
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>Earlier This Week</p>
+        </div>
+        <div id="earlier-this-week-tasks-container" class="tasks-container">
+        </div>
+      </div>
+
+      <div class="default-list-wrapper">
+      <div class ="default-list-title">
+                <p>Yesterday</p>
+              </div>
+              <div id="yesterday-tasks-container" class="tasks-container">
+              </div>
+            </div>
+
+    </div>
+      <span id="close-previous-tasks-modal-popup">&times;</span>
+  </div>
+  </div>
+
+  <div id="info-modal-popup">
+    <!-- Modal content -->
+    <div id="info-modal-content">
+      <span id="close-info-modal-popup">&times;</span>
+      <div id="info-window-container">
+      <p class="info-header-text">So what is Pomotrello?</p>
+        <p class="info-text">Wouldn't it be great if you, the productivty champ that you are, had an even better way of recording each and every pomodoro that you achieve?  Well look no further.  Pomotrello provides the most efficient, efficiency effianado, a slick and simple dashboard that will make sure they get the most of their day.</p>
+        <p class="info-header-text">Work Smarter, Not Harder</p>
+          <p class="info-text">Our task management app allows you to plan, track and analyse your tasks pomodoro style. But not just today and tomorrow.  We let you plan and set tasks in the future, as well as keeping you motivated by showing you how well you are performing and in what areas you are spending the most of your precious time.</p>
+      <p class="info-header-text">What on earth is a pomodoro?</p>
+        <p class="info-text">Well the pomodoro technique is about doing more and having fun with time managment. It's about breaking big tasks down into managable pieces and these are mapped out in 25 minutes sprints, the glorious pomodoro.  The video below gives an overview of the process and how it can be used to help you work with time, not against it.</p>
+      <iframe width="854" height="480" src="https://www.youtube.com/embed/CT70iCaG0Gs" frameborder="0" allowfullscreen></iframe>
+      <p class="info-header-text">So who is this app for?</p>
+        <p class="info-text">Whilst building this app we realised that although we were solving pain points of pomodoro heroes everywhere, we also had the chance to build something that could offer value to the rest of the world. <br> That's why our versatile interface allows users to track time across all activities in life, not just work.  It can help you monitor and achieve a healthy worklife balance. You can even search for meetups in your area so you can expand your knowledge and network and view these over time on your journey.</p>
+      <p>
+      <p class="info-header-text">How to use Pomotrello</p>
+        <p class="info-text">Create new tasks with the plus icon shown on each list and fill in a task description, pom count (25 min sprint), category and if you want date and time.  Providing a date will automatically move the task to the relevent list, depending on when that day is.  You can see the completed pom count you have reached and the category spread over time, in the analytics section of the dashboard.</p>
+      <p>
+      <p class="info-header-text">Can I update tasks?</p>
+        <p class="info-text">You sure can.  Just click on the task you'd like to update and make those changes as necessary.  You can even create new categories to assign your tasks to if you want.  Have fun Pomotrello-ing! </p>
+      <p>
+
+
+     </div>
     </div>
   </div>
 

@@ -18,6 +18,8 @@ var UI = function() {
   this.addTaskModalPopUp('add-task-button-this-week');
   this.addTaskModalPopUp('add-task-button-upcoming');
   this.dashboardModalPopUp();
+  this.infoModalPopUp();
+  this.previousTasksModalPopUp();
 }
 
 UI.prototype = {
@@ -142,6 +144,55 @@ UI.prototype = {
     }
   },
 
+  infoModalPopUp: function() {
+    var infoModal = document.getElementById('info-modal-popup');
+    var infoButton = document.getElementById("info-button");
+    var infoSpan = document.getElementById("close-info-modal-popup");
+
+    // When the user clicks on the button, open the modal
+    infoButton.onclick = function() {
+      infoModal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    infoSpan.onclick = function() {
+      infoModal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    infoModal.onclick = function(event) {
+      if (event.target == infoModal) {
+        infoModal.style.display = "none";
+      }
+    }
+  },
+
+  previousTasksModalPopUp: function() {
+    var previousTasksModal = document.getElementById('previous-tasks-modal-popup');
+    var previousTasksButton = document.getElementById("previous-tasks-button");
+    var previousTasksSpan = document.getElementById("close-previous-tasks-modal-popup");
+
+    // When the user clicks on the button, open the modal
+    previousTasksButton.onclick = function() {
+      previousTasksModal.style.display = "block";
+
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    previousTasksSpan.onclick = function() {
+      previousTasksModal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    previousTasksModal.onclick = function(event) {
+      if (event.target == previousTasksModal) {
+        previousTasksModal.style.display = "none";
+      }
+    }
+  },
+
+
+
   dashboardModalPopUp: function() {
     var eventModal = document.getElementById('event-dashboard-modal-popup');
     var eventButton = document.getElementById("event-dashboard-button");
@@ -170,6 +221,14 @@ UI.prototype = {
 
 //TASK DEALER TARGETS
 
+var historyContainer = document.getElementById('history-tasks-container');
+historyContainer.innerHTML = '';
+var oneWeekAgoContainer = document.getElementById('last-week-tasks-container');
+oneWeekAgoContainer.innerHTML = '';
+var threeDaysAgoContainer = document.getElementById('earlier-this-week-tasks-container');
+threeDaysAgoContainer.innerHTML = '';
+var yesterdayContainer = document.getElementById('yesterday-tasks-container');
+yesterdayContainer.innerHTML = '';
 var todoContainer = document.getElementById('todo-tasks-container');
 todoContainer.innerHTML = '';
 var todayContainer = document.getElementById('today-tasks-container');
@@ -181,7 +240,15 @@ thisweekContainer.innerHTML = '';
 var upcomingContainer = document.getElementById('upcoming-tasks-container');
 upcomingContainer.innerHTML = '';
 
+
+
+
 //SET DATE TODAY TOMORROW WHENEVER
+
+var oneWeekAgo = moment().subtract(8, "d");
+var fourDaysAgo = moment().subtract(4, "d");
+var threeDaysAgo = moment().subtract(3, "d");
+var yesterday = moment().subtract(1, "d");
 var today = moment();
 var tomorrow = moment().add(1, "d");
 var dayAfterTomorrow = moment().add(2, "d");
@@ -433,6 +500,35 @@ taskWrapper.appendChild(taskDescription);
 
     if(task.date == "") {
       todoContainer.appendChild(taskWrapper);
+    }
+
+    if(moment(task.date, "YYYY-MM-DD").isBefore(oneWeekAgo, "day")) {
+      historyContainer.appendChild(taskWrapper);
+      console.log("history hit");
+
+    }
+
+    if(moment(task.date, "YYYY-MM-DD").isSame(oneWeekAgo, "day")) {
+      oneWeekAgoContainer.appendChild(taskWrapper);
+      console.log("one week ago hit bang on");
+
+    }
+
+    if(moment(task.date, "YYYY-MM-DD").isBetween(oneWeekAgo, threeDaysAgo, "day")) {
+      oneWeekAgoContainer.appendChild(taskWrapper);
+      console.log("one week ago hit");
+
+    }
+
+    if(moment(task.date, "YYYY-MM-DD").isBetween(fourDaysAgo, today, "day")) {
+      threeDaysAgoContainer.appendChild(taskWrapper);
+      console.log("3 days ago hit");
+
+    }
+
+    if(moment(task.date, "YYYY-MM-DD").isSame(yesterday, "day")) {
+      yesterdayContainer.appendChild(taskWrapper);
+      console.log("yesterday hit");
     }
 
     if(moment(task.date, "YYYY-MM-DD").isSame(today, "day")) {
