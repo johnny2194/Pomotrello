@@ -12,7 +12,7 @@
   <header id="header">
     <div class="navbar-default">
       <div id="left-navbar">
-        <button id="history-button">Task History</button>
+        <button id="previous-tasks-button">Task History</button>
       </div>
       <div id="center-navbar">
         <a class="standard-header-styling" href="http://localhost:3000/">
@@ -27,7 +27,7 @@
         </a>
       </div>
       <div id="right-navbar">
-        <button id="event-dashboard-button">Meetup Search</button>
+        <button id="event-dashboard-button">Stop working and Socialise!</button>
         <button id="info-button"><i class="fa fa-question fa-lg" aria-hidden="true"></i></button>
       </div>
     </div>
@@ -320,6 +320,104 @@
     </div>
   </div>
 
+
+  <div id="previous-tasks-modal-popup">
+    <!-- Modal content -->
+    <div id="previous-tasks-modal-content">
+    <div id="all-list-container" class="scroll-bar">
+
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>History</p>
+        </div>
+        <div id="history-tasks-container" class="tasks-container">
+        </div>
+      </div>
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>Last Week</p>
+        </div>
+        <div id="last-week-tasks-container" class="tasks-container">
+        </div>
+      </div>
+
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>Earlier This Week</p>
+        </div>
+        <div id="earlier-this-week-tasks-container" class="tasks-container">
+        </div>
+      </div>
+
+      <div class="default-list-wrapper">
+      <div class ="default-list-title">
+                <p>Yesterday</p>
+              </div>
+              <div id="yesterday-tasks-container" class="tasks-container">
+                <div class="task-wrapper">
+                  <p class="task-description">Plan awesome project with Lewis and Matt</p>
+                  <div class="checkbox">
+                    <input type="checkbox" value="None" id="checkbox" name="check" checked />
+                    <label for="checkbox"></label>
+                  </div>
+                </div>
+
+                <div class="task-wrapper">
+                  <p class="task-description">Look to make task lists wider to account for checkbox divs</p>
+                  <div class="checkbox">
+                    <input type="checkbox" value="None" id="checkbox" name="check" checked />
+                    <label for="checkbox"></label>
+                  </div>
+                </div>
+
+                <div class="task-wrapper">
+                  <p class="task-description">Find a way to show visable scroll bar if necessary. Here's what mutlitple lines looks like!</p>
+                  <div class="checkbox">
+                    <input type="checkbox" value="None" id="checkbox" name="check" checked />
+                    <label for="checkbox"></label>
+                  </div>
+                </div>
+
+                <div class="task-wrapper">
+                  <p class="task-description">Play lots of table tennis</p>
+                  <div class="checkbox">
+                    <input type="checkbox" value="None" id="checkbox" name="check" checked />
+                    <label for="checkbox"></label>
+                  </div>
+                </div>
+
+                <div class="task-wrapper">
+                  <p class="task-description">Find a way to make moudlar pop ups to create a badass dashboard for our API hook ins</p>
+                  <div class="checkbox">
+                    <input type="checkbox" value="None" id="checkbox" name="check" checked />
+                    <label for="checkbox"></label>
+                  </div>
+                </div>
+
+                <div class="task-wrapper">
+                  <p class="task-description">Find a way to make moudlar pop ups to create a badass dashboard for our API hook ins</p>
+                  <div class="checkbox">
+                    <input type="checkbox" value="None" id="checkbox" name="check" checked />
+                    <label for="checkbox"></label>
+                  </div>
+                </div>
+
+                <div class="task-wrapper">
+                  <p class="task-description">Find a way to make moudlar pop ups to create a badass dashboard for our API hook ins</p>
+                  <div class="checkbox">
+                    <input type="checkbox" value="None" id="checkbox" name="check" checked />
+                    <label for="checkbox"></label>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+      
+    </div>
+      <span id="close-previous-tasks-modal-popup">&times;</span>
+  </div>
+  </div>
+
   <div id="info-modal-popup">
     <!-- Modal content -->
     <div id="info-modal-content">
@@ -343,6 +441,7 @@
       <p>
 
 
+     </div>
     </div>
   </div>
 

@@ -19,6 +19,7 @@ var UI = function() {
   this.addTaskModalPopUp('add-task-button-upcoming');
   this.dashboardModalPopUp();
   this.infoModalPopUp();
+  this.previousTasksModalPopUp();
 }
 
 UI.prototype = {
@@ -165,6 +166,32 @@ UI.prototype = {
       }
     }
   },
+
+  previousTasksModalPopUp: function() {
+    var previousTasksModal = document.getElementById('previous-tasks-modal-popup');
+    var previousTasksButton = document.getElementById("previous-tasks-button");
+    var previousTasksSpan = document.getElementById("close-previous-tasks-modal-popup");
+
+    // When the user clicks on the button, open the modal
+    previousTasksButton.onclick = function() {
+      previousTasksModal.style.display = "block";
+
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    previousTasksSpan.onclick = function() {
+      previousTasksModal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    previousTasksModal.onclick = function(event) {
+      if (event.target == previousTasksModal) {
+        previousTasksModal.style.display = "none";
+      }
+    }
+  },
+
+
 
   dashboardModalPopUp: function() {
     var eventModal = document.getElementById('event-dashboard-modal-popup');
