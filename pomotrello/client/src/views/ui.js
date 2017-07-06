@@ -4,7 +4,20 @@ var renderPieChart = require("../models/render_pie_chart.js");
 var RangeFinder = require("./range_finder.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
 var moment = require('moment');
+var _ = require('lodash');
 
+
+_.mixin({
+    'sortKeysBy': function (obj, comparator) {
+        var keys = _.sortBy(_.keys(obj), function (key) {
+            return comparator ? comparator(obj[key], key) : key;
+        });
+
+        return _.zipObject(keys, _.map(keys, function (key) {
+            return obj[key];
+        }));
+    }
+});
 
 var UI = function() {
   var taskList = new TaskList();
@@ -561,6 +574,7 @@ taskWrapper.appendChild(taskDescription);
 
 var formattedCategoryData = [];
 var lineGraphData = [];
+var lineGraphDates = [];
 
 for(category in taskCategoryCount) {
   var dataObject = {}
@@ -571,30 +585,24 @@ for(category in taskCategoryCount) {
 new PieChart(formattedCategoryData);
 
 //LINE CHART DATA AND CREATE
+console.log("unsorted dailyPomCount", dailyPomCount);
+var sortedDailyPomCount = _.sortKeysBy(dailyPomCount)
+console.log("sorted dailyPomCount", sortedDailyPomCount);
+//   day.
+// })
 
-
-for(taskDate in dailyPomCount) {
-  var graphDataObject = { color: 'red'}
+for(taskDate in sortedDailyPomCount) {
+  var graphDataObject = { color: '#7766ad'}
   // dataObject.name = taskDate;
-  graphDataObject.y = dailyPomCount[taskDate];
+  graphDataObject.y = sortedDailyPomCount[taskDate];
   lineGraphData.push(graphDataObject);
-  console.log(graphDataObject);
+  lineGraphDates.push(taskDate);
+  console.log("taskDate", taskDate);
 }
 
-new RangeFinder(lineGraphData)
+new RangeFinder(lineGraphData, lineGraphDates);
 
 
-// for(category in taskCategoryCount) {
-//   var dataObject = {}
-//   dataObject.name = "Total Poms"
-//
-//   totalPoms = [4,5,6,7,8]
-//   dataObject.y = [today,tomorrow,dayAfterTomorrow,endOfWeek]
-//   dataObject.x =[today,tomorrow,dayAfterTomorrow,endOfWeek]
-//
-//
-//   lineGraphData.push(dataObject);
-// }
 
 
 
