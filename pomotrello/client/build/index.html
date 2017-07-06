@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Pomotrello</title>
+  <link rel="stylesheet" href="public/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400" rel="stylesheet">
+  <link rel="shortcut icon" href="public/images/favicon.ico" /> 
+  <script src="bundle.js"></script>
+  <script src="https://use.fontawesome.com/5d2c2b682f.js"></script>
+</head>
+<body>
+  <header id="header">
+    <div class="navbar-default">
+      <div id="left-navbar">
+        <button id="previous-tasks-button">Task History</button>
+      </div>
+      <div id="center-navbar">
+        <a class="standard-header-styling" href="http://localhost:3000/">
+          <div id="logo-wrapper">
+            <!-- <i id="logo-square" class="fa fa-square fa-stack-2x"></i> -->
+            <div id="icon-wrapper">
+              <div class="header-square"></div>
+              <!-- <i class="fa fa-check-square-o fa-lg"></i> -->
+              <!-- <img class ></img> -->
+            </div>
+            <h1 id="logo">Pomotrello</h1>
+          </div>
+        </a>
+      </div>
+      <div id="right-navbar">
+        <button id="event-dashboard-button">Stop working and Socialise!</button>
+        <button id="info-button"><i class="fa fa-question fa-lg" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div id="main-wrapper">
+    <!-- <div id="lists-header-wrapper">
+      <p id="lists-header">All Tasks</p>
+    </div> -->
+    <div id="all-list-container" class="scroll-bar">
+      <div class="default-list-wrapper">
+        <button class="add-task-button" id="add-task-button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div class ="default-list-title">
+          <p class="list-title">Todo</p>
+        </div>
+        <div id="todo-tasks-container" class="tasks-container">
+        </div>
+      </div>
+
+
+      <div class="default-list-wrapper" id="today-list-wrapper">
+        <button class="add-task-button" id="add-task-button-today"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div class ="default-list-title">
+          <p>Today</p>
+        </div>
+        <div id="today-tasks-container" class="tasks-container">
+        </div>
+      </div>
+
+
+      <div class="default-list-wrapper">
+        <button class="add-task-button" id="add-task-button-tomorrow"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div class ="default-list-title">
+          <p>Tomorrow</p>
+        </div>
+        <div id="tomorrow-tasks-container" class="tasks-container">
+        </div>
+      </div>
+      <div class="default-list-wrapper">
+        <button class="add-task-button" id="add-task-button-this-week"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div class ="default-list-title">
+          <p>This Week</p>
+        </div>
+        <div id="thisweek-tasks-container" class="tasks-container">
+        </div>
+      </div>
+      <div class="default-list-wrapper">
+        <button class="add-task-button" id="add-task-button-upcoming"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div class ="default-list-title">
+          <p>Upcoming</p>
+        </div>
+        <div id="upcoming-tasks-container" class="tasks-container">
+        </div>
+      </div>
+      <div class="default-list-wrapper">
+
+        <div class ="default-list-title">
+          <p>Waiting</p>
+        </div>
+      </div>
+    </div>
+    <div id="analytics-and-pomo-countdown-wrapper">
+      <div id="pie-chart-backround-container">
+        <div id="date-picker-pie-chart-wrapper">
+          <label id="" for="date-picker-pie-chart"></label>
+          <input id="date-picker-pie-chart" type="date" name="date-picker-pie-chart" />
+        </div>
+        <div id="pie-chart-wrapper"></div>
+      </div>
+      <div id="pomodoro-graph-container">
+        <div id="graph-wrapper"></div>
+      </div>
+      <div id="countdown-and-buttons-container">
+        <div id="face-wrapper">
+          <div id="countdown-wrapper">
+          </div>
+        </div>
+        <div id="coundown-buttons-wrapper">
+          <button id="countdown-start"><i class="fa fa-play" aria-hidden="true"></i> / <i class="fa fa-pause" aria-hidden="true"></i></button>
+          <button id="countdown-reset"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+        <div>
+      </div>
+  </div>
+</div>
+
+
+  <div id="add-task-modal-popup">
+    <!-- Modal content -->
+    <div id="add-task-modal-content">
+      <span id="close-add-task-modal-popup">&times;</span>
+
+      <div class="add-form">
+
+        <form method="POST" action = "pomotrello" id = "add-task-form">
+          <fieldset>
+          <legend>What needs doing?</legend>
+          <input type="text" name="description" id= "description-field" class="max-width" placeholder="Give task a description" required>
+          <div id="pomcount-category-wrapper" class="form-input-divider" class="max-width">
+            <div class="mid-width" >
+              <label for="pom-count">Pomodoro Count:</label>
+              <input type="number" name="pom-count"  min="1" id="pomCount-field" class="max-width" placeholder="More than 1 pomodoro?" required/>
+            </div>
+              <div class="mid-width right-form-divder">
+                <label for="job">Select Category:</label>
+                <select id="category-field" name="category" class="max-width" required>
+                  <option selected disabled value="">Select Category</option>
+                </select>
+              </div>
+          </div>
+          <div id="date-time-input-wrapper" class="form-input-divider" class="max-width">
+            <div id="date-input-wrapper" class="mid-width" >
+
+              <label for="date-picker" class="date-width" >I'm doing it on:<div data-balloon="Want this task to appear in ToDo? Just leave me blank!" data-balloon-pos="up">?</div></label>
+              <input type="date" name="date-picker" id="date-field" class="max-width" />
+            </div>
+
+            <div id="time-picker-wrapper" class="form-input-divider right-form-divder" >
+
+              <div id="start-time-wrapper" class="max-width">
+                <label for="start-time-picker" id="start-time-label" class="max-width" >Start Time:  <div data-balloon="Time's aren't essential so feel free to leave us blank!" data-balloon-pos="up">?</div></label>
+                <input type="time" name="start-time-picker" id="startTime-field" class="time-picker-width" />
+              </div>
+
+              <div id="end-picker-wrapper" class="max-width">
+                <label for="end-time-picker">End Time:</label>
+                <input type="time" name="end-time-picker" id="endTime-field" class="time-picker-width" />
+              </div>
+
+            </div>
+
+          </div>
+
+          </fieldset>
+        <input type="submit" value="Add Task" />
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div id="edit-task-modal-popup">
+    <!-- Modal content -->
+    <div id="edit-task-modal-content">
+      <span id="close-edit-task-modal-popup">&times;</span>
+
+
+      <div class="add-form">
+        <form method="PUT"  id = "edit-task-form">
+          <fieldset>
+          <legend>Do I need updating?</legend>
+          <input type="text" name="description" id= "edit-description-field" class="max-width" required>
+
+          <div id="edit-pomcount-category-wrapper" class="form-input-divider" class="max-width">
+            <div class="mid-width" >
+              <label for="pom-count">Pomodoro Count:</label>
+              <input type="number" name="pom-count"  min="1" id="edit-pomCount-field" class="max-width" required/>
+            </div>
+              <div class="mid-width right-form-divder">
+                <label for="job">Select Category:</label>
+                <select id="edit-category-field" name="category" class="max-width" required>
+                </select>
+              </div>
+          </div>
+          <div id="edit-date-time-input-wrapper" class="form-input-divider" class="max-width">
+            <div id="edit-date-input-wrapper" class="mid-width" >
+
+              <label for="date-picker" class="date-width" >I'm doing it on:<div data-balloon="Want this task to appear in ToDo? Just leave me blank!" data-balloon-pos="up">?</div></label>
+              <input type="date" name="date-picker" id="edit-date-field" class="max-width" />
+            </div>
+
+            <div id="edit-time-picker-wrapper" class="form-input-divider right-form-divder" >
+
+              <div id="edit-start-time-wrapper" class="max-width">
+                <label for="start-time-picker" id="edit-start-time-label" class="max-width">Start Time:  <div data-balloon="Time's aren't essential so feel free to leave us blank!" data-balloon-pos="up">?</div></label>
+                <input type="time" name="start-time-picker" id="edit-startTime-field" class="time-picker-width" />
+              </div>
+
+              <div id="edit-end-picker-wrapper" class="max-width">
+                <label for="end-time-picker">End Time:</label>
+                <input type="time" name="end-time-picker" id="edit-endTime-field" class="time-picker-width" />
+              </div>
+            </div>
+          </div>
+          <div id="completed-delete-wrapper" class="form-input-divider" class="max-width">
+            <div id="checkbox-container" class="mid-width" >
+              <label id="form-checkbox-label" for="checkbox">Completed?</label>
+              <input type="checkbox" class="form-checkbox" value="None" id="edit-update-checkbox" name="check" />
+            </div>
+              <div class="mid-width right-form-divder">
+                <button id="edit-form-delete-button" type="button">Delete Task?</button>
+              </div>
+          </div>
+          </fieldset>
+        <input type="submit" value="Update Task" />
+        </form>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <div id="event-dashboard-modal-popup">
+    <!-- Modal content -->
+    <div id="event-dashboard-modal-content">
+      <span id="close-event-dashboard-modal-popup">&times;</span>
+      <p id="search-events-title">Tech events in your area:</p>
+      <div id="opentech-all-event-container">
+
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="add-category-modal-popup">
+    <!-- Modal content -->
+    <div id="add-category-modal-content">
+      <span id="close-add-category-modal-popup">&times;</span>
+      <form id="add-category-form">
+        <label for="new-category">New Category:</label>
+        <input name="new-category" id= "new-category-input" required>
+        <button id="category-submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+
+  <div id="previous-tasks-modal-popup">
+    <!-- Modal content -->
+    <div id="previous-tasks-modal-content">
+    <div id="all-list-container" class="scroll-bar">
+
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>History</p>
+        </div>
+        <div id="history-tasks-container" class="tasks-container">
+        </div>
+      </div>
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>Last Week</p>
+        </div>
+        <div id="last-week-tasks-container" class="tasks-container">
+        </div>
+      </div>
+
+      <div class="default-list-wrapper">
+        <div class ="default-list-title">
+          <p>Earlier This Week</p>
+        </div>
+        <div id="earlier-this-week-tasks-container" class="tasks-container">
+        </div>
+      </div>
+
+      <div class="default-list-wrapper">
+      <div class ="default-list-title">
+                <p>Yesterday</p>
+              </div>
+              <div id="yesterday-tasks-container" class="tasks-container">
+              </div>
+            </div>
+
+    </div>
+      <span id="close-previous-tasks-modal-popup">&times;</span>
+  </div>
+  </div>
+
+  <div id="info-modal-popup">
+    <!-- Modal content -->
+    <div id="info-modal-content">
+      <span id="close-info-modal-popup">&times;</span>
+      <div id="info-window-container">
+      <p class="info-header-text">So what is Pomotrello?</p>
+        <p class="info-text">Wouldn't it be great if you, the productivty champ that you are, had an even better way of recording each and every pomodoro that you achieve?  Well look no further.  Pomotrello provides the most efficient, efficiency effianado, a slick and simple dashboard that will make sure they get the most of their day.</p>
+        <p class="info-header-text">Work Smarter, Not Harder</p>
+          <p class="info-text">Our task management app allows you to plan, track and analyse your tasks pomodoro style. But not just today and tomorrow.  We let you plan and set tasks in the future, as well as keeping you motivated by showing you how well you are performing and in what areas you are spending the most of your precious time.</p>
+      <p class="info-header-text">What on earth is a pomodoro?</p>
+        <p class="info-text">Well the pomodoro technique is about doing more and having fun with time managment. It's about breaking big tasks down into managable pieces and these are mapped out in 25 minutes sprints, the glorious pomodoro.  The video below gives an overview of the process and how it can be used to help you work with time, not against it.</p>
+      <iframe width="854" height="480" src="https://www.youtube.com/embed/CT70iCaG0Gs" frameborder="0" allowfullscreen></iframe>
+      <p class="info-header-text">So who is this app for?</p>
+        <p class="info-text">Whilst building this app we realised that although we were solving pain points of pomodoro heroes everywhere, we also had the chance to build something that could offer value to the rest of the world. <br> That's why our versatile interface allows users to track time across all activities in life, not just work.  It can help you monitor and achieve a healthy worklife balance. You can even search for meetups in your area so you can expand your knowledge and network and view these over time on your journey.</p>
+      <p>
+      <p class="info-header-text">How to use Pomotrello</p>
+        <p class="info-text">Create new tasks with the plus icon shown on each list and fill in a task description, pom count (25 min sprint), category and if you want date and time.  Providing a date will automatically move the task to the relevent list, depending on when that day is.  You can see the completed pom count you have reached and the category spread over time, in the analytics section of the dashboard.</p>
+      <p>
+      <p class="info-header-text">Can I update tasks?</p>
+        <p class="info-text">You sure can.  Just click on the task you'd like to update and make those changes as necessary.  You can even create new categories to assign your tasks to if you want.  Have fun Pomotrello-ing! </p>
+      <p>
+
+
+     </div>
+    </div>
+  </div>
+
+</body>
+</html>

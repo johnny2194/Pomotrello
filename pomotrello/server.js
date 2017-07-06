@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static("client/build"));
 
-// app.use(require("./controllers/index.js"));
+app.use(require("./controllers/index.js"));
 
 app.listen(3000, function() {
   console.log("FIRED UP ON 3000 BABY");

@@ -4,13 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "test": "node_modules/.bin/mocha client/src/models/specs",
+    "start": "nodemon server.js",
+    "build": "cd client && webpack -w"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "highcharts": "^5.0.12",
+    "moment": "^2.18.1",
+    "mongodb": "^2.2.29"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2",
+    "webpack": "^3.0.0"
   }
 }
