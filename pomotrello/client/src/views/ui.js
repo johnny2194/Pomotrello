@@ -256,6 +256,7 @@ var endOfWeek = moment().add(7, "d");
 
 
 var taskCategoryCount = {};
+var dailyPomCount = {};
 var counter = 0;
 
 ////////START OF FOREACH LOOP
@@ -504,31 +505,22 @@ taskWrapper.appendChild(taskDescription);
 
     if(moment(task.date, "YYYY-MM-DD").isBefore(oneWeekAgo, "day")) {
       historyContainer.appendChild(taskWrapper);
-      console.log("history hit");
-
     }
 
     if(moment(task.date, "YYYY-MM-DD").isSame(oneWeekAgo, "day")) {
       oneWeekAgoContainer.appendChild(taskWrapper);
-      console.log("one week ago hit bang on");
-
     }
 
     if(moment(task.date, "YYYY-MM-DD").isBetween(oneWeekAgo, threeDaysAgo, "day")) {
       oneWeekAgoContainer.appendChild(taskWrapper);
-      console.log("one week ago hit");
-
     }
 
     if(moment(task.date, "YYYY-MM-DD").isBetween(fourDaysAgo, today, "day")) {
       threeDaysAgoContainer.appendChild(taskWrapper);
-      console.log("3 days ago hit");
-
     }
 
     if(moment(task.date, "YYYY-MM-DD").isSame(yesterday, "day")) {
       yesterdayContainer.appendChild(taskWrapper);
-      console.log("yesterday hit");
     }
 
     if(moment(task.date, "YYYY-MM-DD").isSame(today, "day")) {
@@ -553,8 +545,15 @@ taskWrapper.appendChild(taskDescription);
       var category = task.category;
       var pomCountInt = parseInt(task.pomCount);
       taskCategoryCount[category] = taskCategoryCount[category] ? taskCategoryCount[category]+pomCountInt : pomCountInt;
-    });
 
+
+    //GRAPH INFO
+
+    var taskDate = task.date;
+    // var pomCountInt = parseInt(task.pomCount);
+    dailyPomCount[taskDate] = dailyPomCount[taskDate] ? dailyPomCount[taskDate]+pomCountInt : pomCountInt;
+
+    });
 ////////////END OF FOREACH LOOP
 
 
@@ -574,18 +573,28 @@ new PieChart(formattedCategoryData);
 //LINE CHART DATA AND CREATE
 
 
-for(category in taskCategoryCount) {
-  var dataObject = {}
-  dataObject.name = "Total Poms"
-
-  totalPoms = [4,5,6,7,8]
-  dataObject.y = [today,tomorrow,dayAfterTomorrow,endOfWeek]
-  dataObject.x =[today,tomorrow,dayAfterTomorrow,endOfWeek]
-
-
-  lineGraphData.push(dataObject);
+for(taskDate in dailyPomCount) {
+  var graphDataObject = { color: 'red'}
+  // dataObject.name = taskDate;
+  graphDataObject.y = dailyPomCount[taskDate];
+  lineGraphData.push(graphDataObject);
+  console.log(graphDataObject);
 }
-new RangeFinder()
+
+new RangeFinder(lineGraphData)
+
+
+// for(category in taskCategoryCount) {
+//   var dataObject = {}
+//   dataObject.name = "Total Poms"
+//
+//   totalPoms = [4,5,6,7,8]
+//   dataObject.y = [today,tomorrow,dayAfterTomorrow,endOfWeek]
+//   dataObject.x =[today,tomorrow,dayAfterTomorrow,endOfWeek]
+//
+//
+//   lineGraphData.push(dataObject);
+// }
 
 
 

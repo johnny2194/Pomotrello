@@ -13,6 +13,7 @@ var yesterday = moment().add(n, "d");
 daysPast.unshift(yesterday)
 n--}
 
+console.log("data", data);
 
 
 
@@ -23,35 +24,39 @@ n--}
      },
      title:{text: "Total Poms"},
      rangeSelector:{
-         enabled:true
+         enabled:false
      },
      series:[
      {
        name: "Pom Count",
        color: "#FFAC33",
-       data:[
-         {y:7, color: 'yellow'},
-         {y:3, color: 'purple'},
-         {y:2, color: 'orange'},
-         {y:7, color: 'yellow'},
-         {y:3, color: 'purple'},
-         {y:2, color: 'orange'},
-         {y:7, color: 'yellow'},
-         {y:3, color: 'purple'},
-         {y:2, color: 'orange'},
-         {y:7, color: 'yellow'},
-         {y:3, color: 'purple'},
-         {y:2, color: 'orange'},
-         {y:7, color: 'yellow'},
-         {y:3, color: 'purple'},
-         {y:2, color: 'orange'},
-         {y:7, color: 'yellow'},
-         {y:3, color: 'purple'},
-         {y:2, color: 'orange'},
-         {y:7, color: 'red'}
-       ]
+       data: data
+
+      //  [
+      //    {y:7, color: 'yellow'},
+      //    {y:3, color: 'purple'},
+      //    {y:2, color: 'orange'},
+      //    {y:7, color: 'yellow'},
+      //    {y:3, color: 'purple'},
+      //    {y:2, color: 'orange'},
+      //    {y:7, color: 'yellow'},
+      //    {y:3, color: 'purple'},
+      //    {y:2, color: 'orange'},
+      //    {y:7, color: 'yellow'},
+      //    {y:3, color: 'purple'},
+      //    {y:2, color: 'orange'},
+      //    {y:7, color: 'yellow'},
+      //    {y:3, color: 'purple'},
+      //    {y:2, color: 'orange'},
+      //    {y:7, color: 'yellow'},
+      //    {y:3, color: 'purple'},
+      //    {y:2, color: 'orange'},
+      //    {y:7, color: 'red'}
+      //  ]
+
+
      }
-     
+
      ],
      xAxis:{
       labels: {
