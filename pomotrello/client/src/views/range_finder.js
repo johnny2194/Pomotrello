@@ -24,7 +24,7 @@ console.log("data", data);
      },
      title:{text: "Total Poms"},
      rangeSelector:{
-         enabled:true
+         enabled:false
      },
      series:[
      {
