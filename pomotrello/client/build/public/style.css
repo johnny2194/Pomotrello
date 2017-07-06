@@ -145,7 +145,7 @@ body {
   /*margin-bottom: px;*/
   margin-left: 3px;
   margin-right: 8px;
-  min-width: 275px;
+  width: 275px;
   background: #E2E4E6;
   border-radius: 3px;
   box-sizing: border-box;
@@ -194,6 +194,7 @@ body {
   display: flex;
   flex-direction: row;
   padding-bottom: 12px;
+  width:275px;
 
 }
 
@@ -572,15 +573,15 @@ color: #757575;
     cursor: pointer;
 }
 
-#close-edit-task-modal-popup, #close-add-category-modal-popup, #close-info-modal-popup {
+#close-edit-task-modal-popup, #close-add-category-modal-popup, #close-info-modal-popup, #previous-tasks-modal-popup {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-#close-edit-task-modal-popup:hover, #close-add-category-modal-popup:hover, #close-info-modal-popup:hover,
-#close-edit-task-modal-popup:focus, #close-add-category-modal-popup:focus, #close-info-modal-popup:focus {
+#close-edit-task-modal-popup:hover, #close-add-category-modal-popup:hover, #close-info-modal-popup:hover, #previous-tasks-modal-popup:hover, 
+#close-edit-task-modal-popup:focus, #close-add-category-modal-popup:focus, #close-info-modal-popup:focus, #previous-tasks-modal-popup:focus {
     color: #109177;
     text-decoration: none;
     cursor: pointer;
@@ -1393,7 +1394,11 @@ button[data-balloon] {
     margin: 3% auto; /* 15% from the top and centered */
     padding: 10px;
     border: 1px solid #888;
-    width: 90%; /* Could be more or less, depending on screen size */
+    width: 83%; /* Could be more or less, depending on screen size */
+    display: flex;
+    /*justify-content: space-around;*/
+    /*align-items: center;*/
+
 }
 
 </style>
