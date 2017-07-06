@@ -1043,7 +1043,7 @@ a:hover {
   opacity: 1;
 }
 
-#history-button {
+#previous-tasks-button {
   font-size: 14px;
   font-weight: 300;
   background-color: #E2E4E6;
@@ -1063,7 +1063,7 @@ a:hover {
 
 }
 
-#history-button:hover {
+#previous-tasks-button:hover {
   font-size: 14px;
   font-weight: 300;
   background-color: #E2E4E6;
@@ -1365,6 +1365,35 @@ button[data-balloon] {
 
   font-weight: 300;
 
+}
+
+
+/**********************************
+          PREVIOUS TASKS
+**********************************/
+
+/* The Modal (background) */
+#previous-tasks-modal-popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1;  /*Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto;  Enable scroll if needed
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+#previous-tasks-modal-content {
+    border-radius: 7px;
+    background-color: #f4f7f8;
+    margin: 3% auto; /* 15% from the top and centered */
+    padding: 10px;
+    border: 1px solid #888;
+    width: 90%; /* Could be more or less, depending on screen size */
 }
 
 </style>
