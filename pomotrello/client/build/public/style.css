@@ -503,7 +503,7 @@ color: #757575;
 #edit-task-modal-popup {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1;  /*Sit on top */
+    /*z-index: 1;  Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -511,6 +511,7 @@ color: #757575;
     overflow: auto;  Enable scroll if needed
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+    z-index: 5;
 }
 
 /* Modal Content/Box */
@@ -523,9 +524,34 @@ color: #757575;
     width: 40%; /* Could be more or less, depending on screen size */
 }
 
+#add-category-modal-popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1;  /*Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto;  Enable scroll if needed
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+    z-index: 999;
+}
+
+/* Modal Content/Box */
+#add-category-modal-content {
+    border-radius: 7px;
+    background-color: #f4f7f8;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 10px;
+    border: 1px solid #888;
+    width: 25%; /* Could be more or less, depending on screen size */
+    z-index: 999;
+}
+
 
 /* The Modal (background) */
-#event-dashboard-modal-popup, #add-category-modal-popup {
+#event-dashboard-modal-popup {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1;  /*Sit on top */
@@ -540,7 +566,7 @@ color: #757575;
 
 /* Modal Content/Box */
 
-#event-dashboard-modal-content, #add-category-modal-content {
+#event-dashboard-modal-content {
     background-color: #f4f7f8;
     margin: 3% auto; /* 15% from the top and centered */
     border-radius: 7px;
@@ -907,6 +933,60 @@ a:hover {
 /**********************************
               BUTTONS
 **********************************/
+#new-category-input {
+background: rgba(255,255,255,.1);
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    margin: 0;
+    outline: 0;
+    padding: 7px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: #e8eeef;
+    /*color:#8a97a0;*/
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 8px;
+    color: #757575;
+  }
+
+#new-category-input:focus {
+background: #d2d9dd;
+  color: black;
+  }
+
+
+  
+
+#category-submit {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  /*display: block;*/
+  padding: 10px 25px 10px 25px;
+  color: /*#585858*/darkgrey;
+  font-weight: 400;
+  margin: 0 auto;
+  background: rgb(232, 238, 239);
+  font-size: 15px;
+  text-align: center;
+  /*font-style: normal;*/
+  width: 80%;
+  border: 1px solid rgb(232, 238, 239) ;
+  border-width: 1px 1px 1px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+#category-submit:hover {
+   background-color: #1abc9c;
+   color: white;
+}
+
 
 #edit-form-delete-button {
   font-family: 'Montserrat', sans-serif;

@@ -119,7 +119,7 @@ var eventDashboardLogic = function(techCalendarData) {
 
               var taskToAdd = {
                 description: techEvent.summaryDisplay,
-                category: "Socialising",
+                category: "Meetup",
                 pomCount: pomCount,
                 date: techEvent.start.yearlocal + "-" + month + "-" + day,
                 startTime: techEvent.start.hourlocal + ":" + techEvent.start.minutelocal,

@@ -337,7 +337,7 @@ editCategoryField.addEventListener("click", function() {
   editCategoryField.addEventListener("change", function(event) {
       if(event.target.value == "Add new category"){
         var addCategoryModal = document.getElementById('add-category-modal-popup');
-        addCategoryModal.style.display = "block";
+        addCategoryModal.style.display = "block"; 
         var addCategoryForm = document.getElementById("add-category-form");
         var addCategoryInput = document.getElementById("new-category-input");
         addCategoryInput.autofocus = true;
