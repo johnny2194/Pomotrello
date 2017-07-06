@@ -13,7 +13,7 @@ var PieChart = function(data) {
      // plotBorderWidth: 100,
      // plotShadow: true,
    },
-   title: {text: "Your Pomotrello Balance"},
+   title: {text: "Category Balance"},
    series: [
      {
        name: "Pomotrellos",

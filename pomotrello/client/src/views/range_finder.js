@@ -11,7 +11,7 @@ var container = document.getElementById("graph-wrapper");
        type:'line',
        renderTo: container
      },
-     title:{text: "Total Poms"},
+     title:{text: "Pom Count Over Time"},
      rangeSelector:{
          enabled:false
      },
