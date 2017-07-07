@@ -1,5 +1,3 @@
-// CLOCK FUNCTION
-
 var rendercountdown = function() {
 function Countdown(newNumber, number, minute) {
   number = stored_sec || number || 59;
@@ -40,30 +38,28 @@ var stored_min
 var startToggle = 0
 var going = 0
 
+
 startTimer.addEventListener('click', function(timer){
   if(going == 1){
     going = 0
   }
   else {
     going = 1
-
-
     var storedTimer = display_timer.split(":")
     stored_sec = parseInt(storedTimer[1]-1)
+
     if (stored_sec == -1){stored_sec ++}
       stored_min = parseInt(storedTimer[0])
     if (stored_min == 25){stored_min --}
 
 
-      countdown = new Countdown(function(number, minute) {
-        display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
-        document.getElementById("countdown-wrapper").textContent = display_timer;
-        startToggle = 1
+    countdown = new Countdown(function(number, minute) {
+      display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
+      document.getElementById("countdown-wrapper").textContent = display_timer;
+      startToggle = 1
       });
     }
 })
-
-
 
 
 startTimer.addEventListener('click', function(timer) {
