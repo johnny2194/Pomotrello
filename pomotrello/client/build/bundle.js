@@ -60,15 +60,16 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 264);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 264:
 /***/ (function(module, exports, __webpack_require__) {
 
-var getTechCalendar = __webpack_require__(1);
-var UI = __webpack_require__(2);
+var getTechCalendar = __webpack_require__(378);
+var UI = __webpack_require__(265);
 
 var app = function() {
   console.log("app.js happens");
@@ -90,41 +91,12 @@ window.addEventListener("load", app)
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports) {
 
-var getTechCalendar = function() {
-  console.log("getTechCalendar clicked");
-
-  var url = "https://opentechcalendar.co.uk/api1/area/62/events.json";
-
-  var request = new XMLHttpRequest();
-  request.open("GET", url);
-  // request.withCredentials = true;
-  request.setRequestHeader("Content-Type", "text/plain");
-  request.addEventListener("load", function() {
-    var jsonString = request.responseText;
-    var techCalendarData = JSON.parse(jsonString);
-
-    console.log("Received tech calendar data", techCalendarData);
-    //USE RENDER FUNCTION HERE
-  });
-request.send();
-
-}
-
-
-
-
-module.exports = getTechCalendar;
-
-
-/***/ }),
-/* 2 */
+/***/ 265:
 /***/ (function(module, exports, __webpack_require__) {
 
-var TaskList = __webpack_require__(3);
-var PieChart = __webpack_require__(5)
+var TaskList = __webpack_require__(96);
+var PieChart = __webpack_require__(267)
 
 var UI = function() {
   var taskList = new TaskList();
@@ -232,66 +204,8 @@ module.exports = UI;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
 
-var Task = __webpack_require__(4);
-
-var TaskList = function() {}
-
-TaskList.prototype = {
-  all: function(onTasksReady) {
-    this.makeRequest("http://localhost:3000/pomotrello", function(allTasks) {
-      onTasksReady(allTasks);
-    });
-  },
-  makeRequest: function(url, onRequestComplete) {
-    var request = new XMLHttpRequest();
-    request.open("GET", url);
-    request.addEventListener("load", function() {
-      if (request.status !== 200) {
-        console.log("Error in taskList makeRequest");
-      };
-      var jsonString = request.responseText;
-      var resultsData = JSON.parse(jsonString);
-      onRequestComplete(resultsData);
-    });
-    request.send();
-  },
-  add: function(newTask, onRequestComplete) {
-    var jsonString = JSON.stringify(newTask);
-    this.makePostRequest("http://localhost:3000/pomotrello", onRequestComplete, jsonString);
-  },
-  makePostRequest: function(url, onRequestComplete, payLoad) {
-    var request = new XMLHttpRequest();
-    request.open("POST", url);
-    request.setRequestHeader("Content-Type", "application/json");
-    request.addEventListener("load", function() {
-      var jsonString = request.responseText;
-      var updatedTasks = JSON.parse(jsonString);
-      onRequestComplete(updatedTasks);
-    });
-    request.send();
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = TaskList;
-
-
-/***/ }),
-/* 4 */
+/***/ 266:
 /***/ (function(module, exports) {
 
 var Task = function(options){
@@ -309,11 +223,12 @@ var Task = function(options){
 module.exports = Task;
 
 /***/ }),
-/* 5 */
+
+/***/ 267:
 /***/ (function(module, exports, __webpack_require__) {
 
-var Highcharts = __webpack_require__(6);
-__webpack_require__(7)(Highcharts);
+var Highcharts = __webpack_require__(268);
+__webpack_require__(97)(Highcharts);
 
 var PieChart = function(data) {
 
@@ -352,7 +267,8 @@ module.exports = PieChart;
 
 
 /***/ }),
-/* 6 */
+
+/***/ 268:
 /***/ (function(module, exports) {
 
 /*
@@ -757,7 +673,99 @@ e[b]||null})}var u={};q(g,this.options,u,0);return u}})(K);return K});
 
 
 /***/ }),
-/* 7 */
+
+/***/ 378:
+/***/ (function(module, exports) {
+
+var getTechCalendar = function() {
+  console.log("getTechCalendar clicked");
+
+  var url = "https://opentechcalendar.co.uk/api1/area/62/events.json";
+
+  var request = new XMLHttpRequest();
+  request.open("GET", url);
+  // request.withCredentials = true;
+  request.setRequestHeader("Content-Type", "text/plain");
+  request.addEventListener("load", function() {
+    var jsonString = request.responseText;
+    var techCalendarData = JSON.parse(jsonString);
+
+    console.log("Received tech calendar data", techCalendarData);
+    //USE RENDER FUNCTION HERE
+  });
+request.send();
+
+}
+
+
+
+
+module.exports = getTechCalendar;
+
+
+/***/ }),
+
+/***/ 96:
+/***/ (function(module, exports, __webpack_require__) {
+
+var Task = __webpack_require__(266);
+
+var TaskList = function() {}
+
+TaskList.prototype = {
+  all: function(onTasksReady) {
+    this.makeRequest("http://localhost:3000/pomotrello", function(allTasks) {
+      onTasksReady(allTasks);
+    });
+  },
+  makeRequest: function(url, onRequestComplete) {
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
+    request.addEventListener("load", function() {
+      if (request.status !== 200) {
+        console.log("Error in taskList makeRequest");
+      };
+      var jsonString = request.responseText;
+      var resultsData = JSON.parse(jsonString);
+      onRequestComplete(resultsData);
+    });
+    request.send();
+  },
+  add: function(newTask, onRequestComplete) {
+    var jsonString = JSON.stringify(newTask);
+    this.makePostRequest("http://localhost:3000/pomotrello", onRequestComplete, jsonString);
+  },
+  makePostRequest: function(url, onRequestComplete, payLoad) {
+    var request = new XMLHttpRequest();
+    request.open("POST", url);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.addEventListener("load", function() {
+      var jsonString = request.responseText;
+      var updatedTasks = JSON.parse(jsonString);
+      onRequestComplete(updatedTasks);
+    });
+    request.send();
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+module.exports = TaskList;
+
+
+/***/ }),
+
+/***/ 97:
 /***/ (function(module, exports) {
 
 /*
@@ -790,5 +798,6 @@ w(a,"redraw",a.renderExporting);h(["exporting","navigation"],function(b){a[b]={u
 
 
 /***/ })
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=bundle.js.map
