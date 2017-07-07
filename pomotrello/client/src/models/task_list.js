@@ -1,6 +1,6 @@
 var Task = require("./task.js");
 
-var TaskList = function() {}
+var TaskList = function() {};
 
 TaskList.prototype = {
   all: function(onTasksReady) {
@@ -8,6 +8,7 @@ TaskList.prototype = {
       onTasksReady(allTasks);
     });
   },
+
   makeRequest: function(url, onRequestComplete) {
     var request = new XMLHttpRequest();
     request.open("GET", url);
@@ -21,21 +22,19 @@ TaskList.prototype = {
     });
     request.send();
   },
+
   add: function(newTask, onRequestComplete) {
     var jsonString = JSON.stringify(newTask);
-    console.log("jsonString", jsonString);
     this.makePostRequest("http://localhost:3000/pomotrello", onRequestComplete, jsonString);
   },
 
   update: function(indexID, updatedTask, onRequestComplete) {
     var jsonString = JSON.stringify(updatedTask);
-    console.log("jsonString", jsonString);
     this.makePutRequest("http://localhost:3000/pomotrello/" + indexID, onRequestComplete, jsonString);
   },
 
   delete: function(indexID, task, onRequestComplete) {
     var jsonString = JSON.stringify(task);
-    console.log("jsonString", jsonString);
     this.makeDeleteRequest("http://localhost:3000/pomotrello/" + indexID, onRequestComplete, jsonString);
   },
 
@@ -46,11 +45,11 @@ TaskList.prototype = {
     request.addEventListener("load", function() {
       var jsonString = request.responseText;
       var updatedTasks = JSON.parse(jsonString);
-      console.log("data added", updatedTasks)
       onRequestComplete(updatedTasks);
     });
     request.send(payLoad);
   },
+
   makePutRequest: function(url, onRequestComplete, payLoad) {
     var request = new XMLHttpRequest();
     request.open("PUT", url);
@@ -58,7 +57,6 @@ TaskList.prototype = {
     request.addEventListener("load", function() {
       var jsonString = request.responseText;
       var updatedTasks = JSON.parse(jsonString);
-      console.log("data updated", updatedTasks)
       onRequestComplete(updatedTasks);
     });
     request.send(payLoad);
@@ -71,23 +69,11 @@ TaskList.prototype = {
     request.addEventListener("load", function() {
       var jsonString = request.responseText;
       var updatedTasks = JSON.parse(jsonString);
-      console.log("data deleted", updatedTasks)
       onRequestComplete(updatedTasks);
     });
     request.send(payLoad);
   }
-}
-
-
-
-
-
-
-
-
-
-
-
+};
 
 
 module.exports = TaskList;
