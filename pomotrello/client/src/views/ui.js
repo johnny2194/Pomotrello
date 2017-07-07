@@ -4,6 +4,7 @@ var renderPieChart = require("../models/render_pie_chart.js");
 var RangeFinder = require("./range_finder.js");
 var modalPopup = require("./modal_popups.js");
 var dynamicCategories = require("./dynamic_categories.js");
+var TaskDealer = require("./task_dealer.js");
 var addCategoryModalPopup = require("./add_category_modal_popup.js"); require("./modal_popups.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
 var moment = require("moment");
@@ -143,8 +144,6 @@ UI.prototype = {
     };
   },
 
-
-
   dashboardModalPopUp: function() {
     var eventModal = document.getElementById("event-dashboard-modal-popup");
     var eventButton = document.getElementById("event-dashboard-button");
@@ -171,68 +170,40 @@ UI.prototype = {
 
   renderTask: function(tasks) {
 
-//TASK DEALER TARGETS
-    var historyContainer = document.getElementById("history-tasks-container");
-    historyContainer.innerHTML = "";
-    var oneWeekAgoContainer = document.getElementById("last-week-tasks-container");
-    oneWeekAgoContainer.innerHTML = "";
-    var threeDaysAgoContainer = document.getElementById("earlier-this-week-tasks-container");
-    threeDaysAgoContainer.innerHTML = "";
-    var yesterdayContainer = document.getElementById("yesterday-tasks-container");
-    yesterdayContainer.innerHTML = "";
-    var todoContainer = document.getElementById("todo-tasks-container");
-    todoContainer.innerHTML = "";
-    var todayContainer = document.getElementById("today-tasks-container");
-    todayContainer.innerHTML = "";
-    var tomorrowContainer = document.getElementById("tomorrow-tasks-container");
-    tomorrowContainer.innerHTML = "";
-    var thisweekContainer = document.getElementById("thisweek-tasks-container");
-    thisweekContainer.innerHTML = "";
-    var upcomingContainer = document.getElementById("upcoming-tasks-container");
-    upcomingContainer.innerHTML = "";
+  var taskDealer = new TaskDealer();
+  taskDealer.initialise();
 
 
-//SET DATE TODAY TOMORROW WHENEVER
-    var oneWeekAgo = moment().subtract(8, "d");
-    var fourDaysAgo = moment().subtract(4, "d");
-    var threeDaysAgo = moment().subtract(3, "d");
-    var yesterday = moment().subtract(1, "d");
-    var today = moment();
-    var tomorrow = moment().add(1, "d");
-    var dayAfterTomorrow = moment().add(2, "d");
-    var endOfWeek = moment().add(7, "d");
-
-
-    var taskCategoryCount = {};
-    var dailyPomCount = {};
-    var counter = 0;
+  var taskCategoryCount = {};
+  var dailyPomCount = {};
+  var counter = 0;
 
 ////////START OF FOREACH LOOP
-    tasks.forEach(function(task) {
-      // ASSIGN indexID
-      task.indexID = counter;
-      counter++;
+  tasks.forEach(function(task) {
+// ASSIGN indexID
+    task.indexID = counter;
+    counter++;
 
 //RENDER BASIC LIST ITEM TO SCREEN
-      var taskWrapper = document.createElement("div");
-      taskWrapper.classList.add("task-wrapper");
-      var taskDescription = document.createElement("p");
-      taskDescription.classList.add("task-description");
-      var taskNode = document.createTextNode(task.description + " (" + task.pomCount + ")");
-      taskDescription.appendChild(taskNode);
+    var taskWrapper = document.createElement("div");
+    taskWrapper.classList.add("task-wrapper");
+    var taskDescription = document.createElement("p");
+    taskDescription.classList.add("task-description");
+    var taskNode = document.createTextNode(task.description + " (" + task.pomCount + ")");
+    taskDescription.appendChild(taskNode);
 
 // When the user clicks on the button, open the modal
-      taskDescription.classList.add("edit-task-button");
-      taskDescription.addEventListener("click", function(event){
-        var editTaskModal = document.getElementById("edit-task-modal-popup");
-        editTaskModal.style.display = "block";
+    taskDescription.classList.add("edit-task-button");
+    taskDescription.addEventListener("click", function(event){
+      var editTaskModal = document.getElementById("edit-task-modal-popup");
+      editTaskModal.style.display = "block";
 
 // When the user clicks anywhere outside of the modal, close it
-        editTaskModal.addEventListener("click", function(event) {
-          if(event.target == editTaskModal) {
-            editTaskModal.style.display = "none";
-          };
-        });
+      editTaskModal.addEventListener("click", function(event) {
+        if(event.target == editTaskModal) {
+          editTaskModal.style.display = "none";
+        };
+      });
 
 // When the user clicks on <span> (x), close the modal
         var editTaskSpan = document.getElementById("close-edit-task-modal-popup");
@@ -369,47 +340,7 @@ UI.prototype = {
       checkboxWrapper.appendChild(checkboxInput);
       taskWrapper.appendChild(checkboxWrapper);
 
-//TASK DEALER BABY
-      if(task.date == null || task.date == "") {
-        todoContainer.appendChild(taskWrapper);
-      };
-
-      if(moment(task.date, "YYYY-MM-DD").isBefore(oneWeekAgo, "day")) {
-        historyContainer.appendChild(taskWrapper);
-      };
-
-      if(moment(task.date, "YYYY-MM-DD").isSame(oneWeekAgo, "day")) {
-        oneWeekAgoContainer.appendChild(taskWrapper);
-      };
-
-      if(moment(task.date, "YYYY-MM-DD").isBetween(oneWeekAgo, threeDaysAgo, "day")) {
-        oneWeekAgoContainer.appendChild(taskWrapper);
-      };
-
-      if(moment(task.date, "YYYY-MM-DD").isBetween(fourDaysAgo, today, "day")) {
-        threeDaysAgoContainer.appendChild(taskWrapper);
-      };
-
-      if(moment(task.date, "YYYY-MM-DD").isSame(yesterday, "day")) {
-        yesterdayContainer.appendChild(taskWrapper);
-      };
-
-      if(moment(task.date, "YYYY-MM-DD").isSame(today, "day")) {
-        todayContainer.appendChild(taskWrapper);
-      };
-
-      if(moment(task.date, "YYYY-MM-DD").isSame(tomorrow, "day")) {
-        tomorrowContainer.appendChild(taskWrapper);
-      };
-
-      if(moment(task.date, "YYYY-MM-DD").isBetween(tomorrow, endOfWeek, "day")) {
-        thisweekContainer.appendChild(taskWrapper);
-      };
-
-      if(moment(task.date, "YYYY-MM-DD").isAfter(endOfWeek, "day")) {
-        upcomingContainer.appendChild(taskWrapper);
-      };
-
+      taskDealer.dealTask(taskWrapper, task);
 
 //PIE CHART INFO
       var category = task.category;
