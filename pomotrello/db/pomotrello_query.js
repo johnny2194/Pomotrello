@@ -52,7 +52,7 @@ PomotrelloQuery.prototype = {
       });
     });
   },
-  
+
   update: function(taskToUpdate, updatedTask, onQueryFinished) {
     MongoClient.connect(this.url, function(err, db) {
       if(err) {

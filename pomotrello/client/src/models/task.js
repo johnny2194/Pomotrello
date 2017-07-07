@@ -9,6 +9,6 @@ var Task = function(options){
   this.completed = options.completed;
 
   this.indexID = options.indexID;
-}
+};
 
 module.exports = Task;

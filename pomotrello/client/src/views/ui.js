@@ -44,11 +44,11 @@ UI.prototype = {
     form.addEventListener("submit", function (event) {
       event.preventDefault();  //this stops redirect to new page
 
-      var description =form["description-field"].value;
-      var category =form["category-field"].value;
-      var pomCount =form["pomCount-field"].value;
-      var date =form["date-field"].value;
-      var startTime =form["startTime-field"].value;
+      var description = form["description-field"].value;
+      var category = form["category-field"].value;
+      var pomCount = form["pomCount-field"].value;
+      var date = form["date-field"].value;
+      var startTime = form["startTime-field"].value;
       var endTime = form["endTime-field"].value;
 
 
@@ -64,22 +64,22 @@ UI.prototype = {
 
       var taskList = new TaskList();
       taskList.add(taskToAdd, function(newTask){
-        window.location.reload()
+        window.location.reload();
       });
     });
   },
 
-  //START ADD TASK MODAL POP UP
+//START ADD TASK MODAL POP UP
   addTaskModalPopUp: function(id) {
     var addTaskModal = document.getElementById("add-task-modal-popup");
     var addTaskButton = document.getElementById(id);
     var addTaskSpan = document.getElementById("close-add-task-modal-popup");
 
-    // When the user clicks on the button, open the modal
+// When the user clicks on the button, open the modal
     addTaskButton.onclick = function() {
       addTaskModal.style.display = "block";
 
-      // START DYNAMIC POPULATION OF CATEGORY LIST
+// START DYNAMIC POPULATION OF CATEGORY LIST
       var allCategories = {};
       var taskList = new TaskList();
       taskList.all(function (allTasks) {
@@ -87,7 +87,7 @@ UI.prototype = {
           var category = task.category;
           allCategories[category] = allCategories[category] ? allCategories[category]+1 : 1;
         });
-      })
+      });
       var categorySelect = document.getElementById("category-field");
       categorySelect.addEventListener("click", function() {
         categorySelect.innerHTML = "";
@@ -128,33 +128,33 @@ UI.prototype = {
             })
 
             var addCategorySpan = document.getElementById("close-add-category-modal-popup");
-            // When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the modal
             addCategorySpan.onclick = function() {
               addCategoryModal.style.display = "none";
-            }
-            // When the user clicks anywhere outside of the modal, close it
+            };
+// When the user clicks anywhere outside of the modal, close it
             addCategoryModal.onclick = function(event) {
               if (event.target == addCategoryModal) {
                 addCategoryModal.style.display = "none";
-              }
-            }
-          }
-        })
+              };
+            };
+          };
+        });
       });
-    }
-    ///BACK TO ADD TASK MODAL POP UP
+    };
+///BACK TO ADD TASK MODAL POP UP
 
-    // When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the modal
     addTaskSpan.onclick = function() {
       addTaskModal.style.display = "none";
-    }
+    };
 
-    // When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the modal, close it
     addTaskModal.onclick = function(event) {
       if (event.target == addTaskModal) {
         addTaskModal.style.display = "none";
-      }
-    }
+      };
+    };
   },
 
   infoModalPopUp: function() {
@@ -162,22 +162,22 @@ UI.prototype = {
     var infoButton = document.getElementById("info-button");
     var infoSpan = document.getElementById("close-info-modal-popup");
 
-    // When the user clicks on the button, open the modal
+// When the user clicks on the button, open the modal
     infoButton.onclick = function() {
       infoModal.style.display = "block";
-    }
+    };
 
-    // When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the modal
     infoSpan.onclick = function() {
       infoModal.style.display = "none";
-    }
+    };
 
-    // When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the modal, close it
     infoModal.onclick = function(event) {
       if (event.target == infoModal) {
         infoModal.style.display = "none";
-      }
-    }
+      };
+    };
   },
 
   previousTasksModalPopUp: function() {
@@ -185,23 +185,22 @@ UI.prototype = {
     var previousTasksButton = document.getElementById("previous-tasks-button");
     var previousTasksSpan = document.getElementById("close-previous-tasks-modal-popup");
 
-    // When the user clicks on the button, open the modal
+// When the user clicks on the button, open the modal
     previousTasksButton.onclick = function() {
       previousTasksModal.style.display = "block";
+    };
 
-    }
-
-    // When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the modal
     previousTasksSpan.onclick = function() {
       previousTasksModal.style.display = "none";
-    }
+    };
 
-    // When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the modal, close it
     previousTasksModal.onclick = function(event) {
       if (event.target == previousTasksModal) {
         previousTasksModal.style.display = "none";
-      }
-    }
+      };
+    };
   },
 
 
@@ -211,29 +210,28 @@ UI.prototype = {
     var eventButton = document.getElementById("event-dashboard-button");
     var eventSpan = document.getElementById("close-event-dashboard-modal-popup");
 
-    // When the user clicks on the button, open the modal
+// When the user clicks on the button, open the modal
     eventButton.onclick = function() {
       eventModal.style.display = "block";
       getTechCalendar();
-    }
+    };
 
-    // When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the modal
     eventSpan.onclick = function() {
       eventModal.style.display = "none";
-    }
+    };
 
-    // When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the modal, close it
     eventModal.onclick = function(event) {
       if (event.target == eventModal) {
         eventModal.style.display = "none";
-      }
-    }
+      };
+    };
   },
 
   renderTask: function(tasks) {
 
-    //TASK DEALER TARGETS
-
+//TASK DEALER TARGETS
     var historyContainer = document.getElementById("history-tasks-container");
     historyContainer.innerHTML = "";
     var oneWeekAgoContainer = document.getElementById("last-week-tasks-container");
@@ -254,10 +252,7 @@ UI.prototype = {
     upcomingContainer.innerHTML = "";
 
 
-
-
-    //SET DATE TODAY TOMORROW WHENEVER
-
+//SET DATE TODAY TOMORROW WHENEVER
     var oneWeekAgo = moment().subtract(8, "d");
     var fourDaysAgo = moment().subtract(4, "d");
     var threeDaysAgo = moment().subtract(3, "d");
@@ -272,16 +267,13 @@ UI.prototype = {
     var dailyPomCount = {};
     var counter = 0;
 
-    ////////START OF FOREACH LOOP
-
+////////START OF FOREACH LOOP
     tasks.forEach(function(task) {
       // ASSIGN indexID
       task.indexID = counter;
       counter++;
-      // console.log("indexID", task.indexID);
 
-      //RENDER BASIC LIST ITEM TO SCREEN
-
+//RENDER BASIC LIST ITEM TO SCREEN
       var taskWrapper = document.createElement("div");
       taskWrapper.classList.add("task-wrapper");
       var taskDescription = document.createElement("p");
@@ -289,26 +281,26 @@ UI.prototype = {
       var taskNode = document.createTextNode(task.description + " (" + task.pomCount + ")");
       taskDescription.appendChild(taskNode);
 
-      // When the user clicks on the button, open the modal
+// When the user clicks on the button, open the modal
       taskDescription.classList.add("edit-task-button");
       taskDescription.addEventListener("click", function(event){
         var editTaskModal = document.getElementById("edit-task-modal-popup");
         editTaskModal.style.display = "block";
 
-        // When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the modal, close it
         editTaskModal.addEventListener("click", function(event) {
           if(event.target == editTaskModal) {
             editTaskModal.style.display = "none";
-          }
+          };
         });
 
-        // When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the modal
         var editTaskSpan = document.getElementById("close-edit-task-modal-popup");
         editTaskSpan.addEventListener("click", function() {
           editTaskModal.style.display = "none";
-        })
+        });
 
-        // POPULATE EDIT TASK MODAL POPUP
+// POPULATE EDIT TASK MODAL POPUP
         var editDescriptionField = document.getElementById("edit-description-field");
         editDescriptionField.value = task.description;
 
@@ -323,7 +315,6 @@ UI.prototype = {
         editCategoryField.appendChild(currentOption);
 
 ////////////////////////////////////////////////DYNAMIC CATEGORIES IN EDIT
-
         var allCategories = {};
         var taskList = new TaskList();
         taskList.all(function (allTasks) {
@@ -331,7 +322,7 @@ UI.prototype = {
             var category = task.category;
             allCategories[category] = allCategories[category] ? allCategories[category]+1 : 1;
           });
-        })
+        });
 
         editCategoryField.addEventListener("click", function() {
           editCategoryField.innerHTML = "";
@@ -340,7 +331,7 @@ UI.prototype = {
             option.value = category;
             option.innerText = category;
             editCategoryField.appendChild(option);
-          }
+          };
 
           editCategoryField.value = task.category;
 
@@ -370,26 +361,22 @@ UI.prototype = {
                 addCategoryModal.style.display = "none";
 
                 return false;
-              })
+              });
 
               var addCategorySpan = document.getElementById("close-add-category-modal-popup");
-              // When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the modal
               addCategorySpan.onclick = function() {
                 addCategoryModal.style.display = "none";
-              }
-              // When the user clicks anywhere outside of the modal, close it
+              };
+// When the user clicks anywhere outside of the modal, close it
               addCategoryModal.onclick = function(event) {
                 if (event.target == addCategoryModal) {
                   addCategoryModal.style.display = "none";
-                }
-              }
-            }
-          })
+                };
+              };
+            };
+          });
         });
-
-
-
-
 //////////////////////////////////////END OF DYNAMIC CATEGORIES
 
         var editDateField = document.getElementById("edit-date-field");
@@ -397,28 +384,28 @@ UI.prototype = {
           editDateField.value = task.date;
         } else {
           editDateField.value = null;
-        }
+        };
 
         var editStartTimeField = document.getElementById("edit-startTime-field");
         if(task.startTime) {
           editStartTimeField.value = task.startTime;
         } else {
           editStartTimeField.value = null;
-        }
+        };
 
         var editEndTimeField = document.getElementById("edit-endTime-field");
         if(task.endTime) {
           editEndTimeField.value = task.endTime;
         } else {
           editEndTimeField.value = null;
-        }
+        };
 
         var editCompletedField = document.getElementById("edit-update-checkbox");
         if(task.completed === true) {
           editCompletedField.checked = true;
         } else {
           editCompletedField.checked = false;
-        }
+        };
 
         var editSubmit = document.getElementById("edit-task-form");
         editSubmit.action = "pomotrello/" + task.indexID;
@@ -429,9 +416,9 @@ UI.prototype = {
 
           var taskList = new TaskList();
           taskList.delete(task.indexID, task, function(task){
-            window.location.reload()
-          })
-        })
+            window.location.reload();
+          });
+        });
 
 
         editSubmit.addEventListener("submit",function(event){
@@ -454,15 +441,15 @@ UI.prototype = {
             startTime: startTime,
             endTime: endTime,
             completed: completed
-          }
+          };
 
 
           var taskList = new TaskList();
           taskList.update(task.indexID, taskToUpdate, function(updatedTask){
-            window.location.reload()
-          })
-        })
-      })
+            window.location.reload();
+          });
+        });
+      });
 
 //BACK TO RENDERING TO SCREEN
       taskWrapper.appendChild(taskDescription);
@@ -477,7 +464,7 @@ UI.prototype = {
         checkboxInput.checked = true;
       } else {
         checkboxInput.checked = false;
-      }
+      };
 
       checkboxInput.addEventListener("change", function(){
         var editSubmit = document.getElementById("edit-task-form");
@@ -487,73 +474,71 @@ UI.prototype = {
           task.completed= true;
         } else {
           task.completed = false;
-        }
+        };
 
         if(task.completed === true) {
           checkboxInput.checked = true;
         } else {
           checkboxInput.checked = false;
-        }
+        };
 
-        var taskToUpdate = task
+        var taskToUpdate = task;
 
         var taskList = new TaskList();
         taskList.update(task.indexID, taskToUpdate, function(updatedTask){
-        })
-      })
+        });
+      });
 
       checkboxWrapper.appendChild(checkboxInput);
       taskWrapper.appendChild(checkboxWrapper);
 
 //TASK DEALER BABY
-
       if(task.date == null) {
         todoContainer.appendChild(taskWrapper);
-      }
+      };
 
       if(task.date == "") {
         todoContainer.appendChild(taskWrapper);
-      }
+      };
 
       if(moment(task.date, "YYYY-MM-DD").isBefore(oneWeekAgo, "day")) {
         historyContainer.appendChild(taskWrapper);
-      }
+      };
 
       if(moment(task.date, "YYYY-MM-DD").isSame(oneWeekAgo, "day")) {
         oneWeekAgoContainer.appendChild(taskWrapper);
-      }
+      };
 
       if(moment(task.date, "YYYY-MM-DD").isBetween(oneWeekAgo, threeDaysAgo, "day")) {
         oneWeekAgoContainer.appendChild(taskWrapper);
-      }
+      };
 
       if(moment(task.date, "YYYY-MM-DD").isBetween(fourDaysAgo, today, "day")) {
         threeDaysAgoContainer.appendChild(taskWrapper);
-      }
+      };
 
       if(moment(task.date, "YYYY-MM-DD").isSame(yesterday, "day")) {
         yesterdayContainer.appendChild(taskWrapper);
-      }
+      };
 
       if(moment(task.date, "YYYY-MM-DD").isSame(today, "day")) {
         todayContainer.appendChild(taskWrapper);
-      }
+      };
 
       if(moment(task.date, "YYYY-MM-DD").isSame(tomorrow, "day")) {
         tomorrowContainer.appendChild(taskWrapper);
-      }
+      };
 
       if(moment(task.date, "YYYY-MM-DD").isBetween(tomorrow, endOfWeek, "day")) {
         thisweekContainer.appendChild(taskWrapper);
-      }
+      };
 
       if(moment(task.date, "YYYY-MM-DD").isAfter(endOfWeek, "day")) {
         upcomingContainer.appendChild(taskWrapper);
-      }
+      };
 
 
 //PIE CHART INFO
-
       var category = task.category;
       var pomCountInt = parseInt(task.pomCount);
       taskCategoryCount[category] = taskCategoryCount[category] ? taskCategoryCount[category]+pomCountInt : pomCountInt;
@@ -562,23 +547,21 @@ UI.prototype = {
 //GRAPH INFO
       var taskDate = task.date;
       dailyPomCount[taskDate] = dailyPomCount[taskDate] ? dailyPomCount[taskDate]+pomCountInt : pomCountInt;
-
     });
 ////////////END OF FOREACH LOOP
 
 
 //PIECHART CHART DATA AND CREATE
-
     var formattedCategoryData = [];
     var lineGraphData = [];
     var lineGraphDates = [];
 
     for(category in taskCategoryCount) {
-      var dataObject = {}
+      var dataObject = {};
       dataObject.name = category;
       dataObject.y = taskCategoryCount[category];
       formattedCategoryData.push(dataObject);
-    }
+    };
     new PieChart(formattedCategoryData);
 
 //LINE CHART DATA AND CREATE
@@ -603,72 +586,72 @@ UI.prototype = {
       minute = minute || stored_min ||  24;
 
       var timer=setInterval(function() {
-        newNumber(number,minute);
-        // console.log (newNumber)
-        if (going == 1){
+
+        newNumber(number, minute);
+
+        if(going == 1) {
           if(number-- <= 0) {
             number = 59;
-            minute --
-          }
+            minute --;
+          };
           if(minute <= 0 && number === 0){
             clearInterval(timer);
-          }
+          };
         } else {
           clearInterval(timer);
-        }
+        };
       }, 1000);
-    }
+    };
 
-    var display_timer = "25:00"
+    var display_timer = "25:00";
 
     document.getElementById("countdown-wrapper").textContent = display_timer;
-    var countdown
+    var countdown;
     var startTimer = document.getElementById("countdown-start");
     var resetTimer = document.getElementById("countdown-reset");
 
     resetTimer.onclick = function(number, minute,timer){
-      clearInterval(timer)
-      display_timer = "25:00"
+      clearInterval(timer);
+      display_timer = "25:00";
       document.getElementById("countdown-wrapper").textContent = display_timer;
-      window.location.reload()
-    }
+      window.location.reload();
+    };
 
-    var stored_sec
-    var stored_min
-    var startToggle = 0
-    var going = 0
+    var stored_sec;
+    var stored_min;
+    var startToggle = 0;
+    var going = 0;
 
     startTimer.addEventListener("click", function(timer){
       if(going == 1){
-        going = 0
-      }
-      else {
-        going = 1
+        going = 0;
+      } else {
+        going = 1;
 
-        var storedTimer = display_timer.split(":")
-        stored_sec = parseInt(storedTimer[1]-1)
-        if (stored_sec == -1){stored_sec ++}
-        stored_min = parseInt(storedTimer[0])
-        if (stored_min == 25){stored_min --}
+        var storedTimer = display_timer.split(":");
+        stored_sec = parseInt(storedTimer[1]-1);
+        if (stored_sec == -1){stored_sec ++};
+        stored_min = parseInt(storedTimer[0]);
+        if (stored_min == 25){stored_min --};
 
         countdown = new Countdown(function(number, minute) {
           display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
           document.getElementById("countdown-wrapper").textContent = display_timer;
-          startToggle = 1
+          startToggle = 1;
         });
-      }
-    })
+      };
+    });
 
     startTimer.addEventListener("click", function(timer) {
       if (startToggle == 0){
         countdown = new Countdown(function(number, minute) {
           display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
           document.getElementById("countdown-wrapper").textContent = display_timer;
-          startToggle = 1
+          startToggle = 1;
         });
-      }
-    })
+      };
+    });
   }
-}
+};
 
 module.exports = UI;

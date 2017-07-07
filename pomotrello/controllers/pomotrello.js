@@ -18,7 +18,7 @@ pomotrelloRouter.get("/", function(req, res) {
 //task by id
 pomotrelloRouter.get("/:id", function(req, res){
   query.all(function(docs) {
-    res.json(docs[req.params.id])
+    res.json(docs[req.params.id]);
   });
 });
 

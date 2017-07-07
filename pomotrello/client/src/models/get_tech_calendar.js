@@ -16,7 +16,7 @@ var getTechCalendar = function() {
     var techCalendarDataArray = techCalendarData.data;
     var uniqTechCalendarDataArray = _.uniqBy(techCalendarDataArray, function(event) {
       return event.summary && event.start.displaylocal;
-    })
+    });
     eventDashboardLogic(uniqTechCalendarDataArray);
   });
   request.send();
@@ -55,7 +55,7 @@ var eventDashboardLogic = function(techCalendarData) {
       var buttonContainer = document.createElement("div");
       buttonContainer.classList = "event-buttons-container";
 
-      eventLink.appendChild(eventSummaryText)
+      eventLink.appendChild(eventSummaryText);
       eventEntry.appendChild(eventLink);
       eventEntry.appendChild(eventDateText);
       eventEntry.appendChild(eventEntryDetails);
@@ -114,7 +114,7 @@ var eventDashboardLogic = function(techCalendarData) {
 
         var taskList = new TaskList();
         taskList.add(taskToAdd, function(newTask){
-          window.location.reload()
+          window.location.reload();
         });
       });
 
