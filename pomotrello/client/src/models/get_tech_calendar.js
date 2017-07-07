@@ -85,7 +85,7 @@ var eventDashboardLogic = function(techCalendarData) {
 //USE MOMENT.JS TO CALCULATE POMCOUNT
         var startMoment = moment(techEvent.start.rfc2882utc);
         var endMoment = moment(techEvent.end.rfc2882utc);
-        var duration = endMoment.diff(startMoment, 'minutes');
+        var duration = endMoment.diff(startMoment, "minutes");
         var pomCount = duration/30;
 
 //STANDARDISE ALL MONTHS AND DATES TO TWO DIGITS
@@ -114,7 +114,6 @@ var eventDashboardLogic = function(techCalendarData) {
 
         var taskList = new TaskList();
         taskList.add(taskToAdd, function(newTask){
-          console.log('response in ui:', newTask);
           window.location.reload()
         });
       });

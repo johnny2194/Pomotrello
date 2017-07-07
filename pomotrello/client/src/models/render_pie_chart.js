@@ -1,6 +1,6 @@
 var PieChart = require("../views/pie_chart.js");
 var TaskList = require("./task_list.js");
-var moment = require('moment');
+var moment = require("moment");
 
 var renderPieChart = function() {
 
