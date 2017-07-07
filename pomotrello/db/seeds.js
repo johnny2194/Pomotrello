@@ -19,7 +19,6 @@ db.tasks.insert([
     startTime: "11:00",
     endTime: "11:30",
     completed: true
-
   },
 
   {
@@ -207,5 +206,5 @@ db.tasks.insert([
     date: "2017-06-28",
     completed: true
   }
-  
+
 ]);

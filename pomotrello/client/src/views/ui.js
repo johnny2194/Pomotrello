@@ -2,6 +2,9 @@ var TaskList = require("../models/task_list.js");
 var PieChart = require("./pie_chart.js");
 var renderPieChart = require("../models/render_pie_chart.js");
 var RangeFinder = require("./range_finder.js");
+var modalPopup = require("./modal_popups.js");
+var dynamicCategories = require("./dynamic_categories.js");
+var addCategoryModalPopup = require("./add_category_modal_popup.js"); require("./modal_popups.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
 var moment = require("moment");
 var _ = require("lodash");
@@ -69,7 +72,6 @@ UI.prototype = {
     });
   },
 
-//START ADD TASK MODAL POP UP
   addTaskModalPopUp: function(id) {
     var addTaskModal = document.getElementById("add-task-modal-popup");
     var addTaskButton = document.getElementById(id);
@@ -78,71 +80,9 @@ UI.prototype = {
 // When the user clicks on the button, open the modal
     addTaskButton.onclick = function() {
       addTaskModal.style.display = "block";
-
-// START DYNAMIC POPULATION OF CATEGORY LIST
-      var allCategories = {};
-      var taskList = new TaskList();
-      taskList.all(function (allTasks) {
-        allTasks.forEach(function(task) {
-          var category = task.category;
-          allCategories[category] = allCategories[category] ? allCategories[category]+1 : 1;
-        });
-      });
       var categorySelect = document.getElementById("category-field");
-      categorySelect.addEventListener("click", function() {
-        categorySelect.innerHTML = "";
-        for(category in allCategories) {
-          var option = document.createElement("option");
-          option.value = category;
-          option.innerText = category;
-          categorySelect.appendChild(option);
-        }
-
-        var addNewCategory = document.createElement("option");
-        addNewCategory.innerText = "Add new category";
-        categorySelect.appendChild(addNewCategory);
-
-        categorySelect.addEventListener("change", function(event) {
-
-          if(event.target.value == "Add new category"){
-            var addCategoryModal = document.getElementById("add-category-modal-popup");
-            addCategoryModal.style.display = "block";
-            var addCategoryForm = document.getElementById("add-category-form");
-            var addCategoryInput = document.getElementById("new-category-input");
-            addCategoryInput.autofocus = true;
-
-            addCategoryForm.addEventListener("submit", function (event) {
-              event.preventDefault();  //this stops redirect to new page
-
-              var newCategoryValue = addCategoryForm["new-category-input"].value;
-
-              var newCategoryOption = document.createElement("option");
-              newCategoryOption.value = newCategoryValue;
-              newCategoryOption.innerText = newCategoryValue;
-              newCategoryOption.setAttribute("selected", true);
-              categorySelect.appendChild(newCategoryOption);
-
-              addCategoryModal.style.display = "none";
-
-              return false;
-            })
-
-            var addCategorySpan = document.getElementById("close-add-category-modal-popup");
-// When the user clicks on <span> (x), close the modal
-            addCategorySpan.onclick = function() {
-              addCategoryModal.style.display = "none";
-            };
-// When the user clicks anywhere outside of the modal, close it
-            addCategoryModal.onclick = function(event) {
-              if (event.target == addCategoryModal) {
-                addCategoryModal.style.display = "none";
-              };
-            };
-          };
-        });
-      });
+      dynamicCategories(categorySelect);
     };
-///BACK TO ADD TASK MODAL POP UP
 
 // When the user clicks on <span> (x), close the modal
     addTaskSpan.onclick = function() {
@@ -314,70 +254,7 @@ UI.prototype = {
         currentOption.innerText = task.category;
         editCategoryField.appendChild(currentOption);
 
-////////////////////////////////////////////////DYNAMIC CATEGORIES IN EDIT
-        var allCategories = {};
-        var taskList = new TaskList();
-        taskList.all(function (allTasks) {
-          allTasks.forEach(function(task) {
-            var category = task.category;
-            allCategories[category] = allCategories[category] ? allCategories[category]+1 : 1;
-          });
-        });
-
-        editCategoryField.addEventListener("click", function() {
-          editCategoryField.innerHTML = "";
-          for(category in allCategories) {
-            var option = document.createElement("option");
-            option.value = category;
-            option.innerText = category;
-            editCategoryField.appendChild(option);
-          };
-
-          editCategoryField.value = task.category;
-
-          var addNewCategory = document.createElement("option");
-          addNewCategory.innerText = "Add new category";
-          editCategoryField.appendChild(addNewCategory);
-
-          editCategoryField.addEventListener("change", function(event) {
-            if(event.target.value == "Add new category"){
-              var addCategoryModal = document.getElementById("add-category-modal-popup");
-              addCategoryModal.style.display = "block";
-              var addCategoryForm = document.getElementById("add-category-form");
-              var addCategoryInput = document.getElementById("new-category-input");
-              addCategoryInput.autofocus = true;
-
-              addCategoryForm.addEventListener("submit", function (event) {
-                event.preventDefault();  //this stops redirect to new page
-
-                var newCategoryValue = addCategoryForm["new-category-input"].value;
-
-                var newCategoryOption = document.createElement("option");
-                newCategoryOption.value = newCategoryValue;
-                newCategoryOption.innerText = newCategoryValue;
-                newCategoryOption.setAttribute("selected", true);
-                editCategoryField.appendChild(newCategoryOption);
-
-                addCategoryModal.style.display = "none";
-
-                return false;
-              });
-
-              var addCategorySpan = document.getElementById("close-add-category-modal-popup");
-// When the user clicks on <span> (x), close the modal
-              addCategorySpan.onclick = function() {
-                addCategoryModal.style.display = "none";
-              };
-// When the user clicks anywhere outside of the modal, close it
-              addCategoryModal.onclick = function(event) {
-                if (event.target == addCategoryModal) {
-                  addCategoryModal.style.display = "none";
-                };
-              };
-            };
-          });
-        });
-//////////////////////////////////////END OF DYNAMIC CATEGORIES
+        dynamicCategories(editCategoryField, task.category);
 
         var editDateField = document.getElementById("edit-date-field");
         if(task.date) {
@@ -493,11 +370,7 @@ UI.prototype = {
       taskWrapper.appendChild(checkboxWrapper);
 
 //TASK DEALER BABY
-      if(task.date == null) {
-        todoContainer.appendChild(taskWrapper);
-      };
-
-      if(task.date == "") {
+      if(task.date == null || task.date == "") {
         todoContainer.appendChild(taskWrapper);
       };
 
