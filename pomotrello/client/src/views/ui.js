@@ -3,6 +3,7 @@ var PieChart = require("./pie_chart.js");
 var renderPieChart = require("../models/render_pie_chart.js");
 var RangeFinder = require("./range_finder.js");
 var dynamicCategories = require("./dynamic_categories.js");
+var modalPopup = require("./modal_popups.js");
 var TaskDealer = require("./task_dealer.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
 var timer = require("../models/timer.js");
@@ -29,14 +30,33 @@ var UI = function() {
   }.bind(this));
 
   this.attachFormOnSubmit();
-  this.addTaskModalPopUp("add-task-button");
-  this.addTaskModalPopUp("add-task-button-today");
-  this.addTaskModalPopUp("add-task-button-tomorrow");
-  this.addTaskModalPopUp("add-task-button-this-week");
-  this.addTaskModalPopUp("add-task-button-upcoming");
-  this.dashboardModalPopUp();
-  this.infoModalPopUp();
-  this.previousTasksModalPopUp();
+  getTechCalendar();
+//ADD TASK MODALS
+  modalPopup("add-task-modal-popup", "add-task-button", "close-add-task-modal-popup", "category-field");
+  modalPopup("add-task-modal-popup", "add-task-button-today", "close-add-task-modal-popup", "category-field");
+  modalPopup("add-task-modal-popup", "add-task-button-tomorrow", "close-add-task-modal-popup", "category-field");
+  modalPopup("add-task-modal-popup", "add-task-button-this-week", "close-add-task-modal-popup", "category-field");
+  modalPopup("add-task-modal-popup", "add-task-button-upcoming", "close-add-task-modal-popup", "category-field");
+
+
+
+  modalPopup("info-modal-popup", "info-button", "close-info-modal-popup");
+  modalPopup("previous-tasks-modal-popup", "previous-tasks-button", "close-previous-tasks-modal-popup");
+  modalPopup("event-dashboard-modal-popup", "event-dashboard-button", "close-event-dashboard-modal-popup");
+
+
+  var eventButton = document.getElementById("event-dashboard-button");
+  eventButton.addEventListener("click", function() {
+    getTechCalendar();
+  });
+
+  // this.addTaskModalPopUp("add-task-button-today");
+  // this.addTaskModalPopUp("add-task-button-tomorrow");
+  // this.addTaskModalPopUp("add-task-button-this-week");
+  // this.addTaskModalPopUp("add-task-button-upcoming");
+  // this.dashboardModalPopUp();
+  // this.infoModalPopUp();
+  // this.previousTasksModalPopUp();
 };
 
 UI.prototype = {
@@ -71,100 +91,102 @@ UI.prototype = {
     });
   },
 
-  addTaskModalPopUp: function(id) {
-    var addTaskModal = document.getElementById("add-task-modal-popup");
-    var addTaskButton = document.getElementById(id);
-    var addTaskSpan = document.getElementById("close-add-task-modal-popup");
 
-// When the user clicks on the button, open the modal
-    addTaskButton.onclick = function() {
-      addTaskModal.style.display = "block";
-      var categorySelect = document.getElementById("category-field");
-      dynamicCategories(categorySelect);
-    };
 
-// When the user clicks on <span> (x), close the modal
-    addTaskSpan.onclick = function() {
-      addTaskModal.style.display = "none";
-    };
+//   addTaskModalPopUp: function(id) {
+//     var addTaskModal = document.getElementById("add-task-modal-popup");
+//     var addTaskButton = document.getElementById(id);
+//     var addTaskSpan = document.getElementById("close-add-task-modal-popup");
+//
+// // When the user clicks on the button, open the modal
+//     addTaskButton.onclick = function() {
+//       addTaskModal.style.display = "block";
+//       var categorySelect = document.getElementById("category-field");
+//       dynamicCategories(categorySelect);
+//     };
+//
+// // When the user clicks on <span> (x), close the modal
+//     addTaskSpan.onclick = function() {
+//       addTaskModal.style.display = "none";
+//     };
+//
+// // When the user clicks anywhere outside of the modal, close it
+//     addTaskModal.onclick = function(event) {
+//       if (event.target == addTaskModal) {
+//         addTaskModal.style.display = "none";
+//       };
+//     };
+//   },
+//
+//   infoModalPopUp: function() {
+//     var infoModal = document.getElementById("info-modal-popup");
+//     var infoButton = document.getElementById("info-button");
+//     var infoSpan = document.getElementById("close-info-modal-popup");
+//
+// // When the user clicks on the button, open the modal
+//     infoButton.onclick = function() {
+//       infoModal.style.display = "block";
+//     };
+//
+// // When the user clicks on <span> (x), close the modal
+//     infoSpan.onclick = function() {
+//       infoModal.style.display = "none";
+//     };
+//
+// // When the user clicks anywhere outside of the modal, close it
+//     infoModal.onclick = function(event) {
+//       if (event.target == infoModal) {
+//         infoModal.style.display = "none";
+//       };
+//     };
+//   },
 
-// When the user clicks anywhere outside of the modal, close it
-    addTaskModal.onclick = function(event) {
-      if (event.target == addTaskModal) {
-        addTaskModal.style.display = "none";
-      };
-    };
-  },
-
-  infoModalPopUp: function() {
-    var infoModal = document.getElementById("info-modal-popup");
-    var infoButton = document.getElementById("info-button");
-    var infoSpan = document.getElementById("close-info-modal-popup");
-
-// When the user clicks on the button, open the modal
-    infoButton.onclick = function() {
-      infoModal.style.display = "block";
-    };
-
-// When the user clicks on <span> (x), close the modal
-    infoSpan.onclick = function() {
-      infoModal.style.display = "none";
-    };
-
-// When the user clicks anywhere outside of the modal, close it
-    infoModal.onclick = function(event) {
-      if (event.target == infoModal) {
-        infoModal.style.display = "none";
-      };
-    };
-  },
-
-  previousTasksModalPopUp: function() {
-    var previousTasksModal = document.getElementById("previous-tasks-modal-popup");
-    var previousTasksButton = document.getElementById("previous-tasks-button");
-    var previousTasksSpan = document.getElementById("close-previous-tasks-modal-popup");
-
-// When the user clicks on the button, open the modal
-    previousTasksButton.onclick = function() {
-      previousTasksModal.style.display = "block";
-    };
-
-// When the user clicks on <span> (x), close the modal
-    previousTasksSpan.onclick = function() {
-      previousTasksModal.style.display = "none";
-    };
-
-// When the user clicks anywhere outside of the modal, close it
-    previousTasksModal.onclick = function(event) {
-      if (event.target == previousTasksModal) {
-        previousTasksModal.style.display = "none";
-      };
-    };
-  },
-
-  dashboardModalPopUp: function() {
-    var eventModal = document.getElementById("event-dashboard-modal-popup");
-    var eventButton = document.getElementById("event-dashboard-button");
-    var eventSpan = document.getElementById("close-event-dashboard-modal-popup");
-
-// When the user clicks on the button, open the modal
-    eventButton.onclick = function() {
-      eventModal.style.display = "block";
-      getTechCalendar();
-    };
-
-// When the user clicks on <span> (x), close the modal
-    eventSpan.onclick = function() {
-      eventModal.style.display = "none";
-    };
-
-// When the user clicks anywhere outside of the modal, close it
-    eventModal.onclick = function(event) {
-      if (event.target == eventModal) {
-        eventModal.style.display = "none";
-      };
-    };
-  },
+//   previousTasksModalPopUp: function() {
+//     var previousTasksModal = document.getElementById("previous-tasks-modal-popup");
+//     var previousTasksButton = document.getElementById("previous-tasks-button");
+//     var previousTasksSpan = document.getElementById("close-previous-tasks-modal-popup");
+//
+// // When the user clicks on the button, open the modal
+//     previousTasksButton.onclick = function() {
+//       previousTasksModal.style.display = "block";
+//     };
+//
+// // When the user clicks on <span> (x), close the modal
+//     previousTasksSpan.onclick = function() {
+//       previousTasksModal.style.display = "none";
+//     };
+//
+// // When the user clicks anywhere outside of the modal, close it
+//     previousTasksModal.onclick = function(event) {
+//       if (event.target == previousTasksModal) {
+//         previousTasksModal.style.display = "none";
+//       };
+//     };
+//   },
+// 
+//   dashboardModalPopUp: function() {
+//     var eventModal = document.getElementById("event-dashboard-modal-popup");
+//     var eventButton = document.getElementById("event-dashboard-button");
+//     var eventSpan = document.getElementById("close-event-dashboard-modal-popup");
+//
+// // When the user clicks on the button, open the modal
+//     eventButton.onclick = function() {
+//       eventModal.style.display = "block";
+//       getTechCalendar();
+//     };
+//
+// // When the user clicks on <span> (x), close the modal
+//     eventSpan.onclick = function() {
+//       eventModal.style.display = "none";
+//     };
+//
+// // When the user clicks anywhere outside of the modal, close it
+//     eventModal.onclick = function(event) {
+//       if (event.target == eventModal) {
+//         eventModal.style.display = "none";
+//       };
+//     };
+//   },
 
   renderTask: function(tasks) {
 
