@@ -2,12 +2,10 @@ var TaskList = require("../models/task_list.js");
 var PieChart = require("./pie_chart.js");
 var renderPieChart = require("../models/render_pie_chart.js");
 var RangeFinder = require("./range_finder.js");
-var modalPopup = require("./modal_popups.js");
 var dynamicCategories = require("./dynamic_categories.js");
 var TaskDealer = require("./task_dealer.js");
-var addCategoryModalPopup = require("./add_category_modal_popup.js"); require("./modal_popups.js");
 var getTechCalendar = require("../models/get_tech_calendar.js");
-var moment = require("moment");
+var timer = require("../models/timer.js");
 var _ = require("lodash");
 
 
@@ -377,84 +375,7 @@ UI.prototype = {
       lineGraphData.push(graphDataObject);
       lineGraphDates.push(taskDate);
     };
-
     new RangeFinder(lineGraphData, lineGraphDates);
-
-
-
-
-
-// CLOCK FUNCTION
-    function Countdown(newNumber, number, minute) {
-      number = stored_sec || number || 59;
-      minute = minute || stored_min ||  24;
-
-      var timer=setInterval(function() {
-
-        newNumber(number, minute);
-
-        if(going == 1) {
-          if(number-- <= 0) {
-            number = 59;
-            minute --;
-          };
-          if(minute <= 0 && number === 0){
-            clearInterval(timer);
-          };
-        } else {
-          clearInterval(timer);
-        };
-      }, 1000);
-    };
-
-    var display_timer = "25:00";
-
-    document.getElementById("countdown-wrapper").textContent = display_timer;
-    var countdown;
-    var startTimer = document.getElementById("countdown-start");
-    var resetTimer = document.getElementById("countdown-reset");
-
-    resetTimer.onclick = function(number, minute,timer){
-      clearInterval(timer);
-      display_timer = "25:00";
-      document.getElementById("countdown-wrapper").textContent = display_timer;
-      window.location.reload();
-    };
-
-    var stored_sec;
-    var stored_min;
-    var startToggle = 0;
-    var going = 0;
-
-    startTimer.addEventListener("click", function(timer){
-      if(going == 1){
-        going = 0;
-      } else {
-        going = 1;
-
-        var storedTimer = display_timer.split(":");
-        stored_sec = parseInt(storedTimer[1]-1);
-        if (stored_sec == -1){stored_sec ++};
-        stored_min = parseInt(storedTimer[0]);
-        if (stored_min == 25){stored_min --};
-
-        countdown = new Countdown(function(number, minute) {
-          display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
-          document.getElementById("countdown-wrapper").textContent = display_timer;
-          startToggle = 1;
-        });
-      };
-    });
-
-    startTimer.addEventListener("click", function(timer) {
-      if (startToggle == 0){
-        countdown = new Countdown(function(number, minute) {
-          display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
-          document.getElementById("countdown-wrapper").textContent = display_timer;
-          startToggle = 1;
-        });
-      };
-    });
   }
 };
 
