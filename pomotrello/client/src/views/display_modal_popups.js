@@ -1,8 +1,15 @@
+var getTechCalendar = require("../models/get_tech_calendar.js");
+
 var displayModalPopup = function(modalPopupWrapper, buttonID, spanID) {
 
   var showModalButton = document.getElementById(buttonID);
   var modalPopupWrapper = document.getElementById(modalPopupWrapper);
   var spanID = document.getElementById(spanID);
+
+  var eventButton = document.getElementById("event-dashboard-button");
+  eventButton.addEventListener("click", function() {
+    getTechCalendar();
+  });
 
 // When the user clicks on the button, open the modal
   showModalButton.addEventListener("click", function() {
