@@ -138,7 +138,7 @@
           <form method="POST" action = "pomotrello" id = "add-task-form">
             <fieldset>
               <legend>What needs doing?</legend>
-              <input type="text" name="description" id= "description-field" class="max-width" placeholder="Give task a description" required>
+              <input type="text" name="description" id= "description-field" class="max-width" placeholder="Give task a description" required autofocus>
 
               <div id="pomcount-category-wrapper" class="form-input-divider" class="max-width">
                 <div class="mid-width" >
@@ -147,7 +147,7 @@
                 </div>
                 <div class="mid-width right-form-divder">
                   <label for="job">Select Category:</label>
-                  <select id="category-field" name="category" class="max-width" required>
+                  <select name="category" id="category-field" class="max-width" required>
                     <option selected disabled value="">Select Category</option>
                   </select>
                 </div>
@@ -199,7 +199,7 @@
                 </div>
                 <div class="mid-width right-form-divder">
                   <label for="job">Select Category:</label>
-                  <select id="edit-category-field" name="category" class="max-width" required>
+                  <select name="category" id="edit-category-field" class=" max-width" required>
                   </select>
                 </div>
               </div>

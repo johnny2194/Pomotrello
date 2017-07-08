@@ -3,14 +3,14 @@ var renderCountdown = function() {
     number = stored_sec || number || 59;
     minute = minute || stored_min ||  24;
 
-    var timer=setInterval(function() {
+    var timer = setInterval(function() {
       newNumber(number,minute);
-      if (going == 1){
+      if (going == 1) {
         if(number-- <= 0) {
           number = 59;
           minute --;
         };
-        if(minute <= 0 && number === 0){
+        if(minute <= 0 && number === 0) {
           clearInterval(timer);
         };
       } else {
@@ -37,11 +37,10 @@ var renderCountdown = function() {
   var startToggle = 0;
   var going = 0;
 
-  startTimer.addEventListener('click', function(timer){
+  startTimer.addEventListener("click", function(timer){
     if(going == 1){
       going = 0;
-    }
-    else {
+    } else {
       going = 1;
       var storedTimer = display_timer.split(":");
       stored_sec = parseInt(storedTimer[1]-1);
@@ -58,8 +57,8 @@ var renderCountdown = function() {
     };
   });
 
-  startTimer.addEventListener('click', function(timer) {
-    if (startToggle == 0){
+  startTimer.addEventListener("click", function(timer) {
+    if (startToggle == 0) {
       countdown = new Countdown(function(number, minute) {
         display_timer = minute + ":" + (number >= 10 ? number : "0" + number);
         document.getElementById("countdown-wrapper").textContent = display_timer;
