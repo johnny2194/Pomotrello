@@ -24,12 +24,12 @@ var dynamicCategories = function(categorySelect, currentTaskCategory) {
     categorySelect.value = currentTaskCategory;
   };
 
+//GIVE OPTION TO ADD NEW CATEGORY
     var addNewCategory = document.createElement("option");
     addNewCategory.innerText = "Add new category";
     categorySelect.appendChild(addNewCategory);
 
     categorySelect.addEventListener("change", function(event) {
-
       if(event.target.value == "Add new category"){
         addCategoryModalPopup(categorySelect);
       };
