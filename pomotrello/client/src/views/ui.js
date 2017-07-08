@@ -1,8 +1,8 @@
 var TaskList = require("../models/task_list.js");
 var PieChart = require("./pie_chart.js");
 var renderPieChart = require("../models/render_pie_chart.js");
+var attachFormOnSubmit = require("../models/attach_form_on_submit.js");
 var RangeFinder = require("./range_finder.js");
-var dynamicCategories = require("./dynamic_categories.js");
 var taskModalPopup = require("./task_modal_popups.js");
 var editModalPopup = require("./edit_modal_popups.js");
 var displayModalPopup = require("./display_modal_popups.js");
@@ -31,7 +31,7 @@ var UI = function() {
     this.renderTask(allTasks);
   }.bind(this));
 
-  this.attachFormOnSubmit();
+  attachFormOnSubmit();
 //ADD TASK MODALS
   taskModalPopup("add-task-button");
   taskModalPopup("add-task-button-today");
@@ -52,37 +52,6 @@ var UI = function() {
 };
 
 UI.prototype = {
-
-  attachFormOnSubmit: function(){
-    var form = document.getElementById("add-task-form");
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();  //this stops redirect to new page
-
-      var description = form["description-field"].value;
-      var category = form["category-field"].value;
-      var pomCount = form["pomCount-field"].value;
-      var date = form["date-field"].value;
-      var startTime = form["startTime-field"].value;
-      var endTime = form["endTime-field"].value;
-
-
-      var taskToAdd = {
-        description: description,
-        category: category,
-        pomCount: pomCount,
-        date: date,
-        startTime: startTime,
-        endTime: endTime,
-        completed: false
-      };
-
-      var taskList = new TaskList();
-      taskList.add(taskToAdd, function(newTask){
-        window.location.reload();
-      });
-    });
-  },
-
 
   renderTask: function(tasks) {
 
@@ -110,8 +79,6 @@ UI.prototype = {
 
     editModalPopup(taskDescription, task);
 
-
-//BACK TO RENDERING TO SCREEN
       taskWrapper.appendChild(taskDescription);
 
 //CHECKBOX MECHANICS
