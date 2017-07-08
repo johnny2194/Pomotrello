@@ -33,11 +33,11 @@ var UI = function() {
 
   this.attachFormOnSubmit();
 //ADD TASK MODALS
-  taskModalPopup("add-task-modal-popup", "add-task-button", "close-add-task-modal-popup", "category-field");
-  taskModalPopup("add-task-modal-popup", "add-task-button-today", "close-add-task-modal-popup", "category-field");
-  taskModalPopup("add-task-modal-popup", "add-task-button-tomorrow", "close-add-task-modal-popup", "category-field");
-  taskModalPopup("add-task-modal-popup", "add-task-button-this-week", "close-add-task-modal-popup", "category-field");
-  taskModalPopup("add-task-modal-popup", "add-task-button-upcoming", "close-add-task-modal-popup", "category-field");
+  taskModalPopup("add-task-button");
+  taskModalPopup("add-task-button-today");
+  taskModalPopup("add-task-button-tomorrow");
+  taskModalPopup("add-task-button-this-week");
+  taskModalPopup("add-task-button-upcoming");
 
 //DISPLAY MODALS
   displayModalPopup("info-modal-popup", "info-button", "close-info-modal-popup");

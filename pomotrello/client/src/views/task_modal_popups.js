@@ -1,12 +1,12 @@
 var dynamicCategories = require("./dynamic_categories.js");
 
-var taskModalPopup = function(modalPopupWrapper, buttonID, spanID, categorySelectID) {
+var taskModalPopup = function(buttonID) {
 
-  var modalPopupWrapper = document.getElementById(modalPopupWrapper);
-  var spanID = document.getElementById(spanID);
+  var modalPopupWrapper = document.getElementById("add-task-modal-popup");
+  var spanID = document.getElementById("close-add-task-modal-popup");
 
 //POPULATE DYNAMIC CATEGORIES ON MOUSE OVER
-  var categorySelect = document.getElementById(categorySelectID);
+  var categorySelect = document.getElementById("category-field");
   categorySelect.addEventListener("mouseover", function() {
     dynamicCategories(categorySelect);
   });
