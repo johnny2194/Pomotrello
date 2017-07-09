@@ -99,8 +99,10 @@ var renderTasks = function(tasks) {
 
 
     //GRAPH INFO
-    var taskDate = task.date;
-    dailyPomCount[taskDate] = dailyPomCount[taskDate] ? dailyPomCount[taskDate]+pomCountInt : pomCountInt;
+    if(task.completed == true) {
+      var taskDate = task.date;
+      dailyPomCount[taskDate] = dailyPomCount[taskDate] ? dailyPomCount[taskDate]+pomCountInt : pomCountInt;
+    }
   });
   ////////////END OF FOREACH LOOP
 
