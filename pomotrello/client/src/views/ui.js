@@ -5,7 +5,6 @@ var taskModalPopup = require("./task_modal_popups.js");
 var displayModalPopup = require("./display_modal_popups.js");
 var timer = require("../models/timer.js");
 
-
 var UI = function() {
 
   var taskList = new TaskList
@@ -14,15 +13,7 @@ var UI = function() {
   });
 
   attachFormOnSubmit();
-
-  //ADD TASK MODALS
-  taskModalPopup("add-task-button");
-  taskModalPopup("add-task-button-today");
-  taskModalPopup("add-task-button-tomorrow");
-  taskModalPopup("add-task-button-this-week");
-  taskModalPopup("add-task-button-upcoming");
-
-  //DISPLAY MODALS
+  taskModalPopup();
   displayModalPopup("info-modal-popup", "info-button", "close-info-modal-popup");
   displayModalPopup("previous-tasks-modal-popup", "previous-tasks-button", "close-previous-tasks-modal-popup");
   displayModalPopup("event-dashboard-modal-popup", "event-dashboard-button", "close-event-dashboard-modal-popup");

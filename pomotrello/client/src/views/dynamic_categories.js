@@ -2,7 +2,7 @@ var TaskList = require("../models/task_list.js");
 var addCategoryModalPopup = require("./add_category_modal_popup.js");
 
 var dynamicCategories = function(categorySelect, currentTaskCategory) {
-
+  console.log("dynamicCategories triggered");
   var allCategories = {};
   var taskList = new TaskList();
   taskList.all(function (allTasks) {

@@ -122,6 +122,25 @@ body {
   margin-top: 12px;
 }
 
+#all-list-container, #all-past-list-container{
+  display: flex;
+  flex-flow: row;
+  height: 360px;
+  white-space: nowrap;
+  margin-bottom: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 10px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: flex-start;
+  margin-right:8px;
+  margin-left: 10px;
+  margin-top: 12px;
+}
+
 #analytics-and-pomo-countdown-wrapper{
   display: flex;
   flex-flow: row;
@@ -606,7 +625,7 @@ color: #757575;
     font-weight: bold;
 }
 
-#close-edit-task-modal-popup:hover, #close-add-category-modal-popup:hover, #close-info-modal-popup:hover, #previous-tasks-modal-popup:hover, 
+#close-edit-task-modal-popup:hover, #close-add-category-modal-popup:hover, #close-info-modal-popup:hover, #previous-tasks-modal-popup:hover,
 #close-edit-task-modal-popup:focus, #close-add-category-modal-popup:focus, #close-info-modal-popup:focus, #previous-tasks-modal-popup:focus {
     color: #109177;
     text-decoration: none;
@@ -657,7 +676,7 @@ a:hover {
 
 }
 #search-events-title{
-  margin: 18px; 
+  margin: 18px;
 }
 
 .event-summary{
@@ -685,7 +704,7 @@ a:hover {
   font-size: 14px;
   white-space: normal;
   margin-top: 2px;
-  
+
 }
 
 .event-buttons-container {
@@ -958,7 +977,7 @@ background: #d2d9dd;
   }
 
 
-  
+
 
 #category-submit {
   font-family: 'Montserrat', sans-serif;
@@ -1468,28 +1487,27 @@ button[data-balloon] {
 
 /* The Modal (background) */
 #previous-tasks-modal-popup {
-    display: none; 
-    position: fixed; 
-    z-index: 1;  
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; 
+    width: 100%;
     height: 100%;
     overflow: auto;  Enable scroll if needed
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.5); 
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.5);
 }
 
 #previous-tasks-modal-content {
     border-radius: 7px;
     background-color: #f4f7f8;
-    margin: 3% auto; 
+    margin: 3% auto;
     padding: 10px;
     border: 1px solid #888;
-    width: 83%; 
+    width: 83%;
     display: flex;
- 
-
 }
+
 
 </style>
