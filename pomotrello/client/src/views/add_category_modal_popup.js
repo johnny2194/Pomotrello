@@ -1,5 +1,5 @@
 var addCategoryModalPopup = function(categorySelect) {
-  console.log("categorySelect in addCategoryModalPopup", categorySelect);
+  console.log("addCategoryModalPopup triggered");
   var addCategoryModal = document.getElementById("add-category-modal-popup");
   addCategoryModal.style.display = "block";
   var addCategoryForm = document.getElementById("add-category-form");

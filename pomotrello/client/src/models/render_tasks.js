@@ -99,8 +99,10 @@ var renderTasks = function(tasks) {
 
 
     //GRAPH INFO
-    var taskDate = task.date;
-    dailyPomCount[taskDate] = dailyPomCount[taskDate] ? dailyPomCount[taskDate]+pomCountInt : pomCountInt;
+    if(task.completed == true) {
+      var taskDate = task.date;
+      dailyPomCount[taskDate] = dailyPomCount[taskDate] ? dailyPomCount[taskDate]+pomCountInt : pomCountInt;
+    }
   });
   ////////////END OF FOREACH LOOP
 
@@ -120,6 +122,8 @@ var renderTasks = function(tasks) {
 
   //LINE CHART DATA AND CREATE
   var sortedDailyPomCount = _.sortKeysBy(dailyPomCount);
+  delete sortedDailyPomCount.undefined;
+  console.log(sortedDailyPomCount);
 
   for(taskDate in sortedDailyPomCount) {
     var graphDataObject = { color: "#7766ad"};
