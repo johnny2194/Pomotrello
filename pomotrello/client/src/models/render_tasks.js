@@ -122,6 +122,8 @@ var renderTasks = function(tasks) {
 
   //LINE CHART DATA AND CREATE
   var sortedDailyPomCount = _.sortKeysBy(dailyPomCount);
+  delete sortedDailyPomCount.undefined;
+  console.log(sortedDailyPomCount);
 
   for(taskDate in sortedDailyPomCount) {
     var graphDataObject = { color: "#7766ad"};
