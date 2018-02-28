@@ -3,3 +3,5 @@ apiKey.js
 bundle.js
 bundle.js.map
 npm-debug.log
+.DS_Store
+/*.env
